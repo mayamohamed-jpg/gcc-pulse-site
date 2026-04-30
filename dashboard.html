@@ -644,9 +644,9 @@
             var nh = '';
             if (en) {
                 nh = '<div class="brand-note-display ' + nc + '" onclick="editNote(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" id="display-' + nid + '">' + en.replace(/\n/g, '<br>') + '<span class="note-edit-btn">edit</span></div>' +
-                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" placeholder="Add reason...">' + en + '</textarea>';
+                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" placeholder="Add Feedback Comment...">' + en + '</textarea>';
             } else {
-                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" placeholder="Add reason for performance..."></textarea>';
+                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" placeholder="Add Feedback Comment..."></textarea>';
             }
             nh += '<div class="note-color-picker" id="picker-' + nid + '" style="display:' + (en ? 'none' : 'flex') + ';">' +
                 '<span class="note-color-dot orange' + (nc === 'orange' ? ' selected' : '') + '" onclick="applyColor(\'' + nid + '\',\'' + ce + '\',\'' + be + '\',\'orange\')" title="Orange"></span>' +
