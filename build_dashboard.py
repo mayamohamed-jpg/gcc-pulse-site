@@ -130,20 +130,50 @@ def create_dashboard(data):
         }
         .filter-select {
             background: transparent; color: #f1f5f9; border: none;
-            border-radius: 6px; padding: 6px 24px 6px 4px; font-size: 13px; font-weight: 600;
+            border-radius: 6px; padding: 6px 28px 6px 8px; font-size: 13px; font-weight: 600;
             cursor: pointer; outline: none; appearance: none; -webkit-appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' fill='%2338bdf8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat; background-position: right 4px center; transition: color 0.2s;
-            min-width: 90px;
+            background-repeat: no-repeat; background-position: right 6px center;
+            transition: all 0.2s; min-width: 100px;
         }
         .filter-select:hover { color: #38bdf8; }
         .filter-select:focus { color: #38bdf8; }
-        .filter-select option { background: #0d1321; color: #f1f5f9; font-weight: 500; }
-        .light .filter-group { background: linear-gradient(180deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)); border-color: rgba(15,23,42,0.10); }
+
+        /* Enhanced dropdown options */
+        .filter-select option {
+            background: #0f172a;
+            color: #e2e8f0;
+            font-weight: 500;
+            padding: 10px 14px;
+            font-size: 13px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .filter-select option:hover,
+        .filter-select option:checked,
+        .filter-select option:focus {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #38bdf8;
+            box-shadow: inset 0 0 0 1px rgba(56,189,248,0.2);
+        }
+
+        /* Light theme overrides */
+        .light .filter-group { 
+            background: linear-gradient(180deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)); 
+            border-color: rgba(15,23,42,0.10); 
+        }
         .light .filter-cell + .filter-cell { border-left-color: rgba(15,23,42,0.08); }
         .light .filter-select { color: #1a1a2e; }
         .light .filter-label { color: #64748b; }
-        .light .filter-select option { background: #ffffff; color: #1a1a2e; }
+        .light .filter-select option { 
+            background: #ffffff; 
+            color: #1a1a2e; 
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .light .filter-select option:hover,
+        .light .filter-select option:checked {
+            background: #f0f9ff;
+            color: #0066a1;
+        }
         
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
         .accordion-content.open { max-height: 4000px; }
@@ -398,17 +428,9 @@ def create_dashboard(data):
     </main>
 
     <script>
-        // ============================================================
-        // FIREBASE CONFIGURATION
-        // ============================================================
-        // REPLACE THIS URL with your Firebase Realtime Database URL
-        // Go to: https://console.firebase.google.com → Realtime Database → Create Database
-        // Your URL will look like: https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com
-        var FIREBASE_DATABASE_URL = "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com";
-        
-        // ============================================================
-        // DATA
-        // ============================================================
+
+        var FIREBASE_DATABASE_URL = "https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
+
         var D = ''' + data_json + ''';
 
         var isDark = true;
@@ -685,9 +707,9 @@ def create_dashboard(data):
             var nh = '';
             if (en) {
                 nh = '<div class="brand-note-display ' + nc + '" onclick="editNote(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" id="display-' + nid + '">' + en.replace(/\\n/g, '<br>') + '<span class="note-edit-btn">edit</span></div>' +
-                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add reason...">' + en + '</textarea>';
+                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment...">' + en + '</textarea>';
             } else {
-                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add reason for performance..."></textarea>';
+                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment..."></textarea>';
             }
             nh += '<div class="note-color-picker" id="picker-' + nid + '" style="display:' + (en ? 'none' : 'flex') + ';">' +
                 '<span class="note-color-dot orange' + (nc === 'orange' ? ' selected' : '') + '" onclick="applyColor(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\',\\'orange\\')" title="Orange"></span>' +
