@@ -398,17 +398,9 @@ def create_dashboard(data):
     </main>
 
     <script>
-        // ============================================================
-        // FIREBASE CONFIGURATION
-        // ============================================================
-        // REPLACE THIS URL with your Firebase Realtime Database URL
-        // Go to: https://console.firebase.google.com → Realtime Database → Create Database
-        // Your URL will look like: https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com
-        var FIREBASE_DATABASE_URL = "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com";
-        
-        // ============================================================
-        // DATA
-        // ============================================================
+
+        var FIREBASE_DATABASE_URL = "https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
+
         var D = ''' + data_json + ''';
 
         var isDark = true;
