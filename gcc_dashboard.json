@@ -25,10 +25,10 @@
       "2025Q2": 1950836,
       "2025Q3": 2157875,
       "2025Q4": 2361678,
-      "2026Q1": 1994781,
-      "QoQ_Growth_%": -15.54,
-      "YoY_Growth_%": 6.11,
-      "Total_All_Quarters": 18675773
+      "2026Q1": 1995713,
+      "QoQ_Growth_%": -15.5,
+      "YoY_Growth_%": 6.16,
+      "Total_All_Quarters": 18676705
     },
     {
       "Country": "Kuwait",
@@ -370,8 +370,8 @@
       "Units_2025Q2": 189938,
       "Units_2025Q3": 171374,
       "Units_2025Q4": 214374,
-      "Units_2026Q1": 182261,
-      "Market_Share_%": 9.14,
+      "Units_2026Q1": 183193,
+      "Market_Share_%": 9.18,
       "Rank": 5,
       "QoQ_2024Q2_vs_2024Q1": -11.59,
       "QoQ_2024Q3_vs_2024Q2": -9.65,
@@ -380,12 +380,12 @@
       "QoQ_2025Q2_vs_2025Q1": 0.05,
       "QoQ_2025Q3_vs_2025Q2": -9.77,
       "QoQ_2025Q4_vs_2025Q3": 25.09,
-      "QoQ_2026Q1_vs_2025Q4": -14.98,
+      "QoQ_2026Q1_vs_2025Q4": -14.55,
       "YoY_2025Q1_vs_2024Q1": 0.0,
       "YoY_2025Q2_vs_2024Q2": 13.17,
       "YoY_2025Q3_vs_2024Q3": 13.02,
       "YoY_2025Q4_vs_2024Q4": 12.45,
-      "YoY_2026Q1_vs_2025Q1": -3.99
+      "YoY_2026Q1_vs_2025Q1": -3.5
     },
     {
       "Country": "Iraq",
@@ -427,7 +427,7 @@
       "Units_2025Q3": 237173,
       "Units_2025Q4": 278361,
       "Units_2026Q1": 272901,
-      "Market_Share_%": 13.68,
+      "Market_Share_%": 13.67,
       "Rank": 2,
       "QoQ_2024Q2_vs_2024Q1": 37.49,
       "QoQ_2024Q3_vs_2024Q2": 27.19,
@@ -595,7 +595,7 @@
       "Units_2025Q3": 422837,
       "Units_2025Q4": 601928,
       "Units_2026Q1": 570883,
-      "Market_Share_%": 28.62,
+      "Market_Share_%": 28.61,
       "Rank": 1,
       "QoQ_2024Q2_vs_2024Q1": 9.05,
       "QoQ_2024Q3_vs_2024Q2": -10.88,
@@ -623,7 +623,7 @@
       "Units_2025Q3": 258115,
       "Units_2025Q4": 264712,
       "Units_2026Q1": 255254,
-      "Market_Share_%": 12.8,
+      "Market_Share_%": 12.79,
       "Rank": 3,
       "QoQ_2024Q2_vs_2024Q1": -1.37,
       "QoQ_2024Q3_vs_2024Q2": -3.19,
@@ -2631,17 +2631,17 @@
     },
     {
       "Country": "Iraq",
-      "Total_Units_All_Time": 18675773,
-      "Units_2026Q1": 1994781,
+      "Total_Units_All_Time": 18676705,
+      "Units_2026Q1": 1995713,
       "Num_Brands": 14,
       "Top_5_Brands": {
         "Samsung": 570883,
         "Honor": 272901,
         "Tecno": 255254,
         "Infinix": 248824,
-        "Apple": 182261
+        "Apple": 183193
       },
-      "Avg_Units_Per_Quarter": 2075085
+      "Avg_Units_Per_Quarter": 2075189
     }
   ],
   "quarterly_trends": [
@@ -2721,10 +2721,10 @@
       "Year": 2026,
       "Q_Num": 1,
       "Quarter": "2026Q1",
-      "Units": 7711616,
-      "QoQ_Growth_%": -15.352246915916512,
+      "Units": 7712548,
+      "QoQ_Growth_%": -15.342016672881286,
       "Units_LY": 8182732.0,
-      "YoY_Growth_%": -5.76
+      "YoY_Growth_%": -5.75
     }
   ],
   "brand_rankings": [
@@ -2737,9 +2737,9 @@
     },
     {
       "Brand": "Apple",
-      "Total_Units": 13175550,
+      "Total_Units": 13176482,
       "Countries_Present": 7,
-      "Avg_Quarterly_Units": 209135.7142857143,
+      "Avg_Quarterly_Units": 209150.50793650793,
       "Rank": 2
     },
     {
@@ -2899,7 +2899,7 @@
       "2025Q2": 1844456,
       "2025Q3": 2020919,
       "2025Q4": 2207309,
-      "2026Q1": 1847612
+      "2026Q1": 1848544
     },
     {
       "Country": "Kuwait",
