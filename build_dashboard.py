@@ -39,11 +39,8 @@ def create_dashboard(data):
     <title>GCC Consumer Pulse — Units Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -95,13 +92,10 @@ def create_dashboard(data):
         
         .idc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
         .idc-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
-        
         .idc-card-bg { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
         .idc-card-bg:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
-        
         .idc-card-transparent { background: transparent; border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
         .idc-card-transparent:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
-        
         .brand-inner { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s ease; }
         .brand-inner:hover { border-color: #38bdf8; background: var(--surface-alt); }
         
@@ -192,15 +186,8 @@ def create_dashboard(data):
         .brands-scroll { max-height: 500px; overflow-y: auto; }
         
         .sync-status {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 500;
-            z-index: 100;
-            transition: opacity 0.3s;
+            position: fixed; bottom: 16px; right: 16px; padding: 8px 14px;
+            border-radius: 8px; font-size: 11px; font-weight: 500; z-index: 100; transition: opacity 0.3s;
         }
         .sync-status.synced { background: #064e3b; color: #34d399; }
         .sync-status.syncing { background: #1e293b; color: #fbbf24; }
@@ -213,7 +200,6 @@ def create_dashboard(data):
 </head>
 <body>
 
-    <!-- Sync Status Indicator -->
     <div class="sync-status synced" id="syncStatus">✓ Notes synced</div>
 
     <header class="idc-header-bg sticky top-0 z-50 shadow-lg border-b border-white/5">
@@ -376,13 +362,7 @@ def create_dashboard(data):
     </main>
 
     <script>
-
-<<<<<<< HEAD
         var FIREBASE_DATABASE_URL = "https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
-=======
-        var FIREBASE_DATABASE_URL = https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
->>>>>>> 065bcecf3ab2bd80b280bcd3a95704732df6c2d7
-
         var D = ''' + data_json + ''';
 
         var isDark = true;
@@ -393,121 +373,48 @@ def create_dashboard(data):
         var allQuarters = [];
         var brandNotes = {};
         var noteColors = {};
-        var notesLoaded = false;
         var db = null;
         var notesRef = null;
 
-        // ============================================================
-        // FIREBASE INIT
-        // ============================================================
+        // ==================== FIREBASE ====================
         function initFirebase() {
             try {
-                if (FIREBASE_DATABASE_URL.indexOf('YOUR-PROJECT-ID') !== -1) {
-                    console.warn('Firebase not configured. Notes will be saved locally only.');
-                    loadLocalNotes();
-                    return;
-                }
+                if (FIREBASE_DATABASE_URL.indexOf('YOUR-PROJECT-ID') !== -1) { loadLocalNotes(); return; }
                 firebase.initializeApp({ databaseURL: FIREBASE_DATABASE_URL });
                 db = firebase.database();
                 notesRef = db.ref('gcc_dashboard_notes');
-                
-                // Listen for real-time changes
                 notesRef.on('value', function(snapshot) {
                     var data = snapshot.val() || {};
-                    brandNotes = data.notes || {};
-                    noteColors = data.colors || {};
-                    notesLoaded = true;
+                    brandNotes = data.notes || {}; noteColors = data.colors || {};
                     updateSyncStatus('synced', '✓ Notes synced');
-                    // Re-render brand panels if country is selected
-                    if (selectedCountry) {
-                        var ba = findBa();
-                        if (ba && ba.length) {
-                            renderBrandPanels(ba);
-                            renderMovers(ba);
-                        }
-                    }
+                    if (selectedCountry) { var ba = findBa(); if (ba && ba.length) { renderBrandPanels(ba); renderMovers(ba); } }
                 });
-                
-                // Also try loading once
                 notesRef.once('value').then(function(snapshot) {
                     var data = snapshot.val() || {};
-                    brandNotes = data.notes || {};
-                    noteColors = data.colors || {};
-                    notesLoaded = true;
-                }).catch(function(e) {
-                    console.error('Firebase load error:', e);
-                    loadLocalNotes();
-                });
-                
-            } catch(e) {
-                console.error('Firebase init error:', e);
-                loadLocalNotes();
-            }
+                    brandNotes = data.notes || {}; noteColors = data.colors || {};
+                }).catch(function(e) { loadLocalNotes(); });
+            } catch(e) { loadLocalNotes(); }
         }
-        
         function loadLocalNotes() {
-            try {
-                var s = localStorage.getItem('gcc_brand_notes_local');
-                if (s) { var d = JSON.parse(s); brandNotes = d.notes || {}; noteColors = d.colors || {}; }
-            } catch(e) { brandNotes = {}; noteColors = {}; }
-            notesLoaded = true;
+            try { var s = localStorage.getItem('gcc_brand_notes_local'); if (s) { var d = JSON.parse(s); brandNotes = d.notes || {}; noteColors = d.colors || {}; } } catch(e) { brandNotes = {}; noteColors = {}; }
             updateSyncStatus('syncing', '⚠ Local storage only');
         }
-        
-        function saveLocalNotes() {
-            try {
-                localStorage.setItem('gcc_brand_notes_local', JSON.stringify({ notes: brandNotes, colors: noteColors }));
-            } catch(e) {}
-        }
-        
+        function saveLocalNotes() { try { localStorage.setItem('gcc_brand_notes_local', JSON.stringify({ notes: brandNotes, colors: noteColors })); } catch(e) {} }
         function updateSyncStatus(status, message) {
-            var el = document.getElementById('syncStatus');
-            if (el) {
-                el.className = 'sync-status ' + status;
-                el.textContent = message;
-                setTimeout(function() { el.style.opacity = '0.5'; }, 3000);
-                el.style.opacity = '1';
-            }
+            var el = document.getElementById('syncStatus'); if (el) { el.className = 'sync-status ' + status; el.textContent = message; setTimeout(function() { el.style.opacity = '0.5'; }, 3000); el.style.opacity = '1'; }
         }
 
-        // ============================================================
-        // NOTES FUNCTIONS
-        // ============================================================
+        // ==================== NOTES ====================
         function getNoteKey(c, b, q) { return c + '|||' + b + '|||' + q; }
         function getNote(c, b, q) { return brandNotes[getNoteKey(c, b, q)] || ''; }
         function getNoteColor(c, b, q) { return noteColors[getNoteKey(c, b, q)] || ''; }
-        function setNote(c, b, q, t) {
-            var k = getNoteKey(c, b, q);
-            if (t.trim()) brandNotes[k] = t; else delete brandNotes[k];
-            saveNotes();
-        }
-        function setNoteColor(c, b, q, col) {
-            var k = getNoteKey(c, b, q);
-            if (col) noteColors[k] = col; else delete noteColors[k];
-            saveNotes();
-        }
+        function setNote(c, b, q, t) { var k = getNoteKey(c, b, q); if (t.trim()) brandNotes[k] = t; else delete brandNotes[k]; saveNotes(); }
+        function setNoteColor(c, b, q, col) { var k = getNoteKey(c, b, q); if (col) noteColors[k] = col; else delete noteColors[k]; saveNotes(); }
         function saveNotes() {
-            if (notesRef) {
-                updateSyncStatus('syncing', '↻ Syncing...');
-                notesRef.set({ notes: brandNotes, colors: noteColors }).then(function() {
-                    updateSyncStatus('synced', '✓ Notes synced');
-                }).catch(function() {
-                    saveLocalNotes();
-                    updateSyncStatus('error', '✗ Sync failed');
-                });
-            } else {
-                saveLocalNotes();
-            }
+            if (notesRef) { updateSyncStatus('syncing', '↻ Syncing...'); notesRef.set({ notes: brandNotes, colors: noteColors }).then(function() { updateSyncStatus('synced', '✓ Notes synced'); }).catch(function() { saveLocalNotes(); updateSyncStatus('error', '✗ Sync failed'); }); }
+            else { saveLocalNotes(); }
         }
-
-        function editNote(nid, c, b) {
-            var d = document.getElementById('display-' + nid);
-            var ta = document.getElementById(nid);
-            var picker = document.getElementById('picker-' + nid);
-            if (d) d.style.display = 'none';
-            if (ta) { ta.style.display = 'block'; ta.focus(); }
-            if (picker) picker.style.display = 'flex';
-        }
+        function editNote(nid, c, b) { var d = document.getElementById('display-' + nid); var ta = document.getElementById(nid); var picker = document.getElementById('picker-' + nid); if (d) d.style.display = 'none'; if (ta) { ta.style.display = 'block'; ta.focus(); } if (picker) picker.style.display = 'flex'; }
         function saveNoteText(nid, c, b) {
             var ta = document.getElementById(nid); if (!ta) return; var t = ta.value; setNote(c, b, selectedQuarter, t);
             var d = document.getElementById('display-' + nid); var picker = document.getElementById('picker-' + nid);
@@ -515,8 +422,7 @@ def create_dashboard(data):
             if (t.trim()) {
                 if (!d) { d = document.createElement('div'); d.id = 'display-' + nid; d.className = 'brand-note-display ' + nc; d.setAttribute('onclick', 'editNote(\\'' + nid + '\\',\\'' + c.replace(/'/g, "\\\\'") + '\\',\\'' + b.replace(/'/g, "\\\\'") + '\\')'); ta.parentNode.insertBefore(d, ta.nextSibling); }
                 d.innerHTML = t.replace(/\\n/g, '<br>') + '<span class="note-edit-btn">edit</span>'; d.style.display = 'block'; d.className = 'brand-note-display ' + nc;
-                ta.style.display = 'none'; ta.className = 'brand-note-input ' + nc;
-                if (picker) picker.style.display = 'none';
+                ta.style.display = 'none'; ta.className = 'brand-note-input ' + nc; if (picker) picker.style.display = 'none';
             } else { if (d) d.style.display = 'none'; ta.style.display = 'block'; ta.value = ''; ta.className = 'brand-note-input ' + nc; if (picker) picker.style.display = 'flex'; }
         }
         function applyColor(nid, c, b, col) {
@@ -528,10 +434,8 @@ def create_dashboard(data):
             if (ta) ta.focus();
         }
 
-        // ============================================================
-        // UTILITIES
-        // ============================================================
-        function detectQuarters() { var qs = {}; var co = D.country_overview || []; for (var i = 0; i < co.length; i++) { var keys = Object.keys(co[i]); for (var j = 0; j < keys.length; j++) { if (/^\\d{4}Q\\d$/.test(keys[j])) qs[keys[j]] = true; } } allQuarters = Object.keys(qs).sort(); }
+        // ==================== UTILITIES ====================
+        function detectQuarters() { var qs = {}; var co = D.country_overview || []; for (var i = 0; i < co.length; i++) { var keys = Object.keys(co[i]); for (var j = 0; j < keys.length; j++) { if (keys[j].match(/^\\d{4}Q\\d$/)) qs[keys[j]] = true; } } allQuarters = Object.keys(qs).sort(); }
         function fmt(n) { if (n == null || isNaN(n)) return '0'; return Math.round(n).toLocaleString(); }
         function getFlag(c) { var f = { 'Saudi Arabia': '\\uD83C\\uDDF8\\uD83C\\uDDE6', 'United Arab Emirates': '\\uD83C\\uDDE6\\uD83C\\uDDEA', 'Qatar': '\\uD83C\\uDDF6\\uD83C\\uDDE6', 'Kuwait': '\\uD83C\\uDDF0\\uD83C\\uDDFC', 'Oman': '\\uD83C\\uDDF4\\uD83C\\uDDF2', 'Bahrain': '\\uD83C\\uDDE7\\uD83C\\uDDED', 'Iraq': '\\uD83C\\uDDEE\\uD83C\\uDDF6' }; return f[c] || ''; }
         function getCountryCode(c) { var codes = { 'Saudi Arabia': 'SA', 'United Arab Emirates': 'AE', 'Qatar': 'QA', 'Kuwait': 'KW', 'Oman': 'OM', 'Bahrain': 'BH', 'Iraq': 'IQ' }; return codes[c] || c.substring(0, 2).toUpperCase(); }
@@ -539,6 +443,8 @@ def create_dashboard(data):
         function getPrevYearQuarter(q) { var i = allQuarters.indexOf(q); return i >= 4 ? allQuarters[i - 4] : null; }
         function getCategoryUnits(co, quarter, cat) { if (!co || !quarter) return 0; if (cat === 'Total') return co[quarter] || 0; var ca = (D.category_analysis || []).filter(function (x) { return x.Country === selectedCountry && x['Product Category'] === cat; }); return ca.length ? (ca[0][quarter] || 0) : 0; }
         function getCategoryUnitsForCountry(co, quarter, cat, country) { if (!co || !quarter) return 0; if (cat === 'Total') return co[quarter] || 0; var ca = (D.category_analysis || []).filter(function (x) { return x.Country === country && x['Product Category'] === cat; }); return ca.length ? (ca[0][quarter] || 0) : 0; }
+        function getBrandQoQ(b, q) { var ck = 'Units_' + q; var pq = getPrevQuarter(q); var pk = pq ? 'Units_' + pq : null; var c = b[ck] || 0; var p = pk ? (b[pk] || 0) : 0; return p ? ((c - p) / p) * 100 : 0; }
+        function getBrandYoY(b, q) { var ck = 'Units_' + q; var pyq = getPrevYearQuarter(q); var pk = pyq ? 'Units_' + pyq : null; var c = b[ck] || 0; var p = pk ? (b[pk] || 0) : 0; return p ? ((c - p) / p) * 100 : 0; }
         function posColor(v) { return (v || 0) >= 0 ? '#34d399' : '#f87171'; }
         function posSign(v) { return (v || 0) > 0 ? '+' : ''; }
 
@@ -561,18 +467,7 @@ def create_dashboard(data):
             btn.classList.remove('refreshing'); btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Refresh';
         }
 
-        function init() {
-            initFirebase();
-            detectQuarters();
-            if (!allQuarters.length) return;
-            selectedQuarter = allQuarters[allQuarters.length - 1];
-            renderQuarterDropdown();
-            var cs = D.country_comparison || [];
-            if (!cs.length) return;
-            selectedCountry = cs[0].Country;
-            renderCountrySelector(cs);
-            selectCountry(selectedCountry);
-        }
+        function init() { initFirebase(); detectQuarters(); if (!allQuarters.length) return; selectedQuarter = allQuarters[allQuarters.length - 1]; renderQuarterDropdown(); var cs = D.country_comparison || []; if (!cs.length) return; selectedCountry = cs[0].Country; renderCountrySelector(cs); selectCountry(selectedCountry); }
 
         function renderCountrySelector(cs) {
             if (!cs || !cs.length) return;
@@ -626,20 +521,23 @@ def create_dashboard(data):
             });
         }
 
+        // ==================== BRAND PANELS (DYNAMIC QOQ/YOY) ====================
         function renderBrandPanels(ba) {
             var gc = document.getElementById('gainersList'), dc = document.getElementById('declinersList');
             if (!ba || !ba.length) { gc.innerHTML = dc.innerHTML = '<div class="text-xs text-center py-6" style="color:var(--text-muted)">No data</div>'; return; }
-            var s = ba.slice().sort(function (a, b) { return (b['QoQ_Growth_%'] || 0) - (a['QoQ_Growth_%'] || 0); });
-            var gs = s.filter(function (b) { return (b['QoQ_Growth_%'] || 0) > 0; });
-            var ds = s.filter(function (b) { return (b['QoQ_Growth_%'] || 0) <= 0; }).sort(function (a, b) { return (a['QoQ_Growth_%'] || 0) - (b['QoQ_Growth_%'] || 0); });
-            var gM = Math.max(1, gs.reduce(function (m, b) { return Math.max(m, Math.abs(b['QoQ_Growth_%'] || 0)); }, 0));
-            var dM = Math.max(1, ds.reduce(function (m, b) { return Math.max(m, Math.abs(b['QoQ_Growth_%'] || 0)); }, 0));
-            gc.innerHTML = gs.length ? gs.map(function (b) { return brandRow(b, true, gM); }).join('') : '<div class="text-xs text-center py-4" style="color:var(--text-muted)">No positive QoQ brands.</div>';
-            dc.innerHTML = ds.length ? ds.map(function (b) { return brandRow(b, false, dM); }).join('') : '<div class="text-xs text-center py-4" style="color:var(--text-muted)">No declining brands.</div>';
+            var brandsWithQoQ = ba.map(function(b) { return { brand: b, qoq: getBrandQoQ(b, selectedQuarter), yoy: getBrandYoY(b, selectedQuarter) }; });
+            brandsWithQoQ.sort(function (a, b) { return b.qoq - a.qoq; });
+            var gs = brandsWithQoQ.filter(function (x) { return x.qoq > 0; });
+            var ds = brandsWithQoQ.filter(function (x) { return x.qoq <= 0; }).sort(function (a, b) { return a.qoq - b.qoq; });
+            var gM = Math.max(1, gs.reduce(function (m, x) { return Math.max(m, Math.abs(x.qoq)); }, 0));
+            var dM = Math.max(1, ds.reduce(function (m, x) { return Math.max(m, Math.abs(x.qoq)); }, 0));
+            gc.innerHTML = gs.length ? gs.map(function (x) { return brandRow(x.brand, x.qoq, x.yoy, true, gM); }).join('') : '<div class="text-xs text-center py-4" style="color:var(--text-muted)">No positive QoQ brands.</div>';
+            dc.innerHTML = ds.length ? ds.map(function (x) { return brandRow(x.brand, x.qoq, x.yoy, false, dM); }).join('') : '<div class="text-xs text-center py-4" style="color:var(--text-muted)">No declining brands.</div>';
         }
-        function brandRow(b, pos, max) {
-            var qoq = b['QoQ_Growth_%'] || 0, yoy = b['YoY_Growth_%'] || 0, pct = Math.min(100, (Math.abs(qoq) / max) * 100);
-            var uk = 'Units_' + selectedQuarter, pq = getPrevQuarter(selectedQuarter), u1 = b[uk] || 0, u4 = pq ? (b['Units_' + pq] || 0) : 0;
+        function brandRow(b, qoq, yoy, pos, max) {
+            var pct = Math.min(100, (Math.abs(qoq) / max) * 100);
+            var uk = 'Units_' + selectedQuarter, pq = getPrevQuarter(selectedQuarter);
+            var u1 = b[uk] || 0, u4 = pq ? (b['Units_' + pq] || 0) : 0;
             var bc = pos ? '#34d399' : '#f87171';
             var nid = 'note-' + selectedCountry.replace(/[^a-zA-Z0-9]/g, '_') + '-' + b['Brand'].replace(/[^a-zA-Z0-9]/g, '_') + '-' + selectedQuarter;
             var en = getNote(selectedCountry, b['Brand'], selectedQuarter);
@@ -664,10 +562,11 @@ def create_dashboard(data):
                 '<div class="mt-2 h-1 overflow-hidden rounded-full bg-gray-700/20"><div class="h-full rounded-full progress-bar" style="width:' + pct + '%;background:' + bc + ';"></div></div>' + nh + '</div>';
         }
 
+        // ==================== MOVERS (DYNAMIC) ====================
         function renderMovers(ba) {
             var c = document.getElementById('moversList'); if (!ba || !ba.length) { c.innerHTML = '<div class="text-xs text-center py-6" style="color:var(--text-muted)">Select a country</div>'; return; }
             var uk = 'Units_' + selectedQuarter, pq = getPrevQuarter(selectedQuarter), pk = pq ? 'Units_' + pq : null;
-            var ms = ba.map(function (b) { return { name: b['Brand'], q1: b[uk] || 0, q4: pk ? (b[pk] || 0) : 0, delta: (b[uk] || 0) - (pk ? (b[pk] || 0) : 0), qoq: b['QoQ_Growth_%'] }; }).sort(function (a, b) { return Math.abs(b.delta) - Math.abs(a.delta); });
+            var ms = ba.map(function (b) { return { name: b['Brand'], q1: b[uk] || 0, q4: pk ? (b[pk] || 0) : 0, delta: (b[uk] || 0) - (pk ? (b[pk] || 0) : 0), qoq: getBrandQoQ(b, selectedQuarter) }; }).sort(function (a, b) { return Math.abs(b.delta) - Math.abs(a.delta); });
             var max = Math.max(1, ms.reduce(function (m, x) { return Math.max(m, Math.abs(x.delta)); }, 0));
             c.innerHTML = ms.map(function (m) { var pct = (Math.abs(m.delta) / max) * 100, bc = m.delta >= 0 ? '#34d399' : '#f87171';
                 return '<div class="brand-inner p-3">' +
@@ -677,14 +576,18 @@ def create_dashboard(data):
             }).join('');
         }
 
+        // ==================== BRAND TABLE (DYNAMIC) ====================
         function renderBrandTable(ba) {
             var tb = document.getElementById('brandTableBody'); if (!ba || !ba.length) { tb.innerHTML = '<tr><td colspan="5" class="text-center py-8" style="color:var(--text-muted)">No data</td></tr>'; return; }
             var uk = 'Units_' + selectedQuarter; ba.sort(function (a, b) { return (b[uk] || 0) - (a[uk] || 0); }); var tot = ba.reduce(function (s, b) { return s + (b[uk] || 0); }, 0); var h = '';
-            for (var i = 0; i < ba.length; i++) { var b = ba[i], u = b[uk] || 0, s = tot ? (u / tot * 100) : 0, q = b['QoQ_Growth_%'] || 0, y = b['YoY_Growth_%'] || 0;
+            for (var i = 0; i < ba.length; i++) { 
+                var b = ba[i], u = b[uk] || 0, s = tot ? (u / tot * 100) : 0;
+                var q = getBrandQoQ(b, selectedQuarter), y = getBrandYoY(b, selectedQuarter);
                 h += '<tr><td class="py-3 px-4 font-semibold">' + b['Brand'] + '</td><td class="py-3 px-4 text-right font-mono-tabular">' + u.toLocaleString() + '</td>' +
                     '<td class="py-3 px-4 text-right"><div class="flex items-center justify-end gap-2"><div class="w-20 h-1.5 rounded-full overflow-hidden" style="background:var(--border)"><div class="h-full rounded-full" style="width:' + s + '%;background:#38bdf8;"></div></div><span class="font-mono-tabular text-xs">' + s.toFixed(1) + '%</span></div></td>' +
-                    '<td class="py-3 px-4 text-right font-mono-tabular text-sm" style="color:' + posColor(q) + '">' + (q != null ? posSign(q) + q.toFixed(1) + '%' : '—') + '</td>' +
-                    '<td class="py-3 px-4 text-right font-mono-tabular text-sm" style="color:' + posColor(y) + '">' + (y != null ? posSign(y) + y.toFixed(1) + '%' : '—') + '</td></tr>'; }
+                    '<td class="py-3 px-4 text-right font-mono-tabular text-sm" style="color:' + posColor(q) + '">' + posSign(q) + q.toFixed(1) + '%</td>' +
+                    '<td class="py-3 px-4 text-right font-mono-tabular text-sm" style="color:' + posColor(y) + '">' + posSign(y) + y.toFixed(1) + '%</td></tr>'; 
+            }
             tb.innerHTML = h;
         }
 
