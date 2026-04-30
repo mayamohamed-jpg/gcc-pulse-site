@@ -398,9 +398,17 @@ def create_dashboard(data):
     </main>
 
     <script>
-
-        var FIREBASE_DATABASE_URL = "https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
-
+        // ============================================================
+        // FIREBASE CONFIGURATION
+        // ============================================================
+        // REPLACE THIS URL with your Firebase Realtime Database URL
+        // Go to: https://console.firebase.google.com → Realtime Database → Create Database
+        // Your URL will look like: https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com
+        var FIREBASE_DATABASE_URL = "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com";
+        
+        // ============================================================
+        // DATA
+        // ============================================================
         var D = ''' + data_json + ''';
 
         var isDark = true;
@@ -677,9 +685,9 @@ def create_dashboard(data):
             var nh = '';
             if (en) {
                 nh = '<div class="brand-note-display ' + nc + '" onclick="editNote(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" id="display-' + nid + '">' + en.replace(/\\n/g, '<br>') + '<span class="note-edit-btn">edit</span></div>' +
-                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment...">' + en + '</textarea>';
+                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add reason...">' + en + '</textarea>';
             } else {
-                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment..."></textarea>';
+                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add reason for performance..."></textarea>';
             }
             nh += '<div class="note-color-picker" id="picker-' + nid + '" style="display:' + (en ? 'none' : 'flex') + ';">' +
                 '<span class="note-color-dot orange' + (nc === 'orange' ? ' selected' : '') + '" onclick="applyColor(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\',\\'orange\\')" title="Orange"></span>' +
