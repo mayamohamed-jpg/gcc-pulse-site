@@ -377,7 +377,11 @@ def create_dashboard(data):
 
     <script>
 
+<<<<<<< HEAD
         var FIREBASE_DATABASE_URL = "https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
+=======
+        var FIREBASE_DATABASE_URL = https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
+>>>>>>> 065bcecf3ab2bd80b280bcd3a95704732df6c2d7
 
         var D = ''' + data_json + ''';
 
