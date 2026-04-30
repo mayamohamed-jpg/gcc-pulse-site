@@ -1,3 +1,4 @@
+# etl.py
 import pandas as pd
 import numpy as np
 import os
@@ -111,18 +112,17 @@ def build_gcc_dashboard(
     df_gcc = df[df["Country"].isin(GCC_COUNTRIES)].copy()
     
     all_quarters = sorted(df_gcc["Quarter_Sort"].unique())
+    all_q_cols = sorted(df_gcc["Quarter"].unique())
     latest_quarter_sort = all_quarters[-1] if all_quarters else None
-    previous_quarter_sort = all_quarters[-2] if len(all_quarters) > 1 else None
-    previous_year_quarter_sort = latest_quarter_sort - 10 if latest_quarter_sort else None  # Same quarter last year
-    
-    latest_quarter = df_gcc[df_gcc["Quarter_Sort"] == latest_quarter_sort]["Quarter"].iloc[0] if latest_quarter_sort else "N/A"
-    previous_quarter = df_gcc[df_gcc["Quarter_Sort"] == previous_quarter_sort]["Quarter"].iloc[0] if previous_quarter_sort else "N/A"
-    previous_year_quarter = df_gcc[df_gcc["Quarter_Sort"] == previous_year_quarter_sort]["Quarter"].iloc[0] if previous_year_quarter_sort else "N/A"
+    latest_quarter = all_q_cols[-1] if all_q_cols else "N/A"
+    previous_quarter = all_q_cols[-2] if len(all_q_cols) > 1 else "N/A"
+    previous_year_quarter = f"{int(latest_quarter[:4])-1}{latest_quarter[4:]}" if latest_quarter != "N/A" else "N/A"
     
     print(f"Latest quarter: {latest_quarter}")
     print(f"Previous quarter: {previous_quarter}")
     print(f"Same quarter last year: {previous_year_quarter}")
     
+    # 1. Country Overview
     print("\n1. Building Country Overview...")
     
     country_quarterly = df_gcc.pivot_table(
@@ -149,67 +149,82 @@ def build_gcc_dashboard(
     
     country_quarterly = country_quarterly.reset_index()
     dashboard["country_overview"] = country_quarterly.to_dict(orient="records")
-    
     print(f"   Countries analyzed: {len(country_quarterly)}")
     
-    print("\n2. Building Brand Performance by Country...")
+    # 2. Brand Performance by Country (ALL QUARTERS)
+    print("\n2. Building Brand Performance by Country (all quarters)...")
     
-    latest_data = df_gcc[df_gcc["Quarter_Sort"] == latest_quarter_sort]
-    prev_data = df_gcc[df_gcc["Quarter_Sort"] == previous_quarter_sort]
-    prev_year_data = df_gcc[df_gcc["Quarter_Sort"] == previous_year_quarter_sort]
+    brand_all_quarters = df_gcc.groupby(["Country", "Brand", "Quarter"])["Units"].sum().reset_index()
     
-    brand_country_latest = latest_data.groupby(["Country", "Brand"])["Units"].sum().reset_index()
-    brand_country_latest.rename(columns={"Units": f"Units_{latest_quarter}"}, inplace=True)
+    brand_quarterly = brand_all_quarters.pivot_table(
+        values="Units",
+        index=["Country", "Brand"],
+        columns="Quarter",
+        aggfunc="sum",
+        fill_value=0
+    ).reset_index()
     
-    brand_country_prev = prev_data.groupby(["Country", "Brand"])["Units"].sum().reset_index()
-    brand_country_prev.rename(columns={"Units": f"Units_{previous_quarter}"}, inplace=True)
+    # Rename quarter columns to have "Units_" prefix
+    rename_map = {}
+    for q in all_q_cols:
+        rename_map[q] = f"Units_{q}"
+    brand_quarterly.rename(columns=rename_map, inplace=True)
     
-    brand_country_prevyear = prev_year_data.groupby(["Country", "Brand"])["Units"].sum().reset_index()
-    brand_country_prevyear.rename(columns={"Units": f"Units_{previous_year_quarter}"}, inplace=True)
-    
-    brand_analysis = brand_country_latest.merge(
-        brand_country_prev, on=["Country", "Brand"], how="outer"
-    ).merge(
-        brand_country_prevyear, on=["Country", "Brand"], how="outer"
-    ).fillna(0)
-    
-    brand_analysis["QoQ_Growth_%"] = np.where(
-        brand_analysis[f"Units_{previous_quarter}"] > 0,
-        ((brand_analysis[f"Units_{latest_quarter}"] - brand_analysis[f"Units_{previous_quarter}"]) / 
-         brand_analysis[f"Units_{previous_quarter}"] * 100).round(2),
-        np.nan
+    # Calculate Market Share for latest quarter
+    country_totals = brand_quarterly.groupby("Country")[f"Units_{latest_quarter}"].transform("sum")
+    brand_quarterly["Market_Share_%"] = (
+        (brand_quarterly[f"Units_{latest_quarter}"] / country_totals.replace(0, np.nan) * 100).round(2)
     )
     
-    brand_analysis["YoY_Growth_%"] = np.where(
-        brand_analysis[f"Units_{previous_year_quarter}"] > 0,
-        ((brand_analysis[f"Units_{latest_quarter}"] - brand_analysis[f"Units_{previous_year_quarter}"]) / 
-         brand_analysis[f"Units_{previous_year_quarter}"] * 100).round(2),
-        np.nan
-    )
-    
-    country_totals = brand_analysis.groupby("Country")[f"Units_{latest_quarter}"].transform("sum")
-    brand_analysis["Market_Share_%"] = (
-        (brand_analysis[f"Units_{latest_quarter}"] / country_totals.replace(0, np.nan) * 100).round(2)
-    )
-    
-    brand_analysis["Rank"] = brand_analysis.groupby("Country")[f"Units_{latest_quarter}"].rank(
+    # Rank based on latest quarter
+    brand_quarterly["Rank"] = brand_quarterly.groupby("Country")[f"Units_{latest_quarter}"].rank(
         ascending=False, method="min"
     ).astype(int)
     
-    dashboard["brand_analysis"] = brand_analysis.to_dict(orient="records")
-    print(f"   Brand-Country combinations: {len(brand_analysis)}")
+    # Add ALL QoQ pairs for every adjacent quarter
+    for i in range(1, len(all_q_cols)):
+        curr_q = all_q_cols[i]
+        prev_q = all_q_cols[i-1]
+        curr_col = f"Units_{curr_q}"
+        prev_col = f"Units_{prev_q}"
+        qoq_col = f"QoQ_{curr_q}_vs_{prev_q}"
+        brand_quarterly[qoq_col] = np.where(
+            brand_quarterly[prev_col] > 0,
+            ((brand_quarterly[curr_col] - brand_quarterly[prev_col]) / brand_quarterly[prev_col] * 100).round(2),
+            np.nan
+        )
+    
+    # Add ALL YoY pairs (same quarter, previous year)
+    for q in all_q_cols:
+        year = int(q[:4])
+        prev_year_q = f"{year-1}{q[4:]}"
+        if prev_year_q in all_q_cols:
+            curr_col = f"Units_{q}"
+            prev_col = f"Units_{prev_year_q}"
+            yoy_col = f"YoY_{q}_vs_{prev_year_q}"
+            brand_quarterly[yoy_col] = np.where(
+                brand_quarterly[prev_col] > 0,
+                ((brand_quarterly[curr_col] - brand_quarterly[prev_col]) / brand_quarterly[prev_col] * 100).round(2),
+                np.nan
+            )
+    
+    dashboard["brand_analysis"] = brand_quarterly.to_dict(orient="records")
+    print(f"   Brand-Country combinations: {len(brand_quarterly)}")
+    print(f"   Quarter columns stored: {len(all_q_cols)}")
+    print(f"   QoQ pairs calculated: {len(all_q_cols)-1}")
+    print(f"   YoY pairs calculated: {sum(1 for q in all_q_cols if f'{int(q[:4])-1}{q[4:]}' in all_q_cols)}")
 
+    # 3. Country Comparison
     print("\n3. Building Country Comparison...")
     
+    latest_data = df_gcc[df_gcc["Quarter"] == latest_quarter]
     country_comparison = []
     for country in GCC_COUNTRIES:
         country_data = df_gcc[df_gcc["Country"] == country]
         if len(country_data) > 0:
             total_units = country_data["Units"].sum()
-            latest_units = country_data[country_data["Quarter_Sort"] == latest_quarter_sort]["Units"].sum()
-            
+            latest_units = country_data[country_data["Quarter"] == latest_quarter]["Units"].sum()
             top_brands = latest_data[latest_data["Country"] == country].groupby("Brand")["Units"].sum().nlargest(5).to_dict()
-            
             num_brands = country_data["Brand"].nunique()
             
             country_comparison.append({
@@ -224,13 +239,12 @@ def build_gcc_dashboard(
     dashboard["country_comparison"] = country_comparison
     print(f"   Countries compared: {len(country_comparison)}")
     
+    # 4. Quarterly Trends
     print("\n4. Building Quarterly Trends...")
     
     gcc_total_quarterly = df_gcc.groupby(["Year", "Q_Num", "Quarter"])["Units"].sum().reset_index()
     gcc_total_quarterly = gcc_total_quarterly.sort_values(["Year", "Q_Num"])
-    
     gcc_total_quarterly["QoQ_Growth_%"] = gcc_total_quarterly["Units"].pct_change() * 100
-    
     gcc_total_quarterly["Units_LY"] = gcc_total_quarterly.groupby("Q_Num")["Units"].shift(1)
     gcc_total_quarterly["YoY_Growth_%"] = (
         (gcc_total_quarterly["Units"] - gcc_total_quarterly["Units_LY"]) / 
@@ -240,6 +254,7 @@ def build_gcc_dashboard(
     dashboard["quarterly_trends"] = gcc_total_quarterly.to_dict(orient="records")
     print(f"   Quarters tracked: {len(gcc_total_quarterly)}")
 
+    # 5. Brand Rankings
     print("\n5. Building Brand Rankings...")
     
     brand_total_all = df_gcc.groupby("Brand").agg(
@@ -254,6 +269,7 @@ def build_gcc_dashboard(
     dashboard["brand_rankings"] = brand_total_all.to_dict(orient="records")
     print(f"   Total brands: {len(brand_total_all)}")
 
+    # 6. Product Category Analysis
     if "Product Category" in df_gcc.columns:
         print("\n6. Building Product Category Analysis...")
         
@@ -268,6 +284,7 @@ def build_gcc_dashboard(
         dashboard["category_analysis"] = category_quarterly.to_dict(orient="records")
         print(f"   Categories found: {df_gcc['Product Category'].nunique()}")
     
+    # Save outputs
     print("\n" + "="*60)
     print("SAVING DASHBOARD FILES")
     print("="*60)
@@ -277,7 +294,7 @@ def build_gcc_dashboard(
     dashboard_json_path = os.path.join(output_dir, "gcc_dashboard.json")
     with open(dashboard_json_path, "w") as f:
         json.dump(dashboard, f, indent=2, default=str)
-    print(f"✓ Dashboard JSON: {dashboard_json_path}")
+    print(f"Dashboard JSON: {dashboard_json_path}")
     
     parquet_path = os.path.join(output_dir, "gcc_full_data.parquet")
     df_gcc.to_parquet(parquet_path, index=False)
@@ -286,17 +303,11 @@ def build_gcc_dashboard(
     excel_path = os.path.join(output_dir, "gcc_dashboard.xlsx")
     with pd.ExcelWriter(excel_path, engine='openpyxl') as writer:
         df_gcc.to_excel(writer, sheet_name="Raw Data (GCC)", index=False)
-        
         pd.DataFrame(dashboard["country_overview"]).to_excel(writer, sheet_name="Country Overview", index=False)
-        
         pd.DataFrame(dashboard["brand_analysis"]).to_excel(writer, sheet_name="Brand Analysis", index=False)
-        
         pd.DataFrame(dashboard["country_comparison"]).to_excel(writer, sheet_name="Country Comparison", index=False)
-        
         pd.DataFrame(dashboard["quarterly_trends"]).to_excel(writer, sheet_name="Quarterly Trends", index=False)
-        
         pd.DataFrame(dashboard["brand_rankings"]).to_excel(writer, sheet_name="Brand Rankings", index=False)
-        
         if "category_analysis" in dashboard:
             pd.DataFrame(dashboard["category_analysis"]).to_excel(writer, sheet_name="Category Analysis", index=False)
     
@@ -348,7 +359,3 @@ if __name__ == "__main__":
         print("\n" + "="*60)
         print("DASHBOARD BUILD FAILED")
         print("="*60)
-        print("\nTry these steps:")
-        print("1. Download the Excel file manually from the API")
-        print("2. Save it as 'gcc_data.xlsx' in the current directory")
-        print("3. Change FRD_FILE_URL to './gcc_data.xlsx'")
