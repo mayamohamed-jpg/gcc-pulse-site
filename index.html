@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GCC Consumer Pulse — Units Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#38bdf8',
+                        'primary-foreground': '#0f172a',
+                        positive: '#34d399',
+                        negative: '#f87171',
+                    },
+                    fontFamily: {
+                        display: ['Fraunces', 'Georgia', 'serif'],
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Consolas', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        :root {
+            --bg: #f8f9fa;
+            --surface: #ffffff;
+            --surface-alt: #f1f5f9;
+            --surface-elevated: #e2e8f0;
+            --text: #1a1a2e;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --hover-bg: #f0f9ff;
+        }
+        .dark {
+            --bg: #060b14;
+            --surface: #0d1321;
+            --surface-alt: #131b2e;
+            --surface-elevated: #1a2744;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            --hover-bg: #1e293b;
+        }
+        
+        * { font-family: 'Inter', system-ui, sans-serif; }
+        body { background: var(--bg); color: var(--text); min-height: 100vh; -webkit-font-smoothing: antialiased; transition: background 0.3s, color 0.3s; }
+        .font-display { font-family: 'Fraunces', Georgia, serif; letter-spacing: -0.02em; }
+        .font-mono-tabular { font-family: 'JetBrains Mono', monospace; font-variant-numeric: tabular-nums; }
+        
+        .idc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
+        .idc-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
+        
+        .idc-card-bg { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
+        .idc-card-bg:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
+        
+        .idc-card-transparent { background: transparent; border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
+        .idc-card-transparent:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
+        
+        .brand-inner { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s ease; }
+        .brand-inner:hover { border-color: #38bdf8; background: var(--surface-alt); }
+        
+        .country-btn {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+            transition: all 0.2s ease; cursor: pointer; position: relative; overflow: hidden;
+            color: var(--text); flex: 1 1 auto; min-width: 130px; padding: 20px 18px;
+        }
+        .country-btn:hover { border-color: #38bdf8; box-shadow: 0 8px 25px rgba(0,0,0,0.25); z-index: 10; }
+        .country-btn.active { border-color: #38bdf8 !important; background: var(--hover-bg) !important; box-shadow: 0 0 0 2px rgba(56,189,248,0.2); }
+        .country-btn.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: #38bdf8; }
+        
+        .filter-select {
+            background: rgba(255,255,255,0.05); color: #94a3b8; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; padding: 6px 32px 6px 12px; font-size: 12px; font-weight: 500;
+            cursor: pointer; outline: none; appearance: none; -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 10px center; transition: all 0.2s;
+        }
+        .filter-select:hover { border-color: rgba(56,189,248,0.4); background: rgba(255,255,255,0.08); }
+        .filter-select:focus { border-color: #38bdf8; box-shadow: 0 0 0 2px rgba(56,189,248,0.15); }
+        .filter-select option { background: #0d1321; color: #f1f5f9; }
+        
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .accordion-content.open { max-height: 4000px; }
+        .progress-bar { transition: width 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        
+        .idc-table th { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); background: var(--surface-alt); border-bottom: 2px solid var(--border); }
+        .idc-table td { border-bottom: 1px solid var(--border); color: var(--text); }
+        .idc-table tr:hover td { background: var(--hover-bg); }
+        
+        .idc-header-bg { background: rgba(6,11,20,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        
+        .bg-positive-soft { background: rgba(52,211,153,0.1); }
+        .bg-negative-soft { background: rgba(248,113,113,0.1); }
+        
+        .brand-note-input {
+            width: 100%; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 6px;
+            padding: 6px 10px; font-size: 12px; color: var(--text); resize: vertical; min-height: 28px;
+            margin-top: 8px; font-family: 'Inter', sans-serif; font-weight: 600; white-space: pre-wrap;
+        }
+        .light .brand-note-input { color: #0066a1; }
+        .dark .brand-note-input { color: #ffffff; }
+        .brand-note-input:focus { outline: none; border-color: #38bdf8; }
+        .brand-note-input::placeholder { font-weight: 400; color: var(--text-muted); }
+        .brand-note-input.orange { border-left: 3px solid #f59e0b; }
+        .brand-note-input.purple { border-left: 3px solid #a855f7; }
+        .brand-note-input.green { border-left: 3px solid #34d399; }
+        .brand-note-input.blue { border-left: 3px solid #3b82f6; }
+
+        .brand-note-display {
+            font-size: 12px; color: var(--text-muted); margin-top: 8px; padding: 6px 10px;
+            background: var(--surface-alt); border-radius: 6px; cursor: pointer; line-height: 1.4; font-weight: 600;
+            white-space: pre-wrap; border-left: 3px solid transparent;
+        }
+        .light .brand-note-display { color: #0066a1; }
+        .dark .brand-note-display { color: #ffffff; }
+        .brand-note-display:hover { background: var(--hover-bg); }
+        .brand-note-display.orange { border-left-color: #f59e0b; }
+        .brand-note-display.purple { border-left-color: #a855f7; }
+        .brand-note-display.green { border-left-color: #34d399; }
+        .brand-note-display.blue { border-left-color: #3b82f6; }
+
+        .note-edit-btn { font-size: 11px; color: #38bdf8; cursor: pointer; margin-left: 8px; opacity: 0; transition: opacity 0.2s; font-weight: 400; }
+        .brand-note-display:hover .note-edit-btn { opacity: 1; }
+        
+        .note-color-picker { display: flex; gap: 6px; margin-top: 6px; align-items: center; }
+        .note-color-dot { width: 16px; height: 16px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; }
+        .note-color-dot:hover { transform: scale(1.2); }
+        .note-color-dot.selected { border-color: #fff; box-shadow: 0 0 0 2px currentColor; }
+        .note-color-dot.orange { background: #f59e0b; color: #f59e0b; }
+        .note-color-dot.purple { background: #a855f7; color: #a855f7; }
+        .note-color-dot.green { background: #34d399; color: #34d399; }
+        .note-color-dot.blue { background: #3b82f6; color: #3b82f6; }
+        
+        .refresh-btn {
+            background: rgba(255,255,255,0.08); color: #94a3b8; border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
+            transition: all 0.2s; display: flex; align-items: center; gap: 6px;
+        }
+        .refresh-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(56,189,248,0.4); color: #fff; }
+        .refresh-btn:active { transform: scale(0.97); }
+        .refresh-btn.refreshing { opacity: 0.6; pointer-events: none; }
+        
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .spin { animation: spin 1s linear infinite; }
+        
+        .brands-scroll { max-height: 500px; overflow-y: auto; }
+        
+        .sync-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 500;
+            z-index: 100;
+            transition: opacity 0.3s;
+        }
+        .sync-status.synced { background: #064e3b; color: #34d399; }
+        .sync-status.syncing { background: #1e293b; color: #fbbf24; }
+        .sync-status.error { background: #7f1d1d; color: #f87171; }
+        
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+    <!-- Sync Status Indicator -->
+    <div class="sync-status synced" id="syncStatus">✓ Notes synced</div>
+
+    <header class="idc-header-bg sticky top-0 z-50 shadow-lg border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="h-9 w-9 rounded-lg border border-primary/30 bg-primary/10 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">GCC Smartphone · Units Intelligence</div>
+                        <h1 class="font-display text-xl font-semibold text-white tracking-tight">Country Units Dashboard</h1>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <select id="categoryFilter" onchange="filterByCategory(this.value)" class="filter-select">
+                        <option value="Total">Total</option>
+                        <option value="Smartphone">Smartphone</option>
+                        <option value="Feature Phone">Feature Phone</option>
+                    </select>
+                    <select id="quarterFilter" onchange="filterByQuarter(this.value)" class="filter-select" style="min-width:110px;"></select>
+                    <button onclick="refreshData()" class="refresh-btn" id="refreshBtn" title="Reload data">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        Refresh
+                    </button>
+                    <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-white/5 transition-colors" style="color:#94a3b8;" id="darkToggle" title="Toggle theme">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 space-y-5">
+
+        <section>
+            <div class="mb-3 flex items-center justify-between">
+                <h2 class="text-xs font-semibold uppercase tracking-wider" style="color:var(--text-muted)">Select a Country</h2>
+                <span class="text-[10px]" style="color:var(--text-muted)">QoQ = vs previous quarter</span>
+            </div>
+            <div class="flex flex-nowrap gap-2 overflow-x-auto pb-1" id="countrySelector"></div>
+        </section>
+
+        <section class="space-y-5" id="countryDetail">
+            <div class="flex items-end gap-3 border-b pb-4" style="border-color:var(--border)">
+                <span class="text-4xl leading-none" id="countryFlag"></span>
+                <div>
+                    <div class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted)">Country Deep-Dive · Units</div>
+                    <h2 class="font-display text-3xl font-semibold tracking-tight" id="countryName"></h2>
+                </div>
+            </div>
+
+            <div class="grid gap-4 lg:grid-cols-3" style="align-items:stretch;">
+                <div class="lg:col-span-1 flex flex-col gap-3" id="kpiColumn">
+                    <div class="idc-card-transparent p-4 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                        <div class="flex items-center gap-2 mb-1"><span class="h-2 w-2 rounded-full bg-primary flex-shrink-0"></span><div class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted)">Total Units · <span id="selectedQuarterLabel">—</span></div></div>
+                        <div class="mt-1"><span class="font-display font-mono-tabular text-3xl font-semibold tracking-tight" id="totalUnitsK">—</span></div>
+                        <div class="mt-0.5 text-xs" style="color:var(--text-muted)" id="totalUnitsExact"></div>
+                    </div>
+                    <div class="idc-card-transparent p-4 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-positive"></div>
+                        <div class="flex items-center gap-2 mb-1"><span class="h-2 w-2 rounded-full bg-positive flex-shrink-0"></span><div class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted)">QoQ Growth</div></div>
+                        <div class="mt-2 font-mono-tabular text-3xl font-bold tracking-tight" id="qoqValue">—</div>
+                        <div class="mt-0.5 text-xs" style="color:var(--text-muted)">vs Previous Quarter</div>
+                    </div>
+                    <div class="idc-card-transparent p-4 relative overflow-hidden flex-1 flex flex-col justify-center">
+                        <div class="absolute top-0 left-0 w-1 h-full bg-primary/60"></div>
+                        <div class="flex items-center gap-2 mb-1"><span class="h-2 w-2 rounded-full flex-shrink-0" style="background:rgba(56,189,248,0.6);"></span><div class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted)">YoY Growth</div></div>
+                        <div class="mt-2 font-mono-tabular text-3xl font-bold tracking-tight" id="yoyValue">—</div>
+                        <div class="mt-0.5 text-xs" style="color:var(--text-muted)">vs Same Quarter Last Year</div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 idc-card-transparent p-5 flex flex-col" id="chartCard">
+                    <div class="mb-3"><div class="text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted)">Quarterly Units</div><div class="font-display text-lg font-medium" id="chartTitle">Volume Path</div></div>
+                    <div class="flex-1" style="min-height:0;"><canvas id="trendChart"></canvas></div>
+                </div>
+            </div>
+
+            <div class="grid gap-4 lg:grid-cols-3">
+                <div class="idc-card-bg p-5 flex flex-col">
+                    <header class="mb-4 flex-shrink-0">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-md bg-positive-soft text-positive">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                            </div>
+                            <div><h3 class="font-display text-base font-semibold">Top Performers</h3><p class="text-xs" style="color:var(--text-muted)">All brands by QoQ growth</p></div>
+                        </div>
+                    </header>
+                    <div class="space-y-2 brands-scroll flex-1" id="gainersList"></div>
+                </div>
+                <div class="idc-card-bg p-5 flex flex-col">
+                    <header class="mb-4 flex-shrink-0">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-md bg-negative-soft text-negative">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+                            </div>
+                            <div><h3 class="font-display text-base font-semibold">Underperforming</h3><p class="text-xs" style="color:var(--text-muted)">All brands by QoQ decline</p></div>
+                        </div>
+                    </header>
+                    <div class="space-y-2 brands-scroll flex-1" id="declinersList"></div>
+                </div>
+                <div class="idc-card-bg p-5 flex flex-col">
+                    <header class="mb-4 flex-shrink-0">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="flex h-8 w-8 items-center justify-center rounded-md bg-primary/10 text-primary">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <div><h3 class="font-display text-base font-semibold">Market Movers</h3><p class="text-xs" style="color:var(--text-muted)">Largest unit swings</p></div>
+                        </div>
+                    </header>
+                    <div class="space-y-2 brands-scroll flex-1" id="moversList"></div>
+                </div>
+            </div>
+
+            <div class="idc-card">
+                <div class="p-5 border-b flex items-center justify-between" style="border-color:var(--border)">
+                    <h3 class="font-display text-lg font-semibold">Brand Market Share — <span class="text-primary" id="tableCountryLabel">All Brands</span></h3>
+                    <span class="text-xs" style="color:var(--text-muted)" id="tableQuarterLabel">—</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm idc-table">
+                        <thead><tr><th class="text-left py-3 px-4">Brand</th><th class="text-right py-3 px-4">Units</th><th class="text-right py-3 px-4">Share</th><th class="text-right py-3 px-4">QoQ</th><th class="text-right py-3 px-4">YoY</th></tr></thead>
+                        <tbody id="brandTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="idc-card p-5">
+                <header class="mb-4"><h3 class="font-display text-lg font-semibold">GCC Cross-Country Comparison</h3><p class="text-xs" style="color:var(--text-muted)">Sorted by market size</p></header>
+                <div class="space-y-2">
+                    <div class="grid grid-cols-12 gap-4 px-3 mb-1 text-[10px] uppercase tracking-wider font-semibold" style="color:var(--text-muted)">
+                        <div class="col-span-3">Country</div><div class="col-span-2 text-right">Units</div><div class="col-span-3">QoQ</div><div class="col-span-3">YoY</div><div class="col-span-1"></div>
+                    </div>
+                    <div id="comparisonRows"></div>
+                </div>
+            </div>
+
+            <div class="idc-card">
+                <div class="p-5 flex items-center justify-between cursor-pointer select-none" onclick="toggleAccordion()">
+                    <div><h3 class="font-display text-lg font-semibold">GCC Brand Rankings</h3><p class="text-xs mt-1" style="color:var(--text-muted)">Click to expand</p></div>
+                    <svg id="accordionChevron" class="w-5 h-5 transition-transform duration-200" style="color:var(--text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+                <div class="accordion-content" id="rankingsAccordion"><div class="px-5 pb-5 overflow-x-auto">
+                    <table class="w-full text-sm idc-table">
+                        <thead><tr><th class="text-left py-3 px-4 w-12">#</th><th class="text-left py-3 px-4">Brand</th><th class="text-right py-3 px-4">Total Units</th><th class="text-right py-3 px-4">Countries</th><th class="text-right py-3 px-4">Avg/Quarter</th></tr></thead>
+                        <tbody id="rankingsTableBody"></tbody>
+                    </table>
+                </div></div>
+            </div>
+        </section>
+
+        <footer class="border-t pt-4 text-xs" style="border-color:var(--border);color:var(--text-muted)"></footer>
+    </main>
+
+    <script>
+        // ============================================================
+        // FIREBASE CONFIGURATION
+        // ============================================================
+        // REPLACE THIS URL with your Firebase Realtime Database URL
+        // Go to: https://console.firebase.google.com → Realtime Database → Create Database
+        // Your URL will look like: https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com
+        var FIREBASE_DATABASE_URL = "https://YOUR-PROJECT-ID-default-rtdb.firebaseio.com";
+        
+        // ============================================================
+        // DATA
+        // ============================================================
+        var D = {"country_overview": [{"Country": "Bahrain", "2024Q1": 119092, "2024Q2": 121311, "2024Q3": 129532, "2024Q4": 126865, "2025Q1": 120040, "2025Q2": 111591, "2025Q3": 118834, "2025Q4": 133312, "2026Q1": 91603, "QoQ_Growth_%": -31.29, "YoY_Growth_%": -23.69, "Total_All_Quarters": 1072180}, {"Country": "Iraq", "2024Q1": 2000552, "2024Q2": 2074165, "2024Q3": 2163649, "2024Q4": 2092391, "2025Q1": 1879846, "2025Q2": 1950836, "2025Q3": 2157875, "2025Q4": 2361678, "2026Q1": 1994780, "QoQ_Growth_%": -15.54, "YoY_Growth_%": 6.11, "Total_All_Quarters": 18675772}, {"Country": "Kuwait", "2024Q1": 446423, "2024Q2": 436032, "2024Q3": 451374, "2024Q4": 458419, "2025Q1": 440961, "2025Q2": 438096, "2025Q3": 445506, "2025Q4": 471577, "2026Q1": 402292, "QoQ_Growth_%": -14.69, "YoY_Growth_%": -8.77, "Total_All_Quarters": 3990680}, {"Country": "Oman", "2024Q1": 318690, "2024Q2": 326958, "2024Q3": 347920, "2024Q4": 334973, "2025Q1": 331641, "2025Q2": 338410, "2025Q3": 342221, "2025Q4": 336637, "2026Q1": 295280, "QoQ_Growth_%": -12.29, "YoY_Growth_%": -10.96, "Total_All_Quarters": 2972730}, {"Country": "Qatar", "2024Q1": 467972, "2024Q2": 465829, "2024Q3": 455899, "2024Q4": 464621, "2025Q1": 425392, "2025Q2": 430284, "2025Q3": 455010, "2025Q4": 473560, "2026Q1": 411900, "QoQ_Growth_%": -13.02, "YoY_Growth_%": -3.17, "Total_All_Quarters": 4050467}, {"Country": "Saudi Arabia", "2024Q1": 3231841, "2024Q2": 3327120, "2024Q3": 3273114, "2024Q4": 3256057, "2025Q1": 3241087, "2025Q2": 3388802, "2025Q3": 3368663, "2025Q4": 3555050, "2026Q1": 3037510, "QoQ_Growth_%": -14.56, "YoY_Growth_%": -6.28, "Total_All_Quarters": 29679244}, {"Country": "United Arab Emirates", "2024Q1": 1684262, "2024Q2": 1649762, "2024Q3": 1724144, "2024Q4": 1756960, "2025Q1": 1743765, "2025Q2": 1749226, "2025Q3": 1723790, "2025Q4": 1778429, "2026Q1": 1558913, "QoQ_Growth_%": -12.34, "YoY_Growth_%": -10.6, "Total_All_Quarters": 15369251}], "brand_analysis": [{"Country": "Bahrain", "Brand": "Apple", "Units_2026Q1": 29091, "Units_2025Q4": 37942, "Units_2025Q1": 32079, "QoQ_Growth_%": -23.33, "YoY_Growth_%": -9.31, "Market_Share_%": 31.76, "Rank": 2}, {"Country": "Bahrain", "Brand": "HMD", "Units_2026Q1": 759, "Units_2025Q4": 1292, "Units_2025Q1": 1382, "QoQ_Growth_%": -41.25, "YoY_Growth_%": -45.08, "Market_Share_%": 0.83, "Rank": 8}, {"Country": "Bahrain", "Brand": "Huawei", "Units_2026Q1": 90, "Units_2025Q4": 176, "Units_2025Q1": 439, "QoQ_Growth_%": -48.86, "YoY_Growth_%": -79.5, "Market_Share_%": 0.1, "Rank": 9}, {"Country": "Bahrain", "Brand": "Nokia", "Units_2026Q1": 3501, "Units_2025Q4": 3827, "Units_2025Q1": 4783, "QoQ_Growth_%": -8.52, "YoY_Growth_%": -26.8, "Market_Share_%": 3.82, "Rank": 5}, {"Country": "Bahrain", "Brand": "OPPO", "Units_2026Q1": 2911, "Units_2025Q4": 5282, "Units_2025Q1": 3847, "QoQ_Growth_%": -44.89, "YoY_Growth_%": -24.33, "Market_Share_%": 3.18, "Rank": 6}, {"Country": "Bahrain", "Brand": "Others", "Units_2026Q1": 6040, "Units_2025Q4": 10306, "Units_2025Q1": 8895, "QoQ_Growth_%": -41.39, "YoY_Growth_%": -32.1, "Market_Share_%": 6.59, "Rank": 4}, {"Country": "Bahrain", "Brand": "Samsung", "Units_2026Q1": 37778, "Units_2025Q4": 42272, "Units_2025Q1": 37778, "QoQ_Growth_%": -10.63, "YoY_Growth_%": 0.0, "Market_Share_%": 41.24, "Rank": 1}, {"Country": "Bahrain", "Brand": "Xiaomi", "Units_2026Q1": 10430, "Units_2025Q4": 26196, "Units_2025Q1": 26736, "QoQ_Growth_%": -60.18, "YoY_Growth_%": -60.99, "Market_Share_%": 11.39, "Rank": 3}, {"Country": "Bahrain", "Brand": "vivo", "Units_2026Q1": 1003, "Units_2025Q4": 6019, "Units_2025Q1": 4101, "QoQ_Growth_%": -83.34, "YoY_Growth_%": -75.54, "Market_Share_%": 1.09, "Rank": 7}, {"Country": "Iraq", "Brand": "Apple", "Units_2026Q1": 182260, "Units_2025Q4": 214374, "Units_2025Q1": 189845, "QoQ_Growth_%": -14.98, "YoY_Growth_%": -4.0, "Market_Share_%": 9.14, "Rank": 5}, {"Country": "Iraq", "Brand": "HMD", "Units_2026Q1": 5522, "Units_2025Q4": 6737, "Units_2025Q1": 7757, "QoQ_Growth_%": -18.03, "YoY_Growth_%": -28.81, "Market_Share_%": 0.28, "Rank": 12}, {"Country": "Iraq", "Brand": "Honor", "Units_2026Q1": 272901, "Units_2025Q4": 278361, "Units_2025Q1": 81397, "QoQ_Growth_%": -1.96, "YoY_Growth_%": 235.27, "Market_Share_%": 13.68, "Rank": 2}, {"Country": "Iraq", "Brand": "Huawei", "Units_2026Q1": 590, "Units_2025Q4": 1854, "Units_2025Q1": 18321, "QoQ_Growth_%": -68.18, "YoY_Growth_%": -96.78, "Market_Share_%": 0.03, "Rank": 14}, {"Country": "Iraq", "Brand": "Infinix", "Units_2026Q1": 248824, "Units_2025Q4": 253918, "Units_2025Q1": 399097, "QoQ_Growth_%": -2.01, "YoY_Growth_%": -37.65, "Market_Share_%": 12.47, "Rank": 4}, {"Country": "Iraq", "Brand": "Nokia", "Units_2026Q1": 88030, "Units_2025Q4": 91824, "Units_2025Q1": 59397, "QoQ_Growth_%": -4.13, "YoY_Growth_%": 48.21, "Market_Share_%": 4.41, "Rank": 8}, {"Country": "Iraq", "Brand": "OPPO", "Units_2026Q1": 9211, "Units_2025Q4": 17992, "Units_2025Q1": 17588, "QoQ_Growth_%": -48.81, "YoY_Growth_%": -47.63, "Market_Share_%": 0.46, "Rank": 11}, {"Country": "Iraq", "Brand": "Others", "Units_2026Q1": 71043, "Units_2025Q4": 75484, "Units_2025Q1": 64767, "QoQ_Growth_%": -5.88, "YoY_Growth_%": 9.69, "Market_Share_%": 3.56, "Rank": 9}, {"Country": "Iraq", "Brand": "Samsung", "Units_2026Q1": 570883, "Units_2025Q4": 601928, "Units_2025Q1": 185284, "QoQ_Growth_%": -5.16, "YoY_Growth_%": 208.11, "Market_Share_%": 28.62, "Rank": 1}, {"Country": "Iraq", "Brand": "Tecno", "Units_2026Q1": 255254, "Units_2025Q4": 264712, "Units_2025Q1": 338472, "QoQ_Growth_%": -3.57, "YoY_Growth_%": -24.59, "Market_Share_%": 12.8, "Rank": 3}, {"Country": "Iraq", "Brand": "Xiaomi", "Units_2026Q1": 145018, "Units_2025Q4": 362544, "Units_2025Q1": 381009, "QoQ_Growth_%": -60.0, "YoY_Growth_%": -61.94, "Market_Share_%": 7.27, "Rank": 6}, {"Country": "Iraq", "Brand": "itel", "Units_2026Q1": 48961, "Units_2025Q4": 57741, "Units_2025Q1": 55515, "QoQ_Growth_%": -15.21, "YoY_Growth_%": -11.81, "Market_Share_%": 2.45, "Rank": 10}, {"Country": "Iraq", "Brand": "realme", "Units_2026Q1": 92347, "Units_2025Q4": 103928, "Units_2025Q1": 69274, "QoQ_Growth_%": -11.14, "YoY_Growth_%": 33.31, "Market_Share_%": 4.63, "Rank": 7}, {"Country": "Iraq", "Brand": "vivo", "Units_2026Q1": 3936, "Units_2025Q4": 30281, "Units_2025Q1": 12123, "QoQ_Growth_%": -87.0, "YoY_Growth_%": -67.53, "Market_Share_%": 0.2, "Rank": 13}, {"Country": "Kuwait", "Brand": "Apple", "Units_2026Q1": 105667, "Units_2025Q4": 106335, "Units_2025Q1": 95028, "QoQ_Growth_%": -0.63, "YoY_Growth_%": 11.2, "Market_Share_%": 26.27, "Rank": 2}, {"Country": "Kuwait", "Brand": "HMD", "Units_2026Q1": 1399, "Units_2025Q4": 2224, "Units_2025Q1": 2671, "QoQ_Growth_%": -37.1, "YoY_Growth_%": -47.62, "Market_Share_%": 0.35, "Rank": 12}, {"Country": "Kuwait", "Brand": "Honor", "Units_2026Q1": 39974, "Units_2025Q4": 35271, "Units_2025Q1": 16774, "QoQ_Growth_%": 13.33, "YoY_Growth_%": 138.31, "Market_Share_%": 9.94, "Rank": 4}, {"Country": "Kuwait", "Brand": "Huawei", "Units_2026Q1": 396, "Units_2025Q4": 490, "Units_2025Q1": 903, "QoQ_Growth_%": -19.18, "YoY_Growth_%": -56.15, "Market_Share_%": 0.1, "Rank": 13}, {"Country": "Kuwait", "Brand": "Infinix", "Units_2026Q1": 21611, "Units_2025Q4": 30498, "Units_2025Q1": 27285, "QoQ_Growth_%": -29.14, "YoY_Growth_%": -20.8, "Market_Share_%": 5.37, "Rank": 7}, {"Country": "Kuwait", "Brand": "Motorola", "Units_2026Q1": 24242, "Units_2025Q4": 28371, "Units_2025Q1": 28067, "QoQ_Growth_%": -14.55, "YoY_Growth_%": -13.63, "Market_Share_%": 6.03, "Rank": 5}, {"Country": "Kuwait", "Brand": "Nokia", "Units_2026Q1": 21671, "Units_2025Q4": 23181, "Units_2025Q1": 24889, "QoQ_Growth_%": -6.51, "YoY_Growth_%": -12.93, "Market_Share_%": 5.39, "Rank": 6}, {"Country": "Kuwait", "Brand": "OPPO", "Units_2026Q1": 3687, "Units_2025Q4": 7122, "Units_2025Q1": 7677, "QoQ_Growth_%": -48.23, "YoY_Growth_%": -51.97, "Market_Share_%": 0.92, "Rank": 10}, {"Country": "Kuwait", "Brand": "Others", "Units_2026Q1": 7162, "Units_2025Q4": 11826, "Units_2025Q1": 9120, "QoQ_Growth_%": -39.44, "YoY_Growth_%": -21.47, "Market_Share_%": 1.78, "Rank": 9}, {"Country": "Kuwait", "Brand": "Samsung", "Units_2026Q1": 119302, "Units_2025Q4": 141293, "Units_2025Q1": 134241, "QoQ_Growth_%": -15.56, "YoY_Growth_%": -11.13, "Market_Share_%": 29.66, "Rank": 1}, {"Country": "Kuwait", "Brand": "Xiaomi", "Units_2026Q1": 42829, "Units_2025Q4": 71162, "Units_2025Q1": 70918, "QoQ_Growth_%": -39.81, "YoY_Growth_%": -39.61, "Market_Share_%": 10.65, "Rank": 3}, {"Country": "Kuwait", "Brand": "realme", "Units_2026Q1": 3157, "Units_2025Q4": 6471, "Units_2025Q1": 15726, "QoQ_Growth_%": -51.21, "YoY_Growth_%": -79.92, "Market_Share_%": 0.78, "Rank": 11}, {"Country": "Kuwait", "Brand": "vivo", "Units_2026Q1": 11195, "Units_2025Q4": 7333, "Units_2025Q1": 7662, "QoQ_Growth_%": 52.67, "YoY_Growth_%": 46.11, "Market_Share_%": 2.78, "Rank": 8}, {"Country": "Oman", "Brand": "Apple", "Units_2026Q1": 59111, "Units_2025Q4": 67162, "Units_2025Q1": 56673, "QoQ_Growth_%": -11.99, "YoY_Growth_%": 4.3, "Market_Share_%": 20.02, "Rank": 2}, {"Country": "Oman", "Brand": "HMD", "Units_2026Q1": 1766, "Units_2025Q4": 2059, "Units_2025Q1": 3659, "QoQ_Growth_%": -14.23, "YoY_Growth_%": -51.74, "Market_Share_%": 0.6, "Rank": 8}, {"Country": "Oman", "Brand": "Huawei", "Units_2026Q1": 603, "Units_2025Q4": 524, "Units_2025Q1": 2010, "QoQ_Growth_%": 15.08, "YoY_Growth_%": -70.0, "Market_Share_%": 0.2, "Rank": 9}, {"Country": "Oman", "Brand": "Nokia", "Units_2026Q1": 12950, "Units_2025Q4": 14123, "Units_2025Q1": 16221, "QoQ_Growth_%": -8.31, "YoY_Growth_%": -20.17, "Market_Share_%": 4.39, "Rank": 5}, {"Country": "Oman", "Brand": "OPPO", "Units_2026Q1": 9401, "Units_2025Q4": 15537, "Units_2025Q1": 8674, "QoQ_Growth_%": -39.49, "YoY_Growth_%": 8.38, "Market_Share_%": 3.18, "Rank": 7}, {"Country": "Oman", "Brand": "Others", "Units_2026Q1": 21641, "Units_2025Q4": 23008, "Units_2025Q1": 19767, "QoQ_Growth_%": -5.94, "YoY_Growth_%": 9.48, "Market_Share_%": 7.33, "Rank": 4}, {"Country": "Oman", "Brand": "Samsung", "Units_2026Q1": 120499, "Units_2025Q4": 133198, "Units_2025Q1": 133059, "QoQ_Growth_%": -9.53, "YoY_Growth_%": -9.44, "Market_Share_%": 40.81, "Rank": 1}, {"Country": "Oman", "Brand": "Xiaomi", "Units_2026Q1": 58443, "Units_2025Q4": 71192, "Units_2025Q1": 83741, "QoQ_Growth_%": -17.91, "YoY_Growth_%": -30.21, "Market_Share_%": 19.79, "Rank": 3}, {"Country": "Oman", "Brand": "vivo", "Units_2026Q1": 10866, "Units_2025Q4": 9834, "Units_2025Q1": 7837, "QoQ_Growth_%": 10.49, "YoY_Growth_%": 38.65, "Market_Share_%": 3.68, "Rank": 6}, {"Country": "Qatar", "Brand": "Apple", "Units_2026Q1": 92806, "Units_2025Q4": 96162, "Units_2025Q1": 76321, "QoQ_Growth_%": -3.49, "YoY_Growth_%": 21.6, "Market_Share_%": 22.53, "Rank": 2}, {"Country": "Qatar", "Brand": "HMD", "Units_2026Q1": 3458, "Units_2025Q4": 4541, "Units_2025Q1": 11424, "QoQ_Growth_%": -23.85, "YoY_Growth_%": -69.73, "Market_Share_%": 0.84, "Rank": 10}, {"Country": "Qatar", "Brand": "Honor", "Units_2026Q1": 72406, "Units_2025Q4": 63884, "Units_2025Q1": 17384, "QoQ_Growth_%": 13.34, "YoY_Growth_%": 316.51, "Market_Share_%": 17.58, "Rank": 3}, {"Country": "Qatar", "Brand": "Huawei", "Units_2026Q1": 945, "Units_2025Q4": 501, "Units_2025Q1": 1503, "QoQ_Growth_%": 88.62, "YoY_Growth_%": -37.13, "Market_Share_%": 0.23, "Rank": 12}, {"Country": "Qatar", "Brand": "Motorola", "Units_2026Q1": 24343, "Units_2025Q4": 27837, "Units_2025Q1": 22114, "QoQ_Growth_%": -12.55, "YoY_Growth_%": 10.08, "Market_Share_%": 5.91, "Rank": 5}, {"Country": "Qatar", "Brand": "Nokia", "Units_2026Q1": 21389, "Units_2025Q4": 22746, "Units_2025Q1": 20837, "QoQ_Growth_%": -5.97, "YoY_Growth_%": 2.65, "Market_Share_%": 5.19, "Rank": 7}, {"Country": "Qatar", "Brand": "OPPO", "Units_2026Q1": 6122, "Units_2025Q4": 12033, "Units_2025Q1": 15255, "QoQ_Growth_%": -49.12, "YoY_Growth_%": -59.87, "Market_Share_%": 1.49, "Rank": 9}, {"Country": "Qatar", "Brand": "Others", "Units_2026Q1": 24309, "Units_2025Q4": 28810, "Units_2025Q1": 34258, "QoQ_Growth_%": -15.62, "YoY_Growth_%": -29.04, "Market_Share_%": 5.9, "Rank": 6}, {"Country": "Qatar", "Brand": "Poco", "Units_2026Q1": 1132, "Units_2025Q4": 2699, "Units_2025Q1": 2988, "QoQ_Growth_%": -58.06, "YoY_Growth_%": -62.12, "Market_Share_%": 0.27, "Rank": 11}, {"Country": "Qatar", "Brand": "Samsung", "Units_2026Q1": 102193, "Units_2025Q4": 120298, "Units_2025Q1": 122193, "QoQ_Growth_%": -15.05, "YoY_Growth_%": -16.37, "Market_Share_%": 24.81, "Rank": 1}, {"Country": "Qatar", "Brand": "Xiaomi", "Units_2026Q1": 46118, "Units_2025Q4": 78121, "Units_2025Q1": 91827, "QoQ_Growth_%": -40.97, "YoY_Growth_%": -49.78, "Market_Share_%": 11.2, "Rank": 4}, {"Country": "Qatar", "Brand": "vivo", "Units_2026Q1": 16679, "Units_2025Q4": 15928, "Units_2025Q1": 9288, "QoQ_Growth_%": 4.71, "YoY_Growth_%": 79.58, "Market_Share_%": 4.05, "Rank": 8}, {"Country": "Saudi Arabia", "Brand": "Apple", "Units_2026Q1": 591907, "Units_2025Q4": 803928, "Units_2025Q1": 729928, "QoQ_Growth_%": -26.37, "YoY_Growth_%": -18.91, "Market_Share_%": 19.49, "Rank": 2}, {"Country": "Saudi Arabia", "Brand": "HMD", "Units_2026Q1": 126250, "Units_2025Q4": 165335, "Units_2025Q1": 22586, "QoQ_Growth_%": -23.64, "YoY_Growth_%": 458.97, "Market_Share_%": 4.16, "Rank": 8}, {"Country": "Saudi Arabia", "Brand": "Honor", "Units_2026Q1": 120624, "Units_2025Q4": 18227, "Units_2025Q1": 80383, "QoQ_Growth_%": 561.79, "YoY_Growth_%": 50.06, "Market_Share_%": 3.97, "Rank": 9}, {"Country": "Saudi Arabia", "Brand": "Huawei", "Units_2026Q1": 28489, "Units_2025Q4": 18599, "Units_2025Q1": 20471, "QoQ_Growth_%": 53.17, "YoY_Growth_%": 39.17, "Market_Share_%": 0.94, "Rank": 14}, {"Country": "Saudi Arabia", "Brand": "Infinix", "Units_2026Q1": 244083, "Units_2025Q4": 249384, "Units_2025Q1": 249181, "QoQ_Growth_%": -2.13, "YoY_Growth_%": -2.05, "Market_Share_%": 8.04, "Rank": 3}, {"Country": "Saudi Arabia", "Brand": "Motorola", "Units_2026Q1": 169219, "Units_2025Q4": 187466, "Units_2025Q1": 182948, "QoQ_Growth_%": -9.73, "YoY_Growth_%": -7.5, "Market_Share_%": 5.57, "Rank": 4}, {"Country": "Saudi Arabia", "Brand": "Nokia", "Units_2026Q1": 154914, "Units_2025Q4": 161726, "Units_2025Q1": 194285, "QoQ_Growth_%": -4.21, "YoY_Growth_%": -20.26, "Market_Share_%": 5.1, "Rank": 5}, {"Country": "Saudi Arabia", "Brand": "OPPO", "Units_2026Q1": 17089, "Units_2025Q4": 34019, "Units_2025Q1": 43218, "QoQ_Growth_%": -49.77, "YoY_Growth_%": -60.46, "Market_Share_%": 0.56, "Rank": 15}, {"Country": "Saudi Arabia", "Brand": "Others", "Units_2026Q1": 42045, "Units_2025Q4": 41765, "Units_2025Q1": 51743, "QoQ_Growth_%": 0.67, "YoY_Growth_%": -18.74, "Market_Share_%": 1.38, "Rank": 12}, {"Country": "Saudi Arabia", "Brand": "Poco", "Units_2026Q1": 3655, "Units_2025Q4": 6736, "Units_2025Q1": 10182, "QoQ_Growth_%": -45.74, "YoY_Growth_%": -64.1, "Market_Share_%": 0.12, "Rank": 16}, {"Country": "Saudi Arabia", "Brand": "Samsung", "Units_2026Q1": 1052647, "Units_2025Q4": 1318263, "Units_2025Q1": 1103847, "QoQ_Growth_%": -20.15, "YoY_Growth_%": -4.64, "Market_Share_%": 34.65, "Rank": 1}, {"Country": "Saudi Arabia", "Brand": "Tecno", "Units_2026Q1": 97561, "Units_2025Q4": 101928, "Units_2025Q1": 102948, "QoQ_Growth_%": -4.28, "YoY_Growth_%": -5.23, "Market_Share_%": 3.21, "Rank": 10}, {"Country": "Saudi Arabia", "Brand": "Xiaomi", "Units_2026Q1": 138911, "Units_2025Q4": 172747, "Units_2025Q1": 224152, "QoQ_Growth_%": -19.59, "YoY_Growth_%": -38.03, "Market_Share_%": 4.57, "Rank": 7}, {"Country": "Saudi Arabia", "Brand": "itel", "Units_2026Q1": 153591, "Units_2025Q4": 156374, "Units_2025Q1": 95847, "QoQ_Growth_%": -1.78, "YoY_Growth_%": 60.25, "Market_Share_%": 5.06, "Rank": 6}, {"Country": "Saudi Arabia", "Brand": "realme", "Units_2026Q1": 56547, "Units_2025Q4": 78371, "Units_2025Q1": 98274, "QoQ_Growth_%": -27.85, "YoY_Growth_%": -42.46, "Market_Share_%": 1.86, "Rank": 11}, {"Country": "Saudi Arabia", "Brand": "vivo", "Units_2026Q1": 39978, "Units_2025Q4": 40182, "Units_2025Q1": 31094, "QoQ_Growth_%": -0.51, "YoY_Growth_%": 28.57, "Market_Share_%": 1.32, "Rank": 13}, {"Country": "United Arab Emirates", "Brand": "Apple", "Units_2026Q1": 308077, "Units_2025Q4": 461927, "Units_2025Q1": 331948, "QoQ_Growth_%": -33.31, "YoY_Growth_%": -7.19, "Market_Share_%": 19.76, "Rank": 2}, {"Country": "United Arab Emirates", "Brand": "HMD", "Units_2026Q1": 5126, "Units_2025Q4": 8388, "Units_2025Q1": 22183, "QoQ_Growth_%": -38.89, "YoY_Growth_%": -76.89, "Market_Share_%": 0.33, "Rank": 13}, {"Country": "United Arab Emirates", "Brand": "Honor", "Units_2026Q1": 180284, "Units_2025Q4": 77351, "Units_2025Q1": 49271, "QoQ_Growth_%": 133.07, "YoY_Growth_%": 265.9, "Market_Share_%": 11.56, "Rank": 3}, {"Country": "United Arab Emirates", "Brand": "Huawei", "Units_2026Q1": 16485, "Units_2025Q4": 14538, "Units_2025Q1": 9201, "QoQ_Growth_%": 13.39, "YoY_Growth_%": 79.17, "Market_Share_%": 1.06, "Rank": 9}, {"Country": "United Arab Emirates", "Brand": "Motorola", "Units_2026Q1": 103824, "Units_2025Q4": 131244, "Units_2025Q1": 68450, "QoQ_Growth_%": -20.89, "YoY_Growth_%": 51.68, "Market_Share_%": 6.66, "Rank": 6}, {"Country": "United Arab Emirates", "Brand": "Nokia", "Units_2026Q1": 108714, "Units_2025Q4": 112948, "Units_2025Q1": 129848, "QoQ_Growth_%": -3.75, "YoY_Growth_%": -16.28, "Market_Share_%": 6.97, "Rank": 5}, {"Country": "United Arab Emirates", "Brand": "OPPO", "Units_2026Q1": 11030, "Units_2025Q4": 22117, "Units_2025Q1": 25184, "QoQ_Growth_%": -50.13, "YoY_Growth_%": -56.2, "Market_Share_%": 0.71, "Rank": 11}, {"Country": "United Arab Emirates", "Brand": "Others", "Units_2026Q1": 45746, "Units_2025Q4": 44374, "Units_2025Q1": 32204, "QoQ_Growth_%": 3.09, "YoY_Growth_%": 42.05, "Market_Share_%": 2.93, "Rank": 8}, {"Country": "United Arab Emirates", "Brand": "Poco", "Units_2026Q1": 6801, "Units_2025Q4": 14185, "Units_2025Q1": 9899, "QoQ_Growth_%": -52.05, "YoY_Growth_%": -31.3, "Market_Share_%": 0.44, "Rank": 12}, {"Country": "United Arab Emirates", "Brand": "Samsung", "Units_2026Q1": 532855, "Units_2025Q4": 612837, "Units_2025Q1": 594188, "QoQ_Growth_%": -13.05, "YoY_Growth_%": -10.32, "Market_Share_%": 34.18, "Rank": 1}, {"Country": "United Arab Emirates", "Brand": "TCL", "Units_2026Q1": 511, "Units_2025Q4": 1271, "Units_2025Q1": 1829, "QoQ_Growth_%": -59.8, "YoY_Growth_%": -72.06, "Market_Share_%": 0.03, "Rank": 14}, {"Country": "United Arab Emirates", "Brand": "Xiaomi", "Units_2026Q1": 171162, "Units_2025Q4": 212848, "Units_2025Q1": 405928, "QoQ_Growth_%": -19.58, "YoY_Growth_%": -57.83, "Market_Share_%": 10.98, "Rank": 4}, {"Country": "United Arab Emirates", "Brand": "realme", "Units_2026Q1": 11158, "Units_2025Q4": 12837, "Units_2025Q1": 36471, "QoQ_Growth_%": -13.08, "YoY_Growth_%": -69.41, "Market_Share_%": 0.72, "Rank": 10}, {"Country": "United Arab Emirates", "Brand": "vivo", "Units_2026Q1": 57140, "Units_2025Q4": 51564, "Units_2025Q1": 27161, "QoQ_Growth_%": 10.81, "YoY_Growth_%": 110.38, "Market_Share_%": 3.67, "Rank": 7}], "country_comparison": [{"Country": "Saudi Arabia", "Total_Units_All_Time": 29679244, "Units_2026Q1": 3037510, "Num_Brands": 16, "Top_5_Brands": {"Samsung": 1052647, "Apple": 591907, "Infinix": 244083, "Motorola": 169219, "Nokia": 154914}, "Avg_Units_Per_Quarter": 3297693}, {"Country": "United Arab Emirates", "Total_Units_All_Time": 15369251, "Units_2026Q1": 1558913, "Num_Brands": 14, "Top_5_Brands": {"Samsung": 532855, "Apple": 308077, "Honor": 180284, "Xiaomi": 171162, "Nokia": 108714}, "Avg_Units_Per_Quarter": 1707694}, {"Country": "Qatar", "Total_Units_All_Time": 4050467, "Units_2026Q1": 411900, "Num_Brands": 12, "Top_5_Brands": {"Samsung": 102193, "Apple": 92806, "Honor": 72406, "Xiaomi": 46118, "Motorola": 24343}, "Avg_Units_Per_Quarter": 450051}, {"Country": "Kuwait", "Total_Units_All_Time": 3990680, "Units_2026Q1": 402292, "Num_Brands": 13, "Top_5_Brands": {"Samsung": 119302, "Apple": 105667, "Xiaomi": 42829, "Honor": 39974, "Motorola": 24242}, "Avg_Units_Per_Quarter": 443408}, {"Country": "Oman", "Total_Units_All_Time": 2972730, "Units_2026Q1": 295280, "Num_Brands": 9, "Top_5_Brands": {"Samsung": 120499, "Apple": 59111, "Xiaomi": 58443, "Others": 21641, "Nokia": 12950}, "Avg_Units_Per_Quarter": 330303}, {"Country": "Bahrain", "Total_Units_All_Time": 1072180, "Units_2026Q1": 91603, "Num_Brands": 9, "Top_5_Brands": {"Samsung": 37778, "Apple": 29091, "Xiaomi": 10430, "Others": 6040, "Nokia": 3501}, "Avg_Units_Per_Quarter": 119131}, {"Country": "Iraq", "Total_Units_All_Time": 18675772, "Units_2026Q1": 1994780, "Num_Brands": 14, "Top_5_Brands": {"Samsung": 570883, "Honor": 272901, "Tecno": 255254, "Infinix": 248824, "Apple": 182260}, "Avg_Units_Per_Quarter": 2075085}], "quarterly_trends": [{"Year": 2024, "Q_Num": 1, "Quarter": "2024Q1", "Units": 8268832, "QoQ_Growth_%": null, "Units_LY": null, "YoY_Growth_%": null}, {"Year": 2024, "Q_Num": 2, "Quarter": "2024Q2", "Units": 8401177, "QoQ_Growth_%": 1.6005283454785468, "Units_LY": null, "YoY_Growth_%": null}, {"Year": 2024, "Q_Num": 3, "Quarter": "2024Q3", "Units": 8545632, "QoQ_Growth_%": 1.7194614516513607, "Units_LY": null, "YoY_Growth_%": null}, {"Year": 2024, "Q_Num": 4, "Quarter": "2024Q4", "Units": 8490286, "QoQ_Growth_%": -0.6476525083223827, "Units_LY": null, "YoY_Growth_%": null}, {"Year": 2025, "Q_Num": 1, "Quarter": "2025Q1", "Units": 8182732, "QoQ_Growth_%": -3.6224221421987446, "Units_LY": 8268832.0, "YoY_Growth_%": -1.04}, {"Year": 2025, "Q_Num": 2, "Quarter": "2025Q2", "Units": 8407245, "QoQ_Growth_%": 2.743741332356975, "Units_LY": 8401177.0, "YoY_Growth_%": 0.07}, {"Year": 2025, "Q_Num": 3, "Quarter": "2025Q3", "Units": 8611899, "QoQ_Growth_%": 2.4342575956808776, "Units_LY": 8545632.0, "YoY_Growth_%": 0.78}, {"Year": 2025, "Q_Num": 4, "Quarter": "2025Q4", "Units": 9110243, "QoQ_Growth_%": 5.786691181584924, "Units_LY": 8490286.0, "YoY_Growth_%": 7.3}, {"Year": 2026, "Q_Num": 1, "Quarter": "2026Q1", "Units": 7792278, "QoQ_Growth_%": -14.466847920521985, "Units_LY": 8182732.0, "YoY_Growth_%": -4.77}], "brand_rankings": [{"Brand": "Samsung", "Total_Units": 23070721, "Countries_Present": 7, "Avg_Quarterly_Units": 366201.92063492065, "Rank": 1}, {"Brand": "Apple", "Total_Units": 13176549, "Countries_Present": 7, "Avg_Quarterly_Units": 209151.57142857142, "Rank": 2}, {"Brand": "Xiaomi", "Total_Units": 10572075, "Countries_Present": 7, "Avg_Quarterly_Units": 167810.7142857143, "Rank": 3}, {"Brand": "Infinix", "Total_Units": 5605883, "Countries_Present": 3, "Avg_Quarterly_Units": 207625.2962962963, "Rank": 4}, {"Brand": "Nokia", "Total_Units": 4625816, "Countries_Present": 7, "Avg_Quarterly_Units": 50833.142857142855, "Rank": 5}, {"Brand": "Tecno", "Total_Units": 4172958, "Countries_Present": 2, "Avg_Quarterly_Units": 231831.0, "Rank": 6}, {"Brand": "Honor", "Total_Units": 3209597, "Countries_Present": 5, "Avg_Quarterly_Units": 71324.37777777777, "Rank": 7}, {"Brand": "Motorola", "Total_Units": 2749171, "Countries_Present": 4, "Avg_Quarterly_Units": 76365.86111111111, "Rank": 8}, {"Brand": "realme", "Total_Units": 1961799, "Countries_Present": 4, "Avg_Quarterly_Units": 54494.416666666664, "Rank": 9}, {"Brand": "Others", "Total_Units": 1816172, "Countries_Present": 7, "Avg_Quarterly_Units": 14414.063492063493, "Rank": 10}, {"Brand": "itel", "Total_Units": 1594136, "Countries_Present": 2, "Avg_Quarterly_Units": 59042.07407407407, "Rank": 11}, {"Brand": "vivo", "Total_Units": 1111007, "Countries_Present": 7, "Avg_Quarterly_Units": 17635.031746031746, "Rank": 12}, {"Brand": "OPPO", "Total_Units": 1059988, "Countries_Present": 7, "Avg_Quarterly_Units": 16825.20634920635, "Rank": 13}, {"Brand": "HMD", "Total_Units": 494688, "Countries_Present": 7, "Avg_Quarterly_Units": 12065.560975609756, "Rank": 14}, {"Brand": "Huawei", "Total_Units": 365854, "Countries_Present": 7, "Avg_Quarterly_Units": 5807.206349206349, "Rank": 15}, {"Brand": "Poco", "Total_Units": 210444, "Countries_Present": 3, "Avg_Quarterly_Units": 7794.222222222223, "Rank": 16}, {"Brand": "TCL", "Total_Units": 13466, "Countries_Present": 1, "Avg_Quarterly_Units": 1496.2222222222222, "Rank": 17}], "category_analysis": [{"Country": "Bahrain", "Product Category": "Feature Phone", "2024Q1": 8136, "2024Q2": 8045, "2024Q3": 7909, "2024Q4": 7980, "2025Q1": 7334, "2025Q2": 6914, "2025Q3": 6213, "2025Q4": 5845, "2026Q1": 5380}, {"Country": "Bahrain", "Product Category": "Smartphone", "2024Q1": 110956, "2024Q2": 113266, "2024Q3": 121623, "2024Q4": 118885, "2025Q1": 112706, "2025Q2": 104677, "2025Q3": 112621, "2025Q4": 127467, "2026Q1": 86223}, {"Country": "Iraq", "Product Category": "Feature Phone", "2024Q1": 167104, "2024Q2": 215878, "2024Q3": 228571, "2024Q4": 110786, "2025Q1": 108171, "2025Q2": 106380, "2025Q3": 136956, "2025Q4": 154369, "2026Q1": 147169}, {"Country": "Iraq", "Product Category": "Smartphone", "2024Q1": 1833448, "2024Q2": 1858287, "2024Q3": 1935078, "2024Q4": 1981605, "2025Q1": 1771675, "2025Q2": 1844456, "2025Q3": 2020919, "2025Q4": 2207309, "2026Q1": 1847611}, {"Country": "Kuwait", "Product Category": "Feature Phone", "2024Q1": 44270, "2024Q2": 26449, "2024Q3": 28424, "2024Q4": 26832, "2025Q1": 29990, "2025Q2": 28937, "2025Q3": 27727, "2025Q4": 28475, "2026Q1": 25419}, {"Country": "Kuwait", "Product Category": "Smartphone", "2024Q1": 402153, "2024Q2": 409583, "2024Q3": 422950, "2024Q4": 431587, "2025Q1": 410971, "2025Q2": 409159, "2025Q3": 417779, "2025Q4": 443102, "2026Q1": 376873}, {"Country": "Oman", "Product Category": "Feature Phone", "2024Q1": 27912, "2024Q2": 17748, "2024Q3": 25283, "2024Q4": 22451, "2025Q1": 22851, "2025Q2": 19764, "2025Q3": 19821, "2025Q4": 20061, "2026Q1": 18806}, {"Country": "Oman", "Product Category": "Smartphone", "2024Q1": 290778, "2024Q2": 309210, "2024Q3": 322637, "2024Q4": 312522, "2025Q1": 308790, "2025Q2": 318646, "2025Q3": 322400, "2025Q4": 316576, "2026Q1": 276474}, {"Country": "Qatar", "Product Category": "Feature Phone", "2024Q1": 54890, "2024Q2": 50191, "2024Q3": 38827, "2024Q4": 40212, "2025Q1": 36621, "2025Q2": 34969, "2025Q3": 36203, "2025Q4": 35684, "2026Q1": 33978}, {"Country": "Qatar", "Product Category": "Smartphone", "2024Q1": 413082, "2024Q2": 415638, "2024Q3": 417072, "2024Q4": 424409, "2025Q1": 388771, "2025Q2": 395315, "2025Q3": 418807, "2025Q4": 437876, "2026Q1": 377922}, {"Country": "Saudi Arabia", "Product Category": "Feature Phone", "2024Q1": 214246, "2024Q2": 224984, "2024Q3": 242834, "2024Q4": 191117, "2025Q1": 224076, "2025Q2": 213702, "2025Q3": 203952, "2025Q4": 188103, "2026Q1": 177966}, {"Country": "Saudi Arabia", "Product Category": "Smartphone", "2024Q1": 3017595, "2024Q2": 3102136, "2024Q3": 3030280, "2024Q4": 3064940, "2025Q1": 3017011, "2025Q2": 3175100, "2025Q3": 3164711, "2025Q4": 3366947, "2026Q1": 2859544}, {"Country": "United Arab Emirates", "Product Category": "Feature Phone", "2024Q1": 151480, "2024Q2": 171918, "2024Q3": 188607, "2024Q4": 149505, "2025Q1": 148938, "2025Q2": 132957, "2025Q3": 127810, "2025Q4": 134130, "2026Q1": 128736}, {"Country": "United Arab Emirates", "Product Category": "Smartphone", "2024Q1": 1532782, "2024Q2": 1477844, "2024Q3": 1535537, "2024Q4": 1607455, "2025Q1": 1594827, "2025Q2": 1616269, "2025Q3": 1595980, "2025Q4": 1644299, "2026Q1": 1430177}]};
+
+        var isDark = true;
+        var selectedQuarter = null;
+        var selectedCategory = 'Total';
+        var selectedCountry = null;
+        var trendChart = null;
+        var allQuarters = [];
+        var brandNotes = {};
+        var noteColors = {};
+        var notesLoaded = false;
+        var db = null;
+        var notesRef = null;
+
+        // ============================================================
+        // FIREBASE INIT
+        // ============================================================
+        function initFirebase() {
+            try {
+                if (FIREBASE_DATABASE_URL.indexOf('YOUR-PROJECT-ID') !== -1) {
+                    console.warn('Firebase not configured. Notes will be saved locally only.');
+                    loadLocalNotes();
+                    return;
+                }
+                firebase.initializeApp({ databaseURL: FIREBASE_DATABASE_URL });
+                db = firebase.database();
+                notesRef = db.ref('gcc_dashboard_notes');
+                
+                // Listen for real-time changes
+                notesRef.on('value', function(snapshot) {
+                    var data = snapshot.val() || {};
+                    brandNotes = data.notes || {};
+                    noteColors = data.colors || {};
+                    notesLoaded = true;
+                    updateSyncStatus('synced', '✓ Notes synced');
+                    // Re-render brand panels if country is selected
+                    if (selectedCountry) {
+                        var ba = findBa();
+                        if (ba && ba.length) {
+                            renderBrandPanels(ba);
+                            renderMovers(ba);
+                        }
+                    }
+                });
+                
+                // Also try loading once
+                notesRef.once('value').then(function(snapshot) {
+                    var data = snapshot.val() || {};
+                    brandNotes = data.notes || {};
+                    noteColors = data.colors || {};
+                    notesLoaded = true;
+                }).catch(function(e) {
+                    console.error('Firebase load error:', e);
+                    loadLocalNotes();
+                });
+                
+            } catch(e) {
+                console.error('Firebase init error:', e);
+                loadLocalNotes();
+            }
+        }
+        
+        function loadLocalNotes() {
+            try {
+                var s = localStorage.getItem('gcc_brand_notes_local');
+                if (s) { var d = JSON.parse(s); brandNotes = d.notes || {}; noteColors = d.colors || {}; }
+            } catch(e) { brandNotes = {}; noteColors = {}; }
+            notesLoaded = true;
+            updateSyncStatus('syncing', '⚠ Local storage only');
+        }
+        
+        function saveLocalNotes() {
+            try {
+                localStorage.setItem('gcc_brand_notes_local', JSON.stringify({ notes: brandNotes, colors: noteColors }));
+            } catch(e) {}
+        }
+        
+        function updateSyncStatus(status, message) {
+            var el = document.getElementById('syncStatus');
+            if (el) {
+                el.className = 'sync-status ' + status;
+                el.textContent = message;
+                setTimeout(function() { el.style.opacity = '0.5'; }, 3000);
+                el.style.opacity = '1';
+            }
+        }
+
+        // ============================================================
+        // NOTES FUNCTIONS
+        // ============================================================
+        function getNoteKey(c, b, q) { return c + '|||' + b + '|||' + q; }
+        function getNote(c, b, q) { return brandNotes[getNoteKey(c, b, q)] || ''; }
+        function getNoteColor(c, b, q) { return noteColors[getNoteKey(c, b, q)] || ''; }
+        function setNote(c, b, q, t) {
+            var k = getNoteKey(c, b, q);
+            if (t.trim()) brandNotes[k] = t; else delete brandNotes[k];
+            saveNotes();
+        }
+        function setNoteColor(c, b, q, col) {
+            var k = getNoteKey(c, b, q);
+            if (col) noteColors[k] = col; else delete noteColors[k];
+            saveNotes();
+        }
+        function saveNotes() {
+            if (notesRef) {
+                updateSyncStatus('syncing', '↻ Syncing...');
+                notesRef.set({ notes: brandNotes, colors: noteColors }).then(function() {
+                    updateSyncStatus('synced', '✓ Notes synced');
+                }).catch(function() {
+                    saveLocalNotes();
+                    updateSyncStatus('error', '✗ Sync failed');
+                });
+            } else {
+                saveLocalNotes();
+            }
+        }
+
+        function editNote(nid, c, b) {
+            var d = document.getElementById('display-' + nid);
+            var ta = document.getElementById(nid);
+            var picker = document.getElementById('picker-' + nid);
+            if (d) d.style.display = 'none';
+            if (ta) { ta.style.display = 'block'; ta.focus(); }
+            if (picker) picker.style.display = 'flex';
+        }
+        function saveNoteText(nid, c, b) {
+            var ta = document.getElementById(nid); if (!ta) return; var t = ta.value; setNote(c, b, selectedQuarter, t);
+            var d = document.getElementById('display-' + nid); var picker = document.getElementById('picker-' + nid);
+            var nc = getNoteColor(c, b, selectedQuarter) || '';
+            if (t.trim()) {
+                if (!d) { d = document.createElement('div'); d.id = 'display-' + nid; d.className = 'brand-note-display ' + nc; d.setAttribute('onclick', 'editNote(\'' + nid + '\',\'' + c.replace(/'/g, "\\'") + '\',\'' + b.replace(/'/g, "\\'") + '\')'); ta.parentNode.insertBefore(d, ta.nextSibling); }
+                d.innerHTML = t.replace(/\n/g, '<br>') + '<span class="note-edit-btn">edit</span>'; d.style.display = 'block'; d.className = 'brand-note-display ' + nc;
+                ta.style.display = 'none'; ta.className = 'brand-note-input ' + nc;
+                if (picker) picker.style.display = 'none';
+            } else { if (d) d.style.display = 'none'; ta.style.display = 'block'; ta.value = ''; ta.className = 'brand-note-input ' + nc; if (picker) picker.style.display = 'flex'; }
+        }
+        function applyColor(nid, c, b, col) {
+            setNoteColor(c, b, selectedQuarter, col);
+            var ta = document.getElementById(nid); if (ta) { ta.className = 'brand-note-input ' + col; ta.style.display = 'block'; }
+            var d = document.getElementById('display-' + nid); if (d) { d.className = 'brand-note-display ' + col; d.style.display = 'none'; }
+            var dots = document.querySelectorAll('#picker-' + nid + ' .note-color-dot');
+            for (var i = 0; i < dots.length; i++) { dots[i].classList.remove('selected'); if (dots[i].classList.contains(col)) dots[i].classList.add('selected'); }
+            if (ta) ta.focus();
+        }
+
+        // ============================================================
+        // UTILITIES
+        // ============================================================
+        function detectQuarters() { var qs = {}; var co = D.country_overview || []; for (var i = 0; i < co.length; i++) { var keys = Object.keys(co[i]); for (var j = 0; j < keys.length; j++) { if (/^\d{4}Q\d$/.test(keys[j])) qs[keys[j]] = true; } } allQuarters = Object.keys(qs).sort(); }
+        function fmt(n) { if (n == null || isNaN(n)) return '0'; return Math.round(n).toLocaleString(); }
+        function getFlag(c) { var f = { 'Saudi Arabia': '\uD83C\uDDF8\uD83C\uDDE6', 'United Arab Emirates': '\uD83C\uDDE6\uD83C\uDDEA', 'Qatar': '\uD83C\uDDF6\uD83C\uDDE6', 'Kuwait': '\uD83C\uDDF0\uD83C\uDDFC', 'Oman': '\uD83C\uDDF4\uD83C\uDDF2', 'Bahrain': '\uD83C\uDDE7\uD83C\uDDED', 'Iraq': '\uD83C\uDDEE\uD83C\uDDF6' }; return f[c] || ''; }
+        function getCountryCode(c) { var codes = { 'Saudi Arabia': 'SA', 'United Arab Emirates': 'AE', 'Qatar': 'QA', 'Kuwait': 'KW', 'Oman': 'OM', 'Bahrain': 'BH', 'Iraq': 'IQ' }; return codes[c] || c.substring(0, 2).toUpperCase(); }
+        function getPrevQuarter(q) { var i = allQuarters.indexOf(q); return i > 0 ? allQuarters[i - 1] : null; }
+        function getPrevYearQuarter(q) { var i = allQuarters.indexOf(q); return i >= 4 ? allQuarters[i - 4] : null; }
+        function getCategoryUnits(co, quarter, cat) { if (!co || !quarter) return 0; if (cat === 'Total') return co[quarter] || 0; var ca = (D.category_analysis || []).filter(function (x) { return x.Country === selectedCountry && x['Product Category'] === cat; }); return ca.length ? (ca[0][quarter] || 0) : 0; }
+        function getCategoryUnitsForCountry(co, quarter, cat, country) { if (!co || !quarter) return 0; if (cat === 'Total') return co[quarter] || 0; var ca = (D.category_analysis || []).filter(function (x) { return x.Country === country && x['Product Category'] === cat; }); return ca.length ? (ca[0][quarter] || 0) : 0; }
+        function posColor(v) { return (v || 0) >= 0 ? '#34d399' : '#f87171'; }
+        function posSign(v) { return (v || 0) > 0 ? '+' : ''; }
+
+        function toggleDarkMode() {
+            isDark = !isDark; document.documentElement.classList.toggle('dark', isDark);
+            var btn = document.getElementById('darkToggle');
+            btn.innerHTML = isDark ? '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>' : '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>';
+            if (selectedCountry && selectedQuarter) refreshAll();
+        }
+        function renderQuarterDropdown() { var ct = document.getElementById('quarterFilter'); if (!ct) return; ct.innerHTML = allQuarters.map(function (q) { var lb = q.replace(/(\d{4})Q(\d)/, 'Q$2 $1'); return '<option value="' + q + '"' + (q === selectedQuarter ? ' selected' : '') + '>' + lb + '</option>'; }).join(''); }
+        function filterByQuarter(q) { selectedQuarter = q; refreshAll(); renderCountrySelector(D.country_comparison || []); renderComparison(); }
+        function filterByCategory(cat) { selectedCategory = cat; refreshAll(); renderCountrySelector(D.country_comparison || []); renderComparison(); }
+        function refreshAll() { if (!selectedCountry || !selectedQuarter) return; var co = findCo(); var ba = findBa(); document.getElementById('selectedQuarterLabel').textContent = selectedQuarter.replace(/(\d{4})Q(\d)/, 'Q$2 $1'); document.getElementById('tableQuarterLabel').textContent = selectedQuarter.replace(/(\d{4})Q(\d)/, 'Q$2 $1'); renderKPIs(co); renderChart(co); renderBrandPanels(ba); renderMovers(ba); renderBrandTable(ba); }
+        function findCo() { return (D.country_overview || []).find(function (x) { return x.Country === selectedCountry; }); }
+        function findBa() { return (D.brand_analysis || []).filter(function (x) { return x.Country === selectedCountry; }); }
+
+        async function refreshData() {
+            var btn = document.getElementById('refreshBtn'); btn.classList.add('refreshing'); btn.innerHTML = '<svg class="w-4 h-4 spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Refreshing...';
+            try { var resp = await fetch('gcc_dashboard.json?t=' + Date.now()); if (resp.ok) { D = await resp.json(); detectQuarters(); selectedQuarter = allQuarters[allQuarters.length - 1]; renderQuarterDropdown(); var cs = D.country_comparison || []; if (cs.length) { selectedCountry = cs[0].Country; renderCountrySelector(cs); selectCountry(selectedCountry); } } } catch(e) { console.error('Refresh failed:', e); }
+            btn.classList.remove('refreshing'); btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Refresh';
+        }
+
+        function init() {
+            initFirebase();
+            detectQuarters();
+            if (!allQuarters.length) return;
+            selectedQuarter = allQuarters[allQuarters.length - 1];
+            renderQuarterDropdown();
+            var cs = D.country_comparison || [];
+            if (!cs.length) return;
+            selectedCountry = cs[0].Country;
+            renderCountrySelector(cs);
+            selectCountry(selectedCountry);
+        }
+
+        function renderCountrySelector(cs) {
+            if (!cs || !cs.length) return;
+            var h = '';
+            for (var i = 0; i < cs.length; i++) {
+                var c = cs[i], a = c.Country === selectedCountry;
+                var ov = findOvByCountry(c.Country);
+                var q1 = ov ? getCategoryUnitsForCountry(ov, selectedQuarter, selectedCategory, c.Country) : 0;
+                var qoq = computeQoqForCountry(ov, c.Country);
+                h += '<button onclick="selectCountry(\'' + c.Country.replace(/'/g, "\\'") + '\')" class="country-btn flex flex-col justify-between gap-1 text-left ' + (a ? 'active' : '') + '">' +
+                    '<div class="flex items-start justify-between"><span class="text-xs font-bold uppercase tracking-wider" style="color:var(--text-muted)">' + getCountryCode(c.Country) + '</span><span class="font-mono-tabular text-xs font-bold" style="color:' + posColor(qoq) + '">' + (qoq != null ? posSign(qoq) + qoq.toFixed(1) + '%' : '—') + '</span></div>' +
+                    '<div class="text-sm font-semibold" style="color:var(--text)">' + c.Country + '</div>' +
+                    '<div class="font-mono-tabular text-xs" style="color:var(--text-muted)">' + fmt(q1) + ' units</div></button>';
+            }
+            document.getElementById('countrySelector').innerHTML = h;
+        }
+        function findOvByCountry(cn) { return (D.country_overview || []).find(function (x) { return x.Country === cn; }); }
+        function computeQoqForCountry(ov, country) { if (!ov || !selectedQuarter) return null; var curr = getCategoryUnitsForCountry(ov, selectedQuarter, selectedCategory, country); var pq = getPrevQuarter(selectedQuarter); var prev = pq ? getCategoryUnitsForCountry(ov, pq, selectedCategory, country) : 0; return prev ? ((curr - prev) / prev) * 100 : null; }
+
+        function selectCountry(country) {
+            selectedCountry = country;
+            var btns = document.querySelectorAll('.country-btn'); for (var i = 0; i < btns.length; i++) { btns[i].classList.toggle('active', btns[i].textContent.indexOf(country) !== -1); }
+            document.getElementById('countryFlag').textContent = getFlag(country); document.getElementById('countryName').textContent = country;
+            document.getElementById('chartTitle').textContent = country + ' Volume Path'; document.getElementById('tableCountryLabel').textContent = country;
+            refreshAll(); renderComparison(); renderRankings();
+        }
+
+        function renderKPIs(co) {
+            if (!co || !selectedQuarter) return;
+            var units = getCategoryUnits(co, selectedQuarter, selectedCategory);
+            var pq = getPrevQuarter(selectedQuarter); var pyq = getPrevYearQuarter(selectedQuarter);
+            var pu = pq ? getCategoryUnits(co, pq, selectedCategory) : 0; var pyu = pyq ? getCategoryUnits(co, pyq, selectedCategory) : 0;
+            var qoq = pu ? ((units - pu) / pu) * 100 : 0; var yoy = pyu ? ((units - pyu) / pyu) * 100 : 0;
+            document.getElementById('totalUnitsK').textContent = fmt(units); document.getElementById('totalUnitsExact').textContent = 'handsets';
+            var qe = document.getElementById('qoqValue'); qe.textContent = (qoq >= 0 ? '+' : '') + qoq.toFixed(1) + '%'; qe.style.color = posColor(qoq);
+            var ye = document.getElementById('yoyValue'); ye.textContent = (yoy >= 0 ? '+' : '') + yoy.toFixed(1) + '%'; ye.style.color = posColor(yoy);
+        }
+
+        function renderChart(co) {
+            var cv = document.getElementById('trendChart'); if (!cv || !co || !selectedQuarter) return; var ctx = cv.getContext('2d'); if (trendChart) { trendChart.destroy(); trendChart = null; }
+            var lbs = allQuarters.map(function (q) { return q.replace('20', "'"); }); var vls = allQuarters.map(function (q) { return getCategoryUnits(co, q, selectedCategory); });
+            var gc = isDark ? 'rgba(148,163,184,0.08)' : '#f1f5f9'; var tc = isDark ? '#94a3b8' : '#64748b';
+            var gd = ctx.createLinearGradient(0, 0, 0, 400); gd.addColorStop(0, 'rgba(56,189,248,0.2)'); gd.addColorStop(1, 'rgba(56,189,248,0)');
+            trendChart = new Chart(ctx, {
+                type: 'line', data: { labels: lbs, datasets: [{ data: vls, borderColor: '#38bdf8', backgroundColor: gd, fill: true, tension: 0.4, borderWidth: 2.5, pointRadius: 2, pointHoverRadius: 6, pointBackgroundColor: '#38bdf8', pointBorderColor: isDark ? '#0d1321' : '#fff', pointBorderWidth: 2, pointHoverBackgroundColor: '#ffffff', pointHoverBorderColor: '#38bdf8', pointHoverBorderWidth: 3 }] },
+                options: {
+                    responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false },
+                    plugins: { legend: { display: false }, tooltip: { enabled: true, backgroundColor: isDark ? 'rgba(15,23,42,0.95)' : 'rgba(255,255,255,0.95)', titleColor: tc, bodyColor: isDark ? '#f1f5f9' : '#1a1a2e', borderColor: '#38bdf8', borderWidth: 1, cornerRadius: 12, padding: 14, displayColors: false, titleFont: { family: 'Inter', size: 12, weight: '600' }, bodyFont: { family: 'JetBrains Mono', size: 13, weight: '600' }, titleMarginBottom: 6, callbacks: { title: function(ctx) { return ctx[0].label; }, label: function(ctx) { return ctx.parsed.y.toLocaleString() + ' units'; } }, animation: { duration: 200, easing: 'easeOutCubic' } } },
+                    scales: { x: { grid: { display: false }, ticks: { color: tc, font: { size: 11 } }, border: { display: false } }, y: { grid: { color: gc }, ticks: { color: tc, font: { size: 11 }, callback: function (v) { return (v / 1000).toFixed(0) + 'K'; }, padding: 8 }, border: { display: false }, beginAtZero: false, grace: '5%' } }
+                }
+            });
+        }
+
+        function renderBrandPanels(ba) {
+            var gc = document.getElementById('gainersList'), dc = document.getElementById('declinersList');
+            if (!ba || !ba.length) { gc.innerHTML = dc.innerHTML = '<div class="text-xs text-center py-6" style="color:var(--text-muted)">No data</div>'; return; }
+            var s = ba.slice().sort(function (a, b) { return (b['QoQ_Growth_%'] || 0) - (a['QoQ_Growth_%'] || 0); });
+            var gs = s.filter(function (b) { return (b['QoQ_Growth_%'] || 0) > 0; });
+            var ds = s.filter(function (b) { return (b['QoQ_Growth_%'] || 0) <= 0; }).sort(function (a, b) { return (a['QoQ_Growth_%'] || 0) - (b['QoQ_Growth_%'] || 0); });
+            var gM = Math.max(1, gs.reduce(function (m, b) { return Math.max(m, Math.abs(b['QoQ_Growth_%'] || 0)); }, 0));
+            var dM = Math.max(1, ds.reduce(function (m, b) { return Math.max(m, Math.abs(b['QoQ_Growth_%'] || 0)); }, 0));
+            gc.innerHTML = gs.length ? gs.map(function (b) { return brandRow(b, true, gM); }).join('') : '<div class="text-xs text-center py-4" style="color:var(--text-muted)">No positive QoQ brands.</div>';
+            dc.innerHTML = ds.length ? ds.map(function (b) { return brandRow(b, false, dM); }).join('') : '<div class="text-xs text-center py-4" style="color:var(--text-muted)">No declining brands.</div>';
+        }
+        function brandRow(b, pos, max) {
+            var qoq = b['QoQ_Growth_%'] || 0, yoy = b['YoY_Growth_%'] || 0, pct = Math.min(100, (Math.abs(qoq) / max) * 100);
+            var uk = 'Units_' + selectedQuarter, pq = getPrevQuarter(selectedQuarter), u1 = b[uk] || 0, u4 = pq ? (b['Units_' + pq] || 0) : 0;
+            var bc = pos ? '#34d399' : '#f87171';
+            var nid = 'note-' + selectedCountry.replace(/[^a-zA-Z0-9]/g, '_') + '-' + b['Brand'].replace(/[^a-zA-Z0-9]/g, '_') + '-' + selectedQuarter;
+            var en = getNote(selectedCountry, b['Brand'], selectedQuarter);
+            var nc = getNoteColor(selectedCountry, b['Brand'], selectedQuarter) || '';
+            var ce = selectedCountry.replace(/'/g, "\'"), be = b['Brand'].replace(/'/g, "\'");
+            var nh = '';
+            if (en) {
+                nh = '<div class="brand-note-display ' + nc + '" onclick="editNote(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" id="display-' + nid + '">' + en.replace(/\n/g, '<br>') + '<span class="note-edit-btn">edit</span></div>' +
+                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" placeholder="Add reason...">' + en + '</textarea>';
+            } else {
+                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\'' + nid + '\',\'' + ce + '\',\'' + be + '\')" placeholder="Add reason for performance..."></textarea>';
+            }
+            nh += '<div class="note-color-picker" id="picker-' + nid + '" style="display:' + (en ? 'none' : 'flex') + ';">' +
+                '<span class="note-color-dot orange' + (nc === 'orange' ? ' selected' : '') + '" onclick="applyColor(\'' + nid + '\',\'' + ce + '\',\'' + be + '\',\'orange\')" title="Orange"></span>' +
+                '<span class="note-color-dot purple' + (nc === 'purple' ? ' selected' : '') + '" onclick="applyColor(\'' + nid + '\',\'' + ce + '\',\'' + be + '\',\'purple\')" title="Purple"></span>' +
+                '<span class="note-color-dot green' + (nc === 'green' ? ' selected' : '') + '" onclick="applyColor(\'' + nid + '\',\'' + ce + '\',\'' + be + '\',\'green\')" title="Green"></span>' +
+                '<span class="note-color-dot blue' + (nc === 'blue' ? ' selected' : '') + '" onclick="applyColor(\'' + nid + '\',\'' + ce + '\',\'' + be + '\',\'blue\')" title="Blue"></span>' +
+                '</div>';
+            return '<div class="brand-inner p-3">' +
+                '<div class="flex items-baseline justify-between gap-2"><span class="font-semibold text-sm">' + b['Brand'] + '</span><span class="font-mono-tabular text-sm font-bold" style="color:' + posColor(qoq) + '">' + (qoq > 0 ? '+' : '') + qoq.toFixed(1) + '%</span></div>' +
+                '<div class="mt-1 flex items-center justify-between font-mono-tabular text-[11px]" style="color:var(--text-muted)"><span>' + fmt(u1) + ' · prev ' + fmt(u4) + '</span><span style="color:' + posColor(yoy) + '">YoY ' + (yoy > 0 ? '+' : '') + yoy.toFixed(1) + '%</span></div>' +
+                '<div class="mt-2 h-1 overflow-hidden rounded-full bg-gray-700/20"><div class="h-full rounded-full progress-bar" style="width:' + pct + '%;background:' + bc + ';"></div></div>' + nh + '</div>';
+        }
+
+        function renderMovers(ba) {
+            var c = document.getElementById('moversList'); if (!ba || !ba.length) { c.innerHTML = '<div class="text-xs text-center py-6" style="color:var(--text-muted)">Select a country</div>'; return; }
+            var uk = 'Units_' + selectedQuarter, pq = getPrevQuarter(selectedQuarter), pk = pq ? 'Units_' + pq : null;
+            var ms = ba.map(function (b) { return { name: b['Brand'], q1: b[uk] || 0, q4: pk ? (b[pk] || 0) : 0, delta: (b[uk] || 0) - (pk ? (b[pk] || 0) : 0), qoq: b['QoQ_Growth_%'] }; }).sort(function (a, b) { return Math.abs(b.delta) - Math.abs(a.delta); });
+            var max = Math.max(1, ms.reduce(function (m, x) { return Math.max(m, Math.abs(x.delta)); }, 0));
+            c.innerHTML = ms.map(function (m) { var pct = (Math.abs(m.delta) / max) * 100, bc = m.delta >= 0 ? '#34d399' : '#f87171';
+                return '<div class="brand-inner p-3">' +
+                    '<div class="flex items-baseline justify-between gap-2"><span class="font-semibold text-sm">' + m.name + '</span><span class="font-mono-tabular text-sm font-bold" style="color:' + posColor(m.delta) + '">' + posSign(m.delta) + m.delta.toLocaleString() + '</span></div>' +
+                    '<div class="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-700/20"><div class="h-full rounded-full progress-bar" style="width:' + pct + '%;background:' + bc + ';"></div></div>' +
+                    '<div class="mt-1 font-mono-tabular text-[11px]" style="color:var(--text-muted)">' + selectedQuarter.replace(/(\d{4})Q(\d)/, 'Q$2\'$1') + ' ' + fmt(m.q1) + ' · QoQ ' + (m.qoq != null ? m.qoq.toFixed(1) : '—') + '%</div></div>';
+            }).join('');
+        }
+
+        function renderBrandTable(ba) {
+            var tb = document.getElementById('brandTableBody'); if (!ba || !ba.length) { tb.innerHTML = '<tr><td colspan="5" class="text-center py-8" style="color:var(--text-muted)">No data</td></tr>'; return; }
+            var uk = 'Units_' + selectedQuarter; ba.sort(function (a, b) { return (b[uk] || 0) - (a[uk] || 0); }); var tot = ba.reduce(function (s, b) { return s + (b[uk] || 0); }, 0); var h = '';
+            for (var i = 0; i < ba.length; i++) { var b = ba[i], u = b[uk] || 0, s = tot ? (u / tot * 100) : 0, q = b['QoQ_Growth_%'] || 0, y = b['YoY_Growth_%'] || 0;
+                h += '<tr><td class="py-3 px-4 font-semibold">' + b['Brand'] + '</td><td class="py-3 px-4 text-right font-mono-tabular">' + u.toLocaleString() + '</td>' +
+                    '<td class="py-3 px-4 text-right"><div class="flex items-center justify-end gap-2"><div class="w-20 h-1.5 rounded-full overflow-hidden" style="background:var(--border)"><div class="h-full rounded-full" style="width:' + s + '%;background:#38bdf8;"></div></div><span class="font-mono-tabular text-xs">' + s.toFixed(1) + '%</span></div></td>' +
+                    '<td class="py-3 px-4 text-right font-mono-tabular text-sm" style="color:' + posColor(q) + '">' + (q != null ? posSign(q) + q.toFixed(1) + '%' : '—') + '</td>' +
+                    '<td class="py-3 px-4 text-right font-mono-tabular text-sm" style="color:' + posColor(y) + '">' + (y != null ? posSign(y) + y.toFixed(1) + '%' : '—') + '</td></tr>'; }
+            tb.innerHTML = h;
+        }
+
+        function renderComparison() {
+            var cs = D.country_comparison || [], ct = document.getElementById('comparisonRows'); if (!cs.length) return;
+            var pq = getPrevQuarter(selectedQuarter), pyq = getPrevYearQuarter(selectedQuarter);
+            var rs = cs.map(function (c) {
+                var ov = (D.country_overview || []).find(function (x) { return x.Country === c.Country; }) || {};
+                var t = getCategoryUnitsForCountry(ov, selectedQuarter, selectedCategory, c.Country);
+                var pt = pq ? getCategoryUnitsForCountry(ov, pq, selectedCategory, c.Country) : 0;
+                var pyt = pyq ? getCategoryUnitsForCountry(ov, pyq, selectedCategory, c.Country) : 0;
+                return { name: c.Country, total: t, qoq: pt ? ((t - pt) / pt) * 100 : null, yoy: pyt ? ((t - pyt) / pyt) * 100 : null };
+            }).sort(function (a, b) { return b.total - a.total; });
+            var mQ = Math.max(1, rs.reduce(function (m, r) { return Math.max(m, Math.abs(r.qoq || 0)); }, 0));
+            var mY = Math.max(1, rs.reduce(function (m, r) { return Math.max(m, Math.abs(r.yoy || 0)); }, 0));
+            ct.innerHTML = rs.map(function (r) {
+                return '<div class="border rounded-lg p-4 hover:border-primary/20 transition-all" style="border-color:var(--border);background:var(--surface)">' +
+                    '<div class="grid grid-cols-12 items-center gap-4">' +
+                        '<div class="col-span-3 flex items-center gap-2"><span class="text-lg">' + getFlag(r.name) + '</span><span class="font-medium text-sm">' + r.name + '</span></div>' +
+                        '<div class="col-span-2 text-right font-mono-tabular text-sm font-semibold">' + fmt(r.total) + '</div>' +
+                        '<div class="col-span-3">' + cBar(r.qoq, mQ) + '</div>' +
+                        '<div class="col-span-3">' + cBar(r.yoy, mY) + '</div>' +
+                        '<div class="col-span-1"></div>' +
+                    '</div></div>';
+            }).join('');
+        }
+        function cBar(v, m) { if (v == null) return '<div class="text-center text-xs" style="color:var(--text-muted)">—</div>'; var p = v >= 0, pct = (Math.abs(v) / m) * 100, bc = p ? '#34d399' : '#f87171'; return '<div><div class="relative flex items-center"><div class="relative flex h-6 w-full items-center overflow-hidden rounded" style="background:var(--border)"><div class="absolute left-1/2 top-0 h-full w-px" style="background:var(--surface)"></div><div class="absolute h-full" style="width:' + (pct / 2) + '%;background:' + bc + ';' + (p ? 'left:50%;' : 'right:50%;') + '"></div><span class="relative ml-auto mr-2 font-mono-tabular text-xs font-bold" style="color:' + bc + '">' + (p ? '+' : '') + v.toFixed(1) + '%</span></div></div></div>'; }
+
+        function renderRankings() { var rk = D.brand_rankings || [], tb = document.getElementById('rankingsTableBody'); if (!rk.length) { tb.innerHTML = '<tr><td colspan="5" class="text-center py-8" style="color:var(--text-muted)">No data</td></tr>'; return; } var tc = (D.country_overview || []).length, h = ''; for (var i = 0; i < Math.min(rk.length, 25); i++) { var b = rk[i], r = b.Rank || (i + 1), rc = r <= 3 ? 'bg-yellow-500/20 text-yellow-400 font-bold' : ''; h += '<tr><td class="py-3 px-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold ' + rc + '" style="' + (!rc ? 'color:var(--text-muted);background:var(--border)' : '') + '">' + r + '</span></td><td class="py-3 px-4 font-semibold">' + b.Brand + '</td><td class="py-3 px-4 text-right font-mono-tabular">' + fmt(b.Total_Units) + '</td><td class="py-3 px-4 text-right">' + (b.Countries_Present || 0) + ' / ' + tc + '</td><td class="py-3 px-4 text-right font-mono-tabular">' + fmt(Math.round(b.Avg_Quarterly_Units || 0)) + '</td></tr>'; } tb.innerHTML = h; }
+        function toggleAccordion() { var c = document.getElementById('rankingsAccordion'), v = document.getElementById('accordionChevron'); if (c.classList.contains('open')) { c.classList.remove('open'); v.style.transform = 'rotate(0deg)'; } else { c.classList.add('open'); v.style.transform = 'rotate(180deg)'; } }
+
+        init();
+    </script>
+</body>
+</html>
