@@ -15,8 +15,8 @@ jobs:
       - run: python etl.py
       - run: python build_dashboard.py
       - run: |
-          git config user.name "GitHub Action"
-          git config user.email "action@github.com"
+          git config user.name "Maya_Assem"
+          git config user.email "maya.mohamed@idc.com"
           git add gcc_dashboard.json index.html
           git commit -m "Auto-update data $(date +'%Y-%m-%d')" || echo "No changes"
           git push
