@@ -18,6 +18,7 @@ jobs:
       - run: pip install pandas numpy openpyxl requests
       - run: python etl.py
       - run: python build_dashboard.py
+      - run: cp dashboard.html index.html
       - run: |
           git config user.name "Maya_Assem"
           git config user.email "maya.mohamed@idc.com"
