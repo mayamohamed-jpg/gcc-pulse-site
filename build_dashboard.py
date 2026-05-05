@@ -40,21 +40,16 @@ def create_dashboard(data):
     <title>GCC Consumer Pulse — Units Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        primary: '#38bdf8',
-                        'primary-foreground': '#0f172a',
-                        positive: '#34d399',
-                        negative: '#f87171',
+                        primary: '#38bdf8', 'primary-foreground': '#0f172a',
+                        positive: '#34d399', negative: '#f87171',
                     },
                     fontFamily: {
                         display: ['Fraunces', 'Georgia', 'serif'],
@@ -69,24 +64,12 @@ def create_dashboard(data):
         @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
         
         :root {
-            --bg: #f8f9fa;
-            --surface: #ffffff;
-            --surface-alt: #f1f5f9;
-            --surface-elevated: #e2e8f0;
-            --text: #1a1a2e;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --hover-bg: #f0f9ff;
+            --bg: #f8f9fa; --surface: #ffffff; --surface-alt: #f1f5f9; --surface-elevated: #e2e8f0;
+            --text: #1a1a2e; --text-muted: #64748b; --border: #e2e8f0; --hover-bg: #f0f9ff;
         }
         .dark {
-            --bg: #060b14;
-            --surface: #0d1321;
-            --surface-alt: #131b2e;
-            --surface-elevated: #1a2744;
-            --text: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
-            --hover-bg: #1e293b;
+            --bg: #060b14; --surface: #0d1321; --surface-alt: #131b2e; --surface-elevated: #1a2744;
+            --text: #f1f5f9; --text-muted: #94a3b8; --border: #1e293b; --hover-bg: #1e293b;
         }
         
         * { font-family: 'Inter', system-ui, sans-serif; }
@@ -96,13 +79,10 @@ def create_dashboard(data):
         
         .idc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
         .idc-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
-        
         .idc-card-bg { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
         .idc-card-bg:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
-        
         .idc-card-transparent { background: transparent; border: 1px solid var(--border); border-radius: 12px; transition: all 0.2s ease; }
         .idc-card-transparent:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.15); border-color: #38bdf8; }
-        
         .brand-inner { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; transition: all 0.2s ease; }
         .brand-inner:hover { border-color: #38bdf8; background: var(--surface-alt); }
         
@@ -124,11 +104,7 @@ def create_dashboard(data):
         }
         .filter-cell { display: inline-flex; align-items: center; gap: 8px; padding: 4px 10px; border-radius: 9px; transition: background 0.2s; }
         .filter-cell + .filter-cell { border-left: 1px solid rgba(255,255,255,0.08); }
-        .filter-cell:hover { background: rgba(56,189,248,0.08); }
-        .filter-label {
-            font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
-            color: #64748b; white-space: nowrap;
-        }
+        .filter-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #64748b; white-space: nowrap; }
         .filter-select {
             background: transparent; color: #f1f5f9; border: none;
             border-radius: 6px; padding: 6px 28px 6px 8px; font-size: 13px; font-weight: 600;
@@ -139,42 +115,12 @@ def create_dashboard(data):
         }
         .filter-select:hover { color: #38bdf8; }
         .filter-select:focus { color: #38bdf8; }
-
-        /* Enhanced dropdown options */
-        .filter-select option {
-            background: #0f172a;
-            color: #e2e8f0;
-            font-weight: 500;
-            padding: 10px 14px;
-            font-size: 13px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .filter-select option:hover,
-        .filter-select option:checked,
-        .filter-select option:focus {
-            background: linear-gradient(135deg, #1e293b, #0f172a);
-            color: #38bdf8;
-            box-shadow: inset 0 0 0 1px rgba(56,189,248,0.2);
-        }
-
-        /* Light theme overrides */
-        .light .filter-group { 
-            background: linear-gradient(180deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)); 
-            border-color: rgba(15,23,42,0.10); 
-        }
+        .filter-select option { background: #0f172a; color: #e2e8f0; font-weight: 500; padding: 10px 14px; font-size: 13px; }
+        .light .filter-group { background: linear-gradient(180deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)); border-color: rgba(15,23,42,0.10); }
         .light .filter-cell + .filter-cell { border-left-color: rgba(15,23,42,0.08); }
         .light .filter-select { color: #1a1a2e; }
         .light .filter-label { color: #64748b; }
-        .light .filter-select option { 
-            background: #ffffff; 
-            color: #1a1a2e; 
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-        .light .filter-select option:hover,
-        .light .filter-select option:checked {
-            background: #f0f9ff;
-            color: #0066a1;
-        }
+        .light .filter-select option { background: #ffffff; color: #1a1a2e; }
         
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
         .accordion-content.open { max-height: 4000px; }
@@ -228,30 +174,9 @@ def create_dashboard(data):
         .note-color-dot.green { background: #34d399; color: #34d399; }
         .note-color-dot.blue { background: #3b82f6; color: #3b82f6; }
         
-        .refresh-btn {
-            background: rgba(255,255,255,0.08); color: #94a3b8; border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 500; cursor: pointer;
-            transition: all 0.2s; display: flex; align-items: center; gap: 6px;
-        }
-        .refresh-btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(56,189,248,0.4); color: #fff; }
-        .refresh-btn:active { transform: scale(0.97); }
-        .refresh-btn.refreshing { opacity: 0.6; pointer-events: none; }
-        
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .spin { animation: spin 1s linear infinite; }
-        
-        .brands-scroll { max-height: 500px; overflow-y: auto; }
-        
         .sync-status {
-            position: fixed;
-            bottom: 16px;
-            right: 16px;
-            padding: 8px 14px;
-            border-radius: 8px;
-            font-size: 11px;
-            font-weight: 500;
-            z-index: 100;
-            transition: opacity 0.3s;
+            position: fixed; bottom: 16px; right: 16px; padding: 8px 14px;
+            border-radius: 8px; font-size: 11px; font-weight: 500; z-index: 100; transition: opacity 0.3s;
         }
         .sync-status.synced { background: #064e3b; color: #34d399; }
         .sync-status.syncing { background: #1e293b; color: #fbbf24; }
@@ -264,7 +189,6 @@ def create_dashboard(data):
 </head>
 <body>
 
-    <!-- Sync Status Indicator -->
     <div class="sync-status synced" id="syncStatus">✓ Notes synced</div>
 
     <header class="idc-header-bg sticky top-0 z-50 shadow-lg border-b border-white/5">
@@ -411,6 +335,19 @@ def create_dashboard(data):
                 </div>
             </div>
 
+            <!-- Brand Detail Across Countries -->
+            <div class="idc-card">
+                <div class="p-5 border-b flex items-center justify-between" style="border-color:var(--border)">
+                    <h3 class="font-display text-lg font-semibold">🔍 Brand Performance Across Countries</h3>
+                    <select id="brandDetailFilter" onchange="renderBrandDetail()" class="filter-select">
+                        <option value="">Select a brand...</option>
+                    </select>
+                </div>
+                <div class="p-5" id="brandDetailContent">
+                    <div class="text-center py-8" style="color:var(--text-muted)">Select a brand to view its performance across all GCC countries</div>
+                </div>
+            </div>
+
             <!-- ML Forecast Section -->
             <div class="idc-card" id="forecastSection">
                 <div class="p-5 border-b flex items-center justify-between" style="border-color:var(--border)">
@@ -445,166 +382,47 @@ def create_dashboard(data):
                     </div>
                 </div>
             </div>
-
-            <!-- Brand Detail Across Countries -->
-            <div class="idc-card">
-                <div class="p-5 border-b flex items-center justify-between" style="border-color:var(--border)">
-                    <h3 class="font-display text-lg font-semibold">🔍 Brand Performance Across Countries</h3>
-                    <select id="brandDetailFilter" onchange="renderBrandDetail()" class="filter-select">
-                        <option value="">Select a brand...</option>
-                    </select>
-                </div>
-                <div class="p-5" id="brandDetailContent">
-                    <div class="text-center py-8" style="color:var(--text-muted)">Select a brand to view its performance across all GCC countries</div>
-                </div>
-            </div>
-
-            <div class="idc-card">
-                <div class="p-5 flex items-center justify-between cursor-pointer select-none" onclick="toggleAccordion()">
-                    <div><h3 class="font-display text-lg font-semibold">GCC Brand Rankings</h3><p class="text-xs mt-1" style="color:var(--text-muted)">Click to expand</p></div>
-                    <svg id="accordionChevron" class="w-5 h-5 transition-transform duration-200" style="color:var(--text-muted)" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                </div>
-                <div class="accordion-content" id="rankingsAccordion"><div class="px-5 pb-5 overflow-x-auto">
-                    <table class="w-full text-sm idc-table">
-                        <thead><tr><th class="text-left py-3 px-4 w-12">#</th><th class="text-left py-3 px-4">Brand</th><th class="text-right py-3 px-4">Total Units</th><th class="text-right py-3 px-4">Countries</th><th class="text-right py-3 px-4">Avg/Quarter</th></tr></thead>
-                        <tbody id="rankingsTableBody"></tbody>
-                    </table>
-                </div></div>
-            </div>
         </section>
 
         <footer class="border-t pt-4 text-xs" style="border-color:var(--border);color:var(--text-muted)"></footer>
     </main>
 
     <script>
-
         var FIREBASE_DATABASE_URL = "https://gcc-dashboard-6cd52-default-rtdb.firebaseio.com/";
-
         var D = ''' + data_json + ''';
 
-        var isDark = true;
-        var selectedQuarter = null;
-        var selectedCategory = 'Total';
-        var selectedCountry = null;
-        var trendChart = null;
-        var allQuarters = [];
-        var brandNotes = {};
-        var noteColors = {};
-        var notesLoaded = false;
-        var db = null;
-        var notesRef = null;
+        var isDark = true, selectedQuarter = null, selectedCategory = 'Total', selectedCountry = null;
+        var trendChart = null, allQuarters = [], brandNotes = {}, noteColors = {};
+        var db = null, notesRef = null, forecastData = null;
 
-        // ============================================================
-        // FIREBASE INIT
-        // ============================================================
+        // ==================== FIREBASE ====================
         function initFirebase() {
             try {
-                if (FIREBASE_DATABASE_URL.indexOf('YOUR-PROJECT-ID') !== -1) {
-                    console.warn('Firebase not configured. Notes will be saved locally only.');
-                    loadLocalNotes();
-                    return;
-                }
+                if (FIREBASE_DATABASE_URL.indexOf('YOUR-PROJECT-ID') !== -1) { loadLocalNotes(); return; }
                 firebase.initializeApp({ databaseURL: FIREBASE_DATABASE_URL });
-                db = firebase.database();
-                notesRef = db.ref('gcc_dashboard_notes');
-                
-                // Listen for real-time changes
+                db = firebase.database(); notesRef = db.ref('gcc_dashboard_notes');
                 notesRef.on('value', function(snapshot) {
-                    var data = snapshot.val() || {};
-                    brandNotes = data.notes || {};
-                    noteColors = data.colors || {};
-                    notesLoaded = true;
+                    var data = snapshot.val() || {}; brandNotes = data.notes || {}; noteColors = data.colors || {};
                     updateSyncStatus('synced', '✓ Notes synced');
-                    // Re-render brand panels if country is selected
-                    if (selectedCountry) {
-                        var ba = findBa();
-                        if (ba && ba.length) {
-                            renderBrandPanels(ba);
-                            renderMovers(ba);
-                        }
-                    }
+                    if (selectedCountry) { var ba = findBa(); if (ba && ba.length) { renderBrandPanels(ba); renderMovers(ba); } }
                 });
-                
-                // Also try loading once
-                notesRef.once('value').then(function(snapshot) {
-                    var data = snapshot.val() || {};
-                    brandNotes = data.notes || {};
-                    noteColors = data.colors || {};
-                    notesLoaded = true;
-                }).catch(function(e) {
-                    console.error('Firebase load error:', e);
-                    loadLocalNotes();
-                });
-                
-            } catch(e) {
-                console.error('Firebase init error:', e);
-                loadLocalNotes();
-            }
+            } catch(e) { loadLocalNotes(); }
         }
-        
         function loadLocalNotes() {
-            try {
-                var s = localStorage.getItem('gcc_brand_notes_local');
-                if (s) { var d = JSON.parse(s); brandNotes = d.notes || {}; noteColors = d.colors || {}; }
-            } catch(e) { brandNotes = {}; noteColors = {}; }
-            notesLoaded = true;
+            try { var s = localStorage.getItem('gcc_brand_notes_local'); if (s) { var d = JSON.parse(s); brandNotes = d.notes || {}; noteColors = d.colors || {}; } } catch(e) { brandNotes = {}; noteColors = {}; }
             updateSyncStatus('syncing', '⚠ Local storage only');
         }
-        
-        function saveLocalNotes() {
-            try {
-                localStorage.setItem('gcc_brand_notes_local', JSON.stringify({ notes: brandNotes, colors: noteColors }));
-            } catch(e) {}
-        }
-        
+        function saveLocalNotes() { try { localStorage.setItem('gcc_brand_notes_local', JSON.stringify({ notes: brandNotes, colors: noteColors })); } catch(e) {} }
         function updateSyncStatus(status, message) {
-            var el = document.getElementById('syncStatus');
-            if (el) {
-                el.className = 'sync-status ' + status;
-                el.textContent = message;
-                setTimeout(function() { el.style.opacity = '0.5'; }, 3000);
-                el.style.opacity = '1';
-            }
+            var el = document.getElementById('syncStatus'); if (el) { el.className = 'sync-status ' + status; el.textContent = message; setTimeout(function() { el.style.opacity = '0.5'; }, 3000); el.style.opacity = '1'; }
         }
-
-        // ============================================================
-        // NOTES FUNCTIONS
-        // ============================================================
         function getNoteKey(c, b, q) { return c + '|||' + b + '|||' + q; }
         function getNote(c, b, q) { return brandNotes[getNoteKey(c, b, q)] || ''; }
         function getNoteColor(c, b, q) { return noteColors[getNoteKey(c, b, q)] || ''; }
-        function setNote(c, b, q, t) {
-            var k = getNoteKey(c, b, q);
-            if (t.trim()) brandNotes[k] = t; else delete brandNotes[k];
-            saveNotes();
-        }
-        function setNoteColor(c, b, q, col) {
-            var k = getNoteKey(c, b, q);
-            if (col) noteColors[k] = col; else delete noteColors[k];
-            saveNotes();
-        }
-        function saveNotes() {
-            if (notesRef) {
-                updateSyncStatus('syncing', '↻ Syncing...');
-                notesRef.set({ notes: brandNotes, colors: noteColors }).then(function() {
-                    updateSyncStatus('synced', '✓ Notes synced');
-                }).catch(function() {
-                    saveLocalNotes();
-                    updateSyncStatus('error', '✗ Sync failed');
-                });
-            } else {
-                saveLocalNotes();
-            }
-        }
-
-        function editNote(nid, c, b) {
-            var d = document.getElementById('display-' + nid);
-            var ta = document.getElementById(nid);
-            var picker = document.getElementById('picker-' + nid);
-            if (d) d.style.display = 'none';
-            if (ta) { ta.style.display = 'block'; ta.focus(); }
-            if (picker) picker.style.display = 'flex';
-        }
+        function setNote(c, b, q, t) { var k = getNoteKey(c, b, q); if (t.trim()) brandNotes[k] = t; else delete brandNotes[k]; saveNotes(); }
+        function setNoteColor(c, b, q, col) { var k = getNoteKey(c, b, q); if (col) noteColors[k] = col; else delete noteColors[k]; saveNotes(); }
+        function saveNotes() { if (notesRef) { notesRef.set({ notes: brandNotes, colors: noteColors }); } else { saveLocalNotes(); } }
+        function editNote(nid, c, b) { var d = document.getElementById('display-' + nid); var ta = document.getElementById(nid); var picker = document.getElementById('picker-' + nid); if (d) d.style.display = 'none'; if (ta) { ta.style.display = 'block'; ta.focus(); } if (picker) picker.style.display = 'flex'; }
         function saveNoteText(nid, c, b) {
             var ta = document.getElementById(nid); if (!ta) return; var t = ta.value; setNote(c, b, selectedQuarter, t);
             var d = document.getElementById('display-' + nid); var picker = document.getElementById('picker-' + nid);
@@ -612,8 +430,7 @@ def create_dashboard(data):
             if (t.trim()) {
                 if (!d) { d = document.createElement('div'); d.id = 'display-' + nid; d.className = 'brand-note-display ' + nc; d.setAttribute('onclick', 'editNote(\\'' + nid + '\\',\\'' + c.replace(/'/g, "\\\\'") + '\\',\\'' + b.replace(/'/g, "\\\\'") + '\\')'); ta.parentNode.insertBefore(d, ta.nextSibling); }
                 d.innerHTML = t.replace(/\\n/g, '<br>') + '<span class="note-edit-btn">edit</span>'; d.style.display = 'block'; d.className = 'brand-note-display ' + nc;
-                ta.style.display = 'none'; ta.className = 'brand-note-input ' + nc;
-                if (picker) picker.style.display = 'none';
+                ta.style.display = 'none'; ta.className = 'brand-note-input ' + nc; if (picker) picker.style.display = 'none';
             } else { if (d) d.style.display = 'none'; ta.style.display = 'block'; ta.value = ''; ta.className = 'brand-note-input ' + nc; if (picker) picker.style.display = 'flex'; }
         }
         function applyColor(nid, c, b, col) {
@@ -625,10 +442,8 @@ def create_dashboard(data):
             if (ta) ta.focus();
         }
 
-        // ============================================================
-        // UTILITIES
-        // ============================================================
-        function detectQuarters() { var qs = {}; var co = D.country_overview || []; for (var i = 0; i < co.length; i++) { var keys = Object.keys(co[i]); for (var j = 0; j < keys.length; j++) { if (/^\\d{4}Q\\d$/.test(keys[j])) qs[keys[j]] = true; } } allQuarters = Object.keys(qs).sort(); }
+        // ==================== UTILITIES ====================
+        function detectQuarters() { var qs = {}; var co = D.country_overview || []; for (var i = 0; i < co.length; i++) { var keys = Object.keys(co[i]); for (var j = 0; j < keys.length; j++) { if (keys[j].match(/^\\d{4}Q\\d$/)) qs[keys[j]] = true; } } allQuarters = Object.keys(qs).sort(); }
         function fmt(n) { if (n == null || isNaN(n)) return '0'; return Math.round(n).toLocaleString(); }
         function getFlag(c) { var f = { 'Saudi Arabia': '\\uD83C\\uDDF8\\uD83C\\uDDE6', 'United Arab Emirates': '\\uD83C\\uDDE6\\uD83C\\uDDEA', 'Qatar': '\\uD83C\\uDDF6\\uD83C\\uDDE6', 'Kuwait': '\\uD83C\\uDDF0\\uD83C\\uDDFC', 'Oman': '\\uD83C\\uDDF4\\uD83C\\uDDF2', 'Bahrain': '\\uD83C\\uDDE7\\uD83C\\uDDED', 'Iraq': '\\uD83C\\uDDEE\\uD83C\\uDDF6' }; return f[c] || ''; }
         function getCountryCode(c) { var codes = { 'Saudi Arabia': 'SA', 'United Arab Emirates': 'AE', 'Qatar': 'QA', 'Kuwait': 'KW', 'Oman': 'OM', 'Bahrain': 'BH', 'Iraq': 'IQ' }; return codes[c] || c.substring(0, 2).toUpperCase(); }
@@ -638,6 +453,8 @@ def create_dashboard(data):
         function getCategoryUnitsForCountry(co, quarter, cat, country) { if (!co || !quarter) return 0; if (cat === 'Total') return co[quarter] || 0; var ca = (D.category_analysis || []).filter(function (x) { return x.Country === country && x['Product Category'] === cat; }); return ca.length ? (ca[0][quarter] || 0) : 0; }
         function posColor(v) { return (v || 0) >= 0 ? '#34d399' : '#f87171'; }
         function posSign(v) { return (v || 0) > 0 ? '+' : ''; }
+        function brandQoq(b) { var pq = getPrevQuarter(selectedQuarter); if (!pq) return null; var c = b['Units_' + selectedQuarter] || 0, p = b['Units_' + pq] || 0; return p ? ((c - p) / p) * 100 : null; }
+        function brandYoy(b) { var pyq = getPrevYearQuarter(selectedQuarter); if (!pyq) return null; var c = b['Units_' + selectedQuarter] || 0, p = b['Units_' + pyq] || 0; return p ? ((c - p) / p) * 100 : null; }
 
         function toggleDarkMode() {
             isDark = !isDark; document.documentElement.classList.toggle('dark', isDark);
@@ -652,16 +469,12 @@ def create_dashboard(data):
         function findCo() { return (D.country_overview || []).find(function (x) { return x.Country === selectedCountry; }); }
         function findBa() { return (D.brand_analysis || []).filter(function (x) { return x.Country === selectedCountry; }); }
 
-        async function refreshData() {
-            var btn = document.getElementById('refreshBtn'); btn.classList.add('refreshing'); btn.innerHTML = '<svg class="w-4 h-4 spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Refreshing...';
-            try { var resp = await fetch('gcc_dashboard.json?t=' + Date.now()); if (resp.ok) { D = await resp.json(); detectQuarters(); selectedQuarter = allQuarters[allQuarters.length - 1]; renderQuarterDropdown(); var cs = D.country_comparison || []; if (cs.length) { selectedCountry = cs[0].Country; renderCountrySelector(cs); selectCountry(selectedCountry); } } } catch(e) { console.error('Refresh failed:', e); }
-            btn.classList.remove('refreshing'); btn.innerHTML = '<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> Refresh';
-        }
-
         // ==================== FORECAST ====================
-        var forecastData = null;
         async function loadForecastData() {
-            try { var resp = await fetch('forecast_data.json?t=' + Date.now()); if (resp.ok) { forecastData = await resp.json(); renderForecast(); } } catch(e) { console.log('Forecast not available. Run forecast_etl.py'); }
+            try {
+                var resp = await fetch('forecast_data.json?t=' + Date.now());
+                if (resp.ok) { forecastData = await resp.json(); renderForecast(); }
+            } catch(e) { console.log('Forecast not available. Run forecast_etl.py'); }
         }
         function renderForecast() {
             if (!forecastData || !forecastData.summary) return;
@@ -690,9 +503,9 @@ def create_dashboard(data):
         function renderBrandDetail() {
             var brand = document.getElementById('brandDetailFilter').value;
             var container = document.getElementById('brandDetailContent');
-            if (!brand) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">Select a brand to view its performance across all GCC countries</div>'; return; }
+            if (!brand) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">Select a brand</div>'; return; }
             var ba = (D.brand_analysis || []).filter(function(x) { return x.Brand === brand; });
-            if (!ba.length) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">No data found for ' + brand + '</div>'; return; }
+            if (!ba.length) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">No data for ' + brand + '</div>'; return; }
             var quarters = allQuarters;
             var h = '<div class="overflow-x-auto"><table class="w-full text-sm idc-table"><thead><tr><th class="text-left py-3 px-4">Country</th>';
             quarters.forEach(function(q) { h += '<th class="text-right py-3 px-4">' + q.replace(/(\\d{4})Q(\\d)/, 'Q$2\\'$1').replace('20', "'") + '</th>'; });
@@ -708,24 +521,21 @@ def create_dashboard(data):
             h += '</tbody></table></div>'; container.innerHTML = h;
         }
 
+        // ==================== INIT ====================
         function init() {
-            initFirebase();
-            detectQuarters();
+            initFirebase(); detectQuarters();
             if (!allQuarters.length) return;
             selectedQuarter = allQuarters[allQuarters.length - 1];
             renderQuarterDropdown();
-            var cs = D.country_comparison || [];
-            if (!cs.length) return;
+            var cs = D.country_comparison || []; if (!cs.length) return;
             selectedCountry = cs[0].Country;
-            renderCountrySelector(cs);
-            selectCountry(selectedCountry);
-            loadForecastData();       
-            populateBrandFilter(); 
+            renderCountrySelector(cs); selectCountry(selectedCountry);
+            loadForecastData(); populateBrandFilter();
         }
 
+        // ==================== COUNTRY SELECTOR ====================
         function renderCountrySelector(cs) {
-            if (!cs || !cs.length) return;
-            var h = '';
+            if (!cs || !cs.length) return; var h = '';
             for (var i = 0; i < cs.length; i++) {
                 var c = cs[i], a = c.Country === selectedCountry;
                 var ov = findOvByCountry(c.Country);
@@ -740,26 +550,27 @@ def create_dashboard(data):
         }
         function findOvByCountry(cn) { return (D.country_overview || []).find(function (x) { return x.Country === cn; }); }
         function computeQoqForCountry(ov, country) { if (!ov || !selectedQuarter) return null; var curr = getCategoryUnitsForCountry(ov, selectedQuarter, selectedCategory, country); var pq = getPrevQuarter(selectedQuarter); var prev = pq ? getCategoryUnitsForCountry(ov, pq, selectedCategory, country) : 0; return prev ? ((curr - prev) / prev) * 100 : null; }
-
         function selectCountry(country) {
             selectedCountry = country;
             var btns = document.querySelectorAll('.country-btn'); for (var i = 0; i < btns.length; i++) { btns[i].classList.toggle('active', btns[i].textContent.indexOf(country) !== -1); }
             document.getElementById('countryFlag').textContent = getFlag(country); document.getElementById('countryName').textContent = country;
             document.getElementById('chartTitle').textContent = country + ' Volume Path'; document.getElementById('tableCountryLabel').textContent = country;
-            refreshAll(); renderComparison(); renderRankings();
+            refreshAll(); renderComparison();
         }
 
+        // ==================== KPIs ====================
         function renderKPIs(co) {
             if (!co || !selectedQuarter) return;
             var units = getCategoryUnits(co, selectedQuarter, selectedCategory);
-            var pq = getPrevQuarter(selectedQuarter); var pyq = getPrevYearQuarter(selectedQuarter);
-            var pu = pq ? getCategoryUnits(co, pq, selectedCategory) : 0; var pyu = pyq ? getCategoryUnits(co, pyq, selectedCategory) : 0;
-            var qoq = pu ? ((units - pu) / pu) * 100 : 0; var yoy = pyu ? ((units - pyu) / pyu) * 100 : 0;
+            var pq = getPrevQuarter(selectedQuarter), pyq = getPrevYearQuarter(selectedQuarter);
+            var pu = pq ? getCategoryUnits(co, pq, selectedCategory) : 0, pyu = pyq ? getCategoryUnits(co, pyq, selectedCategory) : 0;
+            var qoq = pu ? ((units - pu) / pu) * 100 : 0, yoy = pyu ? ((units - pyu) / pyu) * 100 : 0;
             document.getElementById('totalUnitsK').textContent = fmt(units); document.getElementById('totalUnitsExact').textContent = 'handsets';
             var qe = document.getElementById('qoqValue'); qe.textContent = (qoq >= 0 ? '+' : '') + qoq.toFixed(1) + '%'; qe.style.color = posColor(qoq);
             var ye = document.getElementById('yoyValue'); ye.textContent = (yoy >= 0 ? '+' : '') + yoy.toFixed(1) + '%'; ye.style.color = posColor(yoy);
         }
 
+        // ==================== CHART ====================
         function renderChart(co) {
             var cv = document.getElementById('trendChart'); if (!cv || !co || !selectedQuarter) return; var ctx = cv.getContext('2d'); if (trendChart) { trendChart.destroy(); trendChart = null; }
             var lbs = allQuarters.map(function (q) { return q.replace('20', "'"); }); var vls = allQuarters.map(function (q) { return getCategoryUnits(co, q, selectedCategory); });
@@ -775,16 +586,7 @@ def create_dashboard(data):
             });
         }
 
-        function brandQoq(b) {
-            var pq = getPrevQuarter(selectedQuarter); if (!pq) return null;
-            var c = b['Units_' + selectedQuarter] || 0, p = b['Units_' + pq] || 0;
-            return p ? ((c - p) / p) * 100 : null;
-        }
-        function brandYoy(b) {
-            var pyq = getPrevYearQuarter(selectedQuarter); if (!pyq) return null;
-            var c = b['Units_' + selectedQuarter] || 0, p = b['Units_' + pyq] || 0;
-            return p ? ((c - p) / p) * 100 : null;
-        }
+        // ==================== BRAND PANELS ====================
         function renderBrandPanels(ba) {
             var gc = document.getElementById('gainersList'), dc = document.getElementById('declinersList');
             if (!ba || !ba.length) { gc.innerHTML = dc.innerHTML = '<div class="text-xs text-center py-6" style="color:var(--text-muted)">No data</div>'; return; }
@@ -802,22 +604,16 @@ def create_dashboard(data):
             var uk = 'Units_' + selectedQuarter, pq = getPrevQuarter(selectedQuarter), u1 = b[uk] || 0, u4 = pq ? (b['Units_' + pq] || 0) : 0;
             var bc = pos ? '#34d399' : '#f87171';
             var nid = 'note-' + selectedCountry.replace(/[^a-zA-Z0-9]/g, '_') + '-' + b['Brand'].replace(/[^a-zA-Z0-9]/g, '_') + '-' + selectedQuarter;
-            var en = getNote(selectedCountry, b['Brand'], selectedQuarter);
-            var nc = getNoteColor(selectedCountry, b['Brand'], selectedQuarter) || '';
+            var en = getNote(selectedCountry, b['Brand'], selectedQuarter), nc = getNoteColor(selectedCountry, b['Brand'], selectedQuarter) || '';
             var ce = selectedCountry.replace(/'/g, "\\'"), be = b['Brand'].replace(/'/g, "\\'");
-            var nh = '';
-            if (en) {
-                nh = '<div class="brand-note-display ' + nc + '" onclick="editNote(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" id="display-' + nid + '">' + en.replace(/\\n/g, '<br>') + '<span class="note-edit-btn">edit</span></div>' +
-                    '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment...">' + en + '</textarea>';
-            } else {
-                nh = '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment..."></textarea>';
-            }
+            var nh = en
+                ? '<div class="brand-note-display ' + nc + '" onclick="editNote(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" id="display-' + nid + '">' + en.replace(/\\n/g, '<br>') + '<span class="note-edit-btn">edit</span></div><textarea class="brand-note-input ' + nc + '" id="' + nid + '" style="display:none;" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment...">' + en + '</textarea>'
+                : '<textarea class="brand-note-input ' + nc + '" id="' + nid + '" onblur="saveNoteText(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\')" placeholder="Add Feedback Comment..."></textarea>';
             nh += '<div class="note-color-picker" id="picker-' + nid + '" style="display:' + (en ? 'none' : 'flex') + ';">' +
                 '<span class="note-color-dot orange' + (nc === 'orange' ? ' selected' : '') + '" onclick="applyColor(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\',\\'orange\\')" title="Orange"></span>' +
                 '<span class="note-color-dot purple' + (nc === 'purple' ? ' selected' : '') + '" onclick="applyColor(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\',\\'purple\\')" title="Purple"></span>' +
                 '<span class="note-color-dot green' + (nc === 'green' ? ' selected' : '') + '" onclick="applyColor(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\',\\'green\\')" title="Green"></span>' +
-                '<span class="note-color-dot blue' + (nc === 'blue' ? ' selected' : '') + '" onclick="applyColor(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\',\\'blue\\')" title="Blue"></span>' +
-                '</div>';
+                '<span class="note-color-dot blue' + (nc === 'blue' ? ' selected' : '') + '" onclick="applyColor(\\'' + nid + '\\',\\'' + ce + '\\',\\'' + be + '\\',\\'blue\\')" title="Blue"></span></div>';
             return '<div class="brand-inner p-3">' +
                 '<div class="flex items-baseline justify-between gap-2"><span class="font-semibold text-sm">' + b['Brand'] + '</span><span class="font-mono-tabular text-sm font-bold" style="color:' + posColor(qoq) + '">' + (qoq > 0 ? '+' : '') + qoq.toFixed(1) + '%</span></div>' +
                 '<div class="mt-1 flex items-center justify-between font-mono-tabular text-[11px]" style="color:var(--text-muted)"><span>' + fmt(u1) + ' · prev ' + fmt(u4) + '</span><span style="color:' + posColor(yoy) + '">YoY ' + (yoy > 0 ? '+' : '') + yoy.toFixed(1) + '%</span></div>' +
@@ -872,9 +668,6 @@ def create_dashboard(data):
             }).join('');
         }
         function cBar(v, m) { if (v == null) return '<div class="text-center text-xs" style="color:var(--text-muted)">—</div>'; var p = v >= 0, pct = (Math.abs(v) / m) * 100, bc = p ? '#34d399' : '#f87171'; return '<div><div class="relative flex items-center"><div class="relative flex h-6 w-full items-center overflow-hidden rounded" style="background:var(--border)"><div class="absolute left-1/2 top-0 h-full w-px" style="background:var(--surface)"></div><div class="absolute h-full" style="width:' + (pct / 2) + '%;background:' + bc + ';' + (p ? 'left:50%;' : 'right:50%;') + '"></div><span class="relative ml-auto mr-2 font-mono-tabular text-xs font-bold" style="color:' + bc + '">' + (p ? '+' : '') + v.toFixed(1) + '%</span></div></div></div>'; }
-
-        function renderRankings() { var rk = D.brand_rankings || [], tb = document.getElementById('rankingsTableBody'); if (!rk.length) { tb.innerHTML = '<tr><td colspan="5" class="text-center py-8" style="color:var(--text-muted)">No data</td></tr>'; return; } var tc = (D.country_overview || []).length, h = ''; for (var i = 0; i < Math.min(rk.length, 25); i++) { var b = rk[i], r = b.Rank || (i + 1), rc = r <= 3 ? 'bg-yellow-500/20 text-yellow-400 font-bold' : ''; h += '<tr><td class="py-3 px-4"><span class="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold ' + rc + '" style="' + (!rc ? 'color:var(--text-muted);background:var(--border)' : '') + '">' + r + '</span></td><td class="py-3 px-4 font-semibold">' + b.Brand + '</td><td class="py-3 px-4 text-right font-mono-tabular">' + fmt(b.Total_Units) + '</td><td class="py-3 px-4 text-right">' + (b.Countries_Present || 0) + ' / ' + tc + '</td><td class="py-3 px-4 text-right font-mono-tabular">' + fmt(Math.round(b.Avg_Quarterly_Units || 0)) + '</td></tr>'; } tb.innerHTML = h; }
-        function toggleAccordion() { var c = document.getElementById('rankingsAccordion'), v = document.getElementById('accordionChevron'); if (c.classList.contains('open')) { c.classList.remove('open'); v.style.transform = 'rotate(0deg)'; } else { c.classList.add('open'); v.style.transform = 'rotate(180deg)'; } }
 
         init();
     </script>

@@ -85,10 +85,10 @@
       "2025Q2": 3393367,
       "2025Q3": 3371921,
       "2025Q4": 3558725,
-      "2026Q1": 3290640,
-      "QoQ_Growth_%": -7.53,
-      "YoY_Growth_%": 1.43,
-      "Total_All_Quarters": 29967191
+      "2026Q1": 3285704,
+      "QoQ_Growth_%": -7.67,
+      "YoY_Growth_%": 1.28,
+      "Total_All_Quarters": 29962255
     },
     {
       "Country": "United Arab Emirates",
@@ -1715,7 +1715,7 @@
       "Units_2025Q3": 689271,
       "Units_2025Q4": 803928,
       "Units_2026Q1": 851907,
-      "Market_Share_%": 25.89,
+      "Market_Share_%": 25.93,
       "Rank": 2,
       "QoQ_2024Q2_vs_2024Q1": -11.77,
       "QoQ_2024Q3_vs_2024Q2": 20.6,
@@ -1827,7 +1827,7 @@
       "Units_2025Q3": 237938,
       "Units_2025Q4": 249384,
       "Units_2026Q1": 244083,
-      "Market_Share_%": 7.42,
+      "Market_Share_%": 7.43,
       "Rank": 3,
       "QoQ_2024Q2_vs_2024Q1": 2.78,
       "QoQ_2024Q3_vs_2024Q2": -1.95,
@@ -2022,8 +2022,8 @@
       "Units_2025Q2": 1213847,
       "Units_2025Q3": 1205576,
       "Units_2025Q4": 1318263,
-      "Units_2026Q1": 1101871,
-      "Market_Share_%": 33.49,
+      "Units_2026Q1": 1096935,
+      "Market_Share_%": 33.39,
       "Rank": 1,
       "QoQ_2024Q2_vs_2024Q1": 8.15,
       "QoQ_2024Q3_vs_2024Q2": -15.85,
@@ -2032,12 +2032,12 @@
       "QoQ_2025Q2_vs_2025Q1": 9.97,
       "QoQ_2025Q3_vs_2025Q2": -0.68,
       "QoQ_2025Q4_vs_2025Q3": 9.35,
-      "QoQ_2026Q1_vs_2025Q4": -16.41,
+      "QoQ_2026Q1_vs_2025Q4": -16.79,
       "YoY_2025Q1_vs_2024Q1": -10.98,
       "YoY_2025Q2_vs_2024Q2": -9.49,
       "YoY_2025Q3_vs_2024Q3": 6.83,
       "YoY_2025Q4_vs_2024Q4": 21.29,
-      "YoY_2026Q1_vs_2025Q1": -0.18
+      "YoY_2026Q1_vs_2025Q1": -0.63
     },
     {
       "Country": "Saudi Arabia",
@@ -2051,7 +2051,7 @@
       "Units_2025Q3": 135298,
       "Units_2025Q4": 101928,
       "Units_2026Q1": 97561,
-      "Market_Share_%": 2.96,
+      "Market_Share_%": 2.97,
       "Rank": 10,
       "QoQ_2024Q2_vs_2024Q1": 16.01,
       "QoQ_2024Q3_vs_2024Q2": -13.03,
@@ -2079,7 +2079,7 @@
       "Units_2025Q3": 192558,
       "Units_2025Q4": 172747,
       "Units_2026Q1": 138198,
-      "Market_Share_%": 4.2,
+      "Market_Share_%": 4.21,
       "Rank": 6,
       "QoQ_2024Q2_vs_2024Q1": 0.78,
       "QoQ_2024Q3_vs_2024Q2": 2.22,
@@ -2163,7 +2163,7 @@
       "Units_2025Q3": 42416,
       "Units_2025Q4": 40182,
       "Units_2026Q1": 39978,
-      "Market_Share_%": 1.21,
+      "Market_Share_%": 1.22,
       "Rank": 13,
       "QoQ_2024Q2_vs_2024Q1": 62.31,
       "QoQ_2024Q3_vs_2024Q2": 62.54,
@@ -2603,17 +2603,17 @@
   "country_comparison": [
     {
       "Country": "Saudi Arabia",
-      "Total_Units_All_Time": 29967191,
-      "Units_2026Q1": 3290640,
+      "Total_Units_All_Time": 29962255,
+      "Units_2026Q1": 3285704,
       "Num_Brands": 17,
       "Top_5_Brands": {
-        "Samsung": 1101871,
+        "Samsung": 1096935,
         "Apple": 851907,
         "Infinix": 244083,
         "Nokia": 154914,
         "itel": 153591
       },
-      "Avg_Units_Per_Quarter": 3329687
+      "Avg_Units_Per_Quarter": 3329139
     },
     {
       "Country": "United Arab Emirates",
@@ -2777,18 +2777,18 @@
       "Year": 2026,
       "Q_Num": 1,
       "Quarter": "2026Q1",
-      "Units": 7858634,
-      "QoQ_Growth_%": -13.816252386366823,
+      "Units": 7853698,
+      "QoQ_Growth_%": -13.87038431033999,
       "Units_LY": 8189838.0,
-      "YoY_Growth_%": -4.04
+      "YoY_Growth_%": -4.1
     }
   ],
   "brand_rankings": [
     {
       "Brand": "Samsung",
-      "Total_Units": 22917368,
+      "Total_Units": 22912432,
       "Countries_Present": 7,
-      "Avg_Quarterly_Units": 363767.74603174604,
+      "Avg_Quarterly_Units": 363689.3968253968,
       "Rank": 1
     },
     {
@@ -3066,7 +3066,7 @@
       "2025Q2": 3179665,
       "2025Q3": 3167969,
       "2025Q4": 3370622,
-      "2026Q1": 3112674
+      "2026Q1": 3107738
     },
     {
       "Country": "United Arab Emirates",
