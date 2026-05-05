@@ -6013,7 +6013,7 @@
   "summary": {
     "total_forecasted_units": 24681222,
     "avg_qoq_growth": 1.19,
-    "avg_yoy_growth": NaN,
+    "avg_yoy_growth": null,
     "forecast_periods": [
       "2026Q2",
       "2026Q3",
