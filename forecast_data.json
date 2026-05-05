@@ -1,0 +1,6025 @@
+{
+  "brand_forecasts": {
+    "Bahrain": [
+      {
+        "brand": "Apple",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 34226,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 9711
+              },
+              {
+                "month": 2,
+                "units": 12854
+              },
+              {
+                "month": 3,
+                "units": 12691
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 34650,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 12807
+              },
+              {
+                "month": 2,
+                "units": 11044
+              },
+              {
+                "month": 3,
+                "units": 12031
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 34997,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 12450
+              },
+              {
+                "month": 2,
+                "units": 11861
+              },
+              {
+                "month": 3,
+                "units": 10001
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "HMD",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 958,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 281
+              },
+              {
+                "month": 2,
+                "units": 321
+              },
+              {
+                "month": 3,
+                "units": 296
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 1003,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 348
+              },
+              {
+                "month": 2,
+                "units": 342
+              },
+              {
+                "month": 3,
+                "units": 337
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 1033,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 296
+              },
+              {
+                "month": 2,
+                "units": 330
+              },
+              {
+                "month": 3,
+                "units": 312
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Huawei",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 109,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 32
+              },
+              {
+                "month": 2,
+                "units": 34
+              },
+              {
+                "month": 3,
+                "units": 35
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 135,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 47
+              },
+              {
+                "month": 2,
+                "units": 45
+              },
+              {
+                "month": 3,
+                "units": 40
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 130,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 43
+              },
+              {
+                "month": 2,
+                "units": 41
+              },
+              {
+                "month": 3,
+                "units": 48
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nokia",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 3577,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1281
+              },
+              {
+                "month": 2,
+                "units": 1016
+              },
+              {
+                "month": 3,
+                "units": 1214
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 3600,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1246
+              },
+              {
+                "month": 2,
+                "units": 1026
+              },
+              {
+                "month": 3,
+                "units": 1190
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 3605,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1373
+              },
+              {
+                "month": 2,
+                "units": 1027
+              },
+              {
+                "month": 3,
+                "units": 1123
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "OPPO",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 3580,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1120
+              },
+              {
+                "month": 2,
+                "units": 1047
+              },
+              {
+                "month": 3,
+                "units": 1273
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 3574,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1352
+              },
+              {
+                "month": 2,
+                "units": 1366
+              },
+              {
+                "month": 3,
+                "units": 1249
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 3602,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1092
+              },
+              {
+                "month": 2,
+                "units": 1159
+              },
+              {
+                "month": 3,
+                "units": 1214
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Others",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 6695,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2088
+              },
+              {
+                "month": 2,
+                "units": 1923
+              },
+              {
+                "month": 3,
+                "units": 2384
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 6825,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2097
+              },
+              {
+                "month": 2,
+                "units": 2520
+              },
+              {
+                "month": 3,
+                "units": 2459
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 6900,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1981
+              },
+              {
+                "month": 2,
+                "units": 2038
+              },
+              {
+                "month": 3,
+                "units": 2074
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Samsung",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 37527,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 12406
+              },
+              {
+                "month": 2,
+                "units": 10666
+              },
+              {
+                "month": 3,
+                "units": 11742
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 39637,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 11898
+              },
+              {
+                "month": 2,
+                "units": 14132
+              },
+              {
+                "month": 3,
+                "units": 13397
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 38351,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 13379
+              },
+              {
+                "month": 2,
+                "units": 11701
+              },
+              {
+                "month": 3,
+                "units": 13001
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Xiaomi",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 11724,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3719
+              },
+              {
+                "month": 2,
+                "units": 3622
+              },
+              {
+                "month": 3,
+                "units": 3411
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 12255,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4090
+              },
+              {
+                "month": 2,
+                "units": 4681
+              },
+              {
+                "month": 3,
+                "units": 4193
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 12432,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4394
+              },
+              {
+                "month": 2,
+                "units": 4741
+              },
+              {
+                "month": 3,
+                "units": 3881
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "vivo",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 2416,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 707
+              },
+              {
+                "month": 2,
+                "units": 886
+              },
+              {
+                "month": 3,
+                "units": 700
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 2882,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1089
+              },
+              {
+                "month": 2,
+                "units": 929
+              },
+              {
+                "month": 3,
+                "units": 1046
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 3071,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 893
+              },
+              {
+                "month": 2,
+                "units": 977
+              },
+              {
+                "month": 3,
+                "units": 1071
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Iraq": [
+      {
+        "brand": "Apple",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 165683,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 61969
+              },
+              {
+                "month": 2,
+                "units": 48373
+              },
+              {
+                "month": 3,
+                "units": 58439
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 164867,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 58516
+              },
+              {
+                "month": 2,
+                "units": 58171
+              },
+              {
+                "month": 3,
+                "units": 52802
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 170524,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 49991
+              },
+              {
+                "month": 2,
+                "units": 62915
+              },
+              {
+                "month": 3,
+                "units": 56997
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "HMD",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 5481,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1691
+              },
+              {
+                "month": 2,
+                "units": 1856
+              },
+              {
+                "month": 3,
+                "units": 1561
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 4904,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1585
+              },
+              {
+                "month": 2,
+                "units": 1678
+              },
+              {
+                "month": 3,
+                "units": 1754
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 5568,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1923
+              },
+              {
+                "month": 2,
+                "units": 1679
+              },
+              {
+                "month": 3,
+                "units": 1701
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Huawei",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 1235,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 441
+              },
+              {
+                "month": 2,
+                "units": 424
+              },
+              {
+                "month": 3,
+                "units": 404
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 1497,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 532
+              },
+              {
+                "month": 2,
+                "units": 498
+              },
+              {
+                "month": 3,
+                "units": 438
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 1596,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 549
+              },
+              {
+                "month": 2,
+                "units": 520
+              },
+              {
+                "month": 3,
+                "units": 508
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nokia",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 86651,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 26816
+              },
+              {
+                "month": 2,
+                "units": 32719
+              },
+              {
+                "month": 3,
+                "units": 27455
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 81715,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 23896
+              },
+              {
+                "month": 2,
+                "units": 23259
+              },
+              {
+                "month": 3,
+                "units": 23529
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 85714,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 29899
+              },
+              {
+                "month": 2,
+                "units": 24453
+              },
+              {
+                "month": 3,
+                "units": 31360
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "OPPO",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 18146,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 5680
+              },
+              {
+                "month": 2,
+                "units": 6578
+              },
+              {
+                "month": 3,
+                "units": 5307
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 18506,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6767
+              },
+              {
+                "month": 2,
+                "units": 5519
+              },
+              {
+                "month": 3,
+                "units": 6724
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 18562,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6796
+              },
+              {
+                "month": 2,
+                "units": 6910
+              },
+              {
+                "month": 3,
+                "units": 5691
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Others",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 69627,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 24061
+              },
+              {
+                "month": 2,
+                "units": 25187
+              },
+              {
+                "month": 3,
+                "units": 23341
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 70622,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 24454
+              },
+              {
+                "month": 2,
+                "units": 24189
+              },
+              {
+                "month": 3,
+                "units": 20823
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 71568,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 22852
+              },
+              {
+                "month": 2,
+                "units": 21301
+              },
+              {
+                "month": 3,
+                "units": 26373
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Samsung",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 381373,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 109258
+              },
+              {
+                "month": 2,
+                "units": 111961
+              },
+              {
+                "month": 3,
+                "units": 118554
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 400093,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 135598
+              },
+              {
+                "month": 2,
+                "units": 133066
+              },
+              {
+                "month": 3,
+                "units": 123250
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 451909,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 142866
+              },
+              {
+                "month": 2,
+                "units": 172682
+              },
+              {
+                "month": 3,
+                "units": 148097
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Xiaomi",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 169109,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 48387
+              },
+              {
+                "month": 2,
+                "units": 52242
+              },
+              {
+                "month": 3,
+                "units": 58317
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 177725,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 68066
+              },
+              {
+                "month": 2,
+                "units": 54213
+              },
+              {
+                "month": 3,
+                "units": 67013
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 180740,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 57763
+              },
+              {
+                "month": 2,
+                "units": 51534
+              },
+              {
+                "month": 3,
+                "units": 68948
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "vivo",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 11383,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3658
+              },
+              {
+                "month": 2,
+                "units": 4262
+              },
+              {
+                "month": 3,
+                "units": 4310
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 12494,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4554
+              },
+              {
+                "month": 2,
+                "units": 4058
+              },
+              {
+                "month": 3,
+                "units": 4674
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 13158,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4904
+              },
+              {
+                "month": 2,
+                "units": 4293
+              },
+              {
+                "month": 3,
+                "units": 5041
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Honor",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 270141,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 82177
+              },
+              {
+                "month": 2,
+                "units": 89916
+              },
+              {
+                "month": 3,
+                "units": 92152
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 266602,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 77607
+              },
+              {
+                "month": 2,
+                "units": 97791
+              },
+              {
+                "month": 3,
+                "units": 80125
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 268568,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 96748
+              },
+              {
+                "month": 2,
+                "units": 82344
+              },
+              {
+                "month": 3,
+                "units": 96160
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Infinix",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 255815,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 73810
+              },
+              {
+                "month": 2,
+                "units": 82829
+              },
+              {
+                "month": 3,
+                "units": 82936
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 265270,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 77800
+              },
+              {
+                "month": 2,
+                "units": 88510
+              },
+              {
+                "month": 3,
+                "units": 91433
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 261391,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 74169
+              },
+              {
+                "month": 2,
+                "units": 76545
+              },
+              {
+                "month": 3,
+                "units": 85117
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Tecno",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 225690,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 69230
+              },
+              {
+                "month": 2,
+                "units": 69207
+              },
+              {
+                "month": 3,
+                "units": 67210
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 229049,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 68682
+              },
+              {
+                "month": 2,
+                "units": 85361
+              },
+              {
+                "month": 3,
+                "units": 80594
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 230859,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 81473
+              },
+              {
+                "month": 2,
+                "units": 75255
+              },
+              {
+                "month": 3,
+                "units": 75101
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "itel",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 46282,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 16606
+              },
+              {
+                "month": 2,
+                "units": 14013
+              },
+              {
+                "month": 3,
+                "units": 13895
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 43247,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 16227
+              },
+              {
+                "month": 2,
+                "units": 15410
+              },
+              {
+                "month": 3,
+                "units": 13935
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 44749,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 16455
+              },
+              {
+                "month": 2,
+                "units": 16377
+              },
+              {
+                "month": 3,
+                "units": 16021
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "realme",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 110152,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 33110
+              },
+              {
+                "month": 2,
+                "units": 31241
+              },
+              {
+                "month": 3,
+                "units": 37150
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 116640,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 37944
+              },
+              {
+                "month": 2,
+                "units": 36930
+              },
+              {
+                "month": 3,
+                "units": 42798
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 110619,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 35643
+              },
+              {
+                "month": 2,
+                "units": 38817
+              },
+              {
+                "month": 3,
+                "units": 38943
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Kuwait": [
+      {
+        "brand": "Apple",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 116689,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 44250
+              },
+              {
+                "month": 2,
+                "units": 39640
+              },
+              {
+                "month": 3,
+                "units": 43784
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 115670,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 42305
+              },
+              {
+                "month": 2,
+                "units": 35058
+              },
+              {
+                "month": 3,
+                "units": 40404
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 114815,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 42163
+              },
+              {
+                "month": 2,
+                "units": 42428
+              },
+              {
+                "month": 3,
+                "units": 39355
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "HMD",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 1663,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 500
+              },
+              {
+                "month": 2,
+                "units": 582
+              },
+              {
+                "month": 3,
+                "units": 543
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 1862,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 603
+              },
+              {
+                "month": 2,
+                "units": 641
+              },
+              {
+                "month": 3,
+                "units": 537
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 1781,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 556
+              },
+              {
+                "month": 2,
+                "units": 509
+              },
+              {
+                "month": 3,
+                "units": 650
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Huawei",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 419,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 153
+              },
+              {
+                "month": 2,
+                "units": 144
+              },
+              {
+                "month": 3,
+                "units": 151
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 449,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 141
+              },
+              {
+                "month": 2,
+                "units": 145
+              },
+              {
+                "month": 3,
+                "units": 136
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 443,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 131
+              },
+              {
+                "month": 2,
+                "units": 152
+              },
+              {
+                "month": 3,
+                "units": 145
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nokia",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 22059,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6813
+              },
+              {
+                "month": 2,
+                "units": 8089
+              },
+              {
+                "month": 3,
+                "units": 7341
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 22138,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 8433
+              },
+              {
+                "month": 2,
+                "units": 8406
+              },
+              {
+                "month": 3,
+                "units": 8456
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 22436,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 8369
+              },
+              {
+                "month": 2,
+                "units": 7845
+              },
+              {
+                "month": 3,
+                "units": 7384
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "OPPO",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 4134,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1215
+              },
+              {
+                "month": 2,
+                "units": 1528
+              },
+              {
+                "month": 3,
+                "units": 1408
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 4283,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1545
+              },
+              {
+                "month": 2,
+                "units": 1545
+              },
+              {
+                "month": 3,
+                "units": 1527
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 4355,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1628
+              },
+              {
+                "month": 2,
+                "units": 1459
+              },
+              {
+                "month": 3,
+                "units": 1532
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Others",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 7799,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2817
+              },
+              {
+                "month": 2,
+                "units": 2608
+              },
+              {
+                "month": 3,
+                "units": 2349
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 8067,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2645
+              },
+              {
+                "month": 2,
+                "units": 2804
+              },
+              {
+                "month": 3,
+                "units": 2581
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 8056,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2421
+              },
+              {
+                "month": 2,
+                "units": 2728
+              },
+              {
+                "month": 3,
+                "units": 2609
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Samsung",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 120121,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 45902
+              },
+              {
+                "month": 2,
+                "units": 37669
+              },
+              {
+                "month": 3,
+                "units": 37832
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 122049,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 46221
+              },
+              {
+                "month": 2,
+                "units": 36746
+              },
+              {
+                "month": 3,
+                "units": 39811
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 122527,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 46869
+              },
+              {
+                "month": 2,
+                "units": 42477
+              },
+              {
+                "month": 3,
+                "units": 46224
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Xiaomi",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 49546,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 18817
+              },
+              {
+                "month": 2,
+                "units": 14620
+              },
+              {
+                "month": 3,
+                "units": 15718
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 52288,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 14943
+              },
+              {
+                "month": 2,
+                "units": 17299
+              },
+              {
+                "month": 3,
+                "units": 14997
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 53308,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 15498
+              },
+              {
+                "month": 2,
+                "units": 15507
+              },
+              {
+                "month": 3,
+                "units": 16305
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "vivo",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 10803,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3130
+              },
+              {
+                "month": 2,
+                "units": 3323
+              },
+              {
+                "month": 3,
+                "units": 3916
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 10639,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3778
+              },
+              {
+                "month": 2,
+                "units": 3631
+              },
+              {
+                "month": 3,
+                "units": 3111
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 10583,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3077
+              },
+              {
+                "month": 2,
+                "units": 3175
+              },
+              {
+                "month": 3,
+                "units": 3627
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Honor",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 38607,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 12445
+              },
+              {
+                "month": 2,
+                "units": 11113
+              },
+              {
+                "month": 3,
+                "units": 11283
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 37291,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 10785
+              },
+              {
+                "month": 2,
+                "units": 11042
+              },
+              {
+                "month": 3,
+                "units": 13434
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 37607,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 11937
+              },
+              {
+                "month": 2,
+                "units": 12396
+              },
+              {
+                "month": 3,
+                "units": 11255
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Infinix",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 22663,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7649
+              },
+              {
+                "month": 2,
+                "units": 7497
+              },
+              {
+                "month": 3,
+                "units": 8404
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 23584,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 8229
+              },
+              {
+                "month": 2,
+                "units": 7035
+              },
+              {
+                "month": 3,
+                "units": 7155
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 24762,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 9171
+              },
+              {
+                "month": 2,
+                "units": 8761
+              },
+              {
+                "month": 3,
+                "units": 8114
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "realme",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 4394,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1433
+              },
+              {
+                "month": 2,
+                "units": 1556
+              },
+              {
+                "month": 3,
+                "units": 1413
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 4843,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1454
+              },
+              {
+                "month": 2,
+                "units": 1781
+              },
+              {
+                "month": 3,
+                "units": 1818
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 4922,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1496
+              },
+              {
+                "month": 2,
+                "units": 1411
+              },
+              {
+                "month": 3,
+                "units": 1549
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Motorola",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 19509,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6633
+              },
+              {
+                "month": 2,
+                "units": 6538
+              },
+              {
+                "month": 3,
+                "units": 6089
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 20283,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7305
+              },
+              {
+                "month": 2,
+                "units": 7227
+              },
+              {
+                "month": 3,
+                "units": 7365
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 20634,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7903
+              },
+              {
+                "month": 2,
+                "units": 7405
+              },
+              {
+                "month": 3,
+                "units": 6344
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Oman": [
+      {
+        "brand": "Apple",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 67066,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 23240
+              },
+              {
+                "month": 2,
+                "units": 20113
+              },
+              {
+                "month": 3,
+                "units": 23445
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 67178,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 25722
+              },
+              {
+                "month": 2,
+                "units": 22894
+              },
+              {
+                "month": 3,
+                "units": 22041
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 67220,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 20030
+              },
+              {
+                "month": 2,
+                "units": 25726
+              },
+              {
+                "month": 3,
+                "units": 19150
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "HMD",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 1918,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 589
+              },
+              {
+                "month": 2,
+                "units": 576
+              },
+              {
+                "month": 3,
+                "units": 570
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 2186,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 634
+              },
+              {
+                "month": 2,
+                "units": 820
+              },
+              {
+                "month": 3,
+                "units": 804
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 2007,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 740
+              },
+              {
+                "month": 2,
+                "units": 738
+              },
+              {
+                "month": 3,
+                "units": 762
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Huawei",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 615,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 211
+              },
+              {
+                "month": 2,
+                "units": 216
+              },
+              {
+                "month": 3,
+                "units": 232
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 620,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 229
+              },
+              {
+                "month": 2,
+                "units": 215
+              },
+              {
+                "month": 3,
+                "units": 221
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 608,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 197
+              },
+              {
+                "month": 2,
+                "units": 218
+              },
+              {
+                "month": 3,
+                "units": 174
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nokia",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 13217,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4374
+              },
+              {
+                "month": 2,
+                "units": 4178
+              },
+              {
+                "month": 3,
+                "units": 4602
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 13317,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4960
+              },
+              {
+                "month": 2,
+                "units": 3868
+              },
+              {
+                "month": 3,
+                "units": 4858
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 13369,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4331
+              },
+              {
+                "month": 2,
+                "units": 4295
+              },
+              {
+                "month": 3,
+                "units": 4820
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "OPPO",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 11086,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4192
+              },
+              {
+                "month": 2,
+                "units": 4202
+              },
+              {
+                "month": 3,
+                "units": 3969
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 10521,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3428
+              },
+              {
+                "month": 2,
+                "units": 3648
+              },
+              {
+                "month": 3,
+                "units": 3407
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 10896,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3693
+              },
+              {
+                "month": 2,
+                "units": 3243
+              },
+              {
+                "month": 3,
+                "units": 3992
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Others",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 22000,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 8132
+              },
+              {
+                "month": 2,
+                "units": 6442
+              },
+              {
+                "month": 3,
+                "units": 7902
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 22118,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7840
+              },
+              {
+                "month": 2,
+                "units": 7605
+              },
+              {
+                "month": 3,
+                "units": 6960
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 22193,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6980
+              },
+              {
+                "month": 2,
+                "units": 8436
+              },
+              {
+                "month": 3,
+                "units": 7744
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Samsung",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 134146,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 50814
+              },
+              {
+                "month": 2,
+                "units": 45605
+              },
+              {
+                "month": 3,
+                "units": 48011
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 130943,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 47089
+              },
+              {
+                "month": 2,
+                "units": 48722
+              },
+              {
+                "month": 3,
+                "units": 45003
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 129240,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 38490
+              },
+              {
+                "month": 2,
+                "units": 43132
+              },
+              {
+                "month": 3,
+                "units": 44899
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Xiaomi",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 61159,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 20907
+              },
+              {
+                "month": 2,
+                "units": 20384
+              },
+              {
+                "month": 3,
+                "units": 17654
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 62301,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 23276
+              },
+              {
+                "month": 2,
+                "units": 22993
+              },
+              {
+                "month": 3,
+                "units": 21670
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 62406,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 19234
+              },
+              {
+                "month": 2,
+                "units": 20546
+              },
+              {
+                "month": 3,
+                "units": 19004
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "vivo",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 10660,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3928
+              },
+              {
+                "month": 2,
+                "units": 3149
+              },
+              {
+                "month": 3,
+                "units": 3928
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 10579,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4023
+              },
+              {
+                "month": 2,
+                "units": 3220
+              },
+              {
+                "month": 3,
+                "units": 3281
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 10541,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3421
+              },
+              {
+                "month": 2,
+                "units": 3689
+              },
+              {
+                "month": 3,
+                "units": 3177
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Qatar": [
+      {
+        "brand": "Apple",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 88804,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 29450
+              },
+              {
+                "month": 2,
+                "units": 25372
+              },
+              {
+                "month": 3,
+                "units": 29468
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 91045,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 27705
+              },
+              {
+                "month": 2,
+                "units": 28790
+              },
+              {
+                "month": 3,
+                "units": 27685
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 92383,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 30566
+              },
+              {
+                "month": 2,
+                "units": 34553
+              },
+              {
+                "month": 3,
+                "units": 34084
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "HMD",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 3802,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1183
+              },
+              {
+                "month": 2,
+                "units": 1324
+              },
+              {
+                "month": 3,
+                "units": 1156
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 4002,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1431
+              },
+              {
+                "month": 2,
+                "units": 1268
+              },
+              {
+                "month": 3,
+                "units": 1489
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 4035,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1479
+              },
+              {
+                "month": 2,
+                "units": 1235
+              },
+              {
+                "month": 3,
+                "units": 1371
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Huawei",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 935,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 302
+              },
+              {
+                "month": 2,
+                "units": 301
+              },
+              {
+                "month": 3,
+                "units": 347
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 931,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 285
+              },
+              {
+                "month": 2,
+                "units": 347
+              },
+              {
+                "month": 3,
+                "units": 289
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 836,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 316
+              },
+              {
+                "month": 2,
+                "units": 311
+              },
+              {
+                "month": 3,
+                "units": 255
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nokia",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 22258,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7440
+              },
+              {
+                "month": 2,
+                "units": 8436
+              },
+              {
+                "month": 3,
+                "units": 7708
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 22567,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 8574
+              },
+              {
+                "month": 2,
+                "units": 8510
+              },
+              {
+                "month": 3,
+                "units": 8010
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 22025,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7438
+              },
+              {
+                "month": 2,
+                "units": 7740
+              },
+              {
+                "month": 3,
+                "units": 8260
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "OPPO",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 7391,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2604
+              },
+              {
+                "month": 2,
+                "units": 2213
+              },
+              {
+                "month": 3,
+                "units": 2179
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 7706,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2237
+              },
+              {
+                "month": 2,
+                "units": 2193
+              },
+              {
+                "month": 3,
+                "units": 2732
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 7815,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2644
+              },
+              {
+                "month": 2,
+                "units": 2365
+              },
+              {
+                "month": 3,
+                "units": 2362
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Others",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 25520,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 9101
+              },
+              {
+                "month": 2,
+                "units": 8870
+              },
+              {
+                "month": 3,
+                "units": 7247
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 25086,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7472
+              },
+              {
+                "month": 2,
+                "units": 9513
+              },
+              {
+                "month": 3,
+                "units": 8293
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 24961,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7625
+              },
+              {
+                "month": 2,
+                "units": 9532
+              },
+              {
+                "month": 3,
+                "units": 7710
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Samsung",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 116631,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 36458
+              },
+              {
+                "month": 2,
+                "units": 44564
+              },
+              {
+                "month": 3,
+                "units": 40399
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 120278,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 43418
+              },
+              {
+                "month": 2,
+                "units": 43121
+              },
+              {
+                "month": 3,
+                "units": 40210
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 119263,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 39898
+              },
+              {
+                "month": 2,
+                "units": 41657
+              },
+              {
+                "month": 3,
+                "units": 43355
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Xiaomi",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 49012,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 18778
+              },
+              {
+                "month": 2,
+                "units": 16317
+              },
+              {
+                "month": 3,
+                "units": 14396
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 49973,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 17637
+              },
+              {
+                "month": 2,
+                "units": 18762
+              },
+              {
+                "month": 3,
+                "units": 15528
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 50330,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 18502
+              },
+              {
+                "month": 2,
+                "units": 16601
+              },
+              {
+                "month": 3,
+                "units": 17804
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "vivo",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 16331,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 5636
+              },
+              {
+                "month": 2,
+                "units": 5718
+              },
+              {
+                "month": 3,
+                "units": 5308
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 15987,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 5399
+              },
+              {
+                "month": 2,
+                "units": 5783
+              },
+              {
+                "month": 3,
+                "units": 4569
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 16121,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 5701
+              },
+              {
+                "month": 2,
+                "units": 6050
+              },
+              {
+                "month": 3,
+                "units": 4867
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Honor",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 70048,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 25374
+              },
+              {
+                "month": 2,
+                "units": 22964
+              },
+              {
+                "month": 3,
+                "units": 24403
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 68041,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 22890
+              },
+              {
+                "month": 2,
+                "units": 23510
+              },
+              {
+                "month": 3,
+                "units": 20163
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 68341,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 21285
+              },
+              {
+                "month": 2,
+                "units": 19751
+              },
+              {
+                "month": 3,
+                "units": 25463
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Motorola",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 24167,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7388
+              },
+              {
+                "month": 2,
+                "units": 8628
+              },
+              {
+                "month": 3,
+                "units": 8657
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 24542,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7438
+              },
+              {
+                "month": 2,
+                "units": 7963
+              },
+              {
+                "month": 3,
+                "units": 7816
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 27147,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7765
+              },
+              {
+                "month": 2,
+                "units": 10348
+              },
+              {
+                "month": 3,
+                "units": 9874
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Poco",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 1368,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 433
+              },
+              {
+                "month": 2,
+                "units": 469
+              },
+              {
+                "month": 3,
+                "units": 416
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 1457,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 511
+              },
+              {
+                "month": 2,
+                "units": 514
+              },
+              {
+                "month": 3,
+                "units": 517
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 1487,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 467
+              },
+              {
+                "month": 2,
+                "units": 478
+              },
+              {
+                "month": 3,
+                "units": 525
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "Saudi Arabia": [
+      {
+        "brand": "Apple",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 831657,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 298986
+              },
+              {
+                "month": 2,
+                "units": 252004
+              },
+              {
+                "month": 3,
+                "units": 280090
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 829604,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 270111
+              },
+              {
+                "month": 2,
+                "units": 297914
+              },
+              {
+                "month": 3,
+                "units": 298287
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 825272,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 255298
+              },
+              {
+                "month": 2,
+                "units": 275384
+              },
+              {
+                "month": 3,
+                "units": 313208
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "HMD",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 129184,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 37548
+              },
+              {
+                "month": 2,
+                "units": 37262
+              },
+              {
+                "month": 3,
+                "units": 44376
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 130151,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 37846
+              },
+              {
+                "month": 2,
+                "units": 41806
+              },
+              {
+                "month": 3,
+                "units": 38833
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 133330,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 41134
+              },
+              {
+                "month": 2,
+                "units": 38875
+              },
+              {
+                "month": 3,
+                "units": 50822
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Huawei",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 26976,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 9255
+              },
+              {
+                "month": 2,
+                "units": 9593
+              },
+              {
+                "month": 3,
+                "units": 10151
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 26788,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7894
+              },
+              {
+                "month": 2,
+                "units": 9455
+              },
+              {
+                "month": 3,
+                "units": 9323
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 26657,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7773
+              },
+              {
+                "month": 2,
+                "units": 10051
+              },
+              {
+                "month": 3,
+                "units": 9960
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nokia",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 157171,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 45854
+              },
+              {
+                "month": 2,
+                "units": 57665
+              },
+              {
+                "month": 3,
+                "units": 49868
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 158776,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 59022
+              },
+              {
+                "month": 2,
+                "units": 49020
+              },
+              {
+                "month": 3,
+                "units": 59960
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 158632,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 50366
+              },
+              {
+                "month": 2,
+                "units": 51873
+              },
+              {
+                "month": 3,
+                "units": 53598
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "OPPO",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 20955,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7242
+              },
+              {
+                "month": 2,
+                "units": 7225
+              },
+              {
+                "month": 3,
+                "units": 6894
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 22271,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6432
+              },
+              {
+                "month": 2,
+                "units": 7966
+              },
+              {
+                "month": 3,
+                "units": 8419
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 22582,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 7132
+              },
+              {
+                "month": 2,
+                "units": 6666
+              },
+              {
+                "month": 3,
+                "units": 7945
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Others",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 41652,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 13610
+              },
+              {
+                "month": 2,
+                "units": 13546
+              },
+              {
+                "month": 3,
+                "units": 15095
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 40600,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 13701
+              },
+              {
+                "month": 2,
+                "units": 11784
+              },
+              {
+                "month": 3,
+                "units": 12351
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 40243,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 12475
+              },
+              {
+                "month": 2,
+                "units": 14039
+              },
+              {
+                "month": 3,
+                "units": 12331
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Samsung",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 1161620,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 350048
+              },
+              {
+                "month": 2,
+                "units": 370114
+              },
+              {
+                "month": 3,
+                "units": 334329
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 1142745,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 378447
+              },
+              {
+                "month": 2,
+                "units": 381941
+              },
+              {
+                "month": 3,
+                "units": 358201
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 1135117,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 370025
+              },
+              {
+                "month": 2,
+                "units": 369141
+              },
+              {
+                "month": 3,
+                "units": 323251
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Xiaomi",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 145473,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 43823
+              },
+              {
+                "month": 2,
+                "units": 48334
+              },
+              {
+                "month": 3,
+                "units": 47074
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 148336,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 45063
+              },
+              {
+                "month": 2,
+                "units": 45657
+              },
+              {
+                "month": 3,
+                "units": 46862
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 150717,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 54464
+              },
+              {
+                "month": 2,
+                "units": 56547
+              },
+              {
+                "month": 3,
+                "units": 51835
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "vivo",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 47677,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 14743
+              },
+              {
+                "month": 2,
+                "units": 15412
+              },
+              {
+                "month": 3,
+                "units": 14659
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 44263,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 16347
+              },
+              {
+                "month": 2,
+                "units": 12870
+              },
+              {
+                "month": 3,
+                "units": 16147
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 42835,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 14197
+              },
+              {
+                "month": 2,
+                "units": 12989
+              },
+              {
+                "month": 3,
+                "units": 13641
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Honor",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 126965,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 46347
+              },
+              {
+                "month": 2,
+                "units": 41613
+              },
+              {
+                "month": 3,
+                "units": 46291
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 146783,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 47650
+              },
+              {
+                "month": 2,
+                "units": 47441
+              },
+              {
+                "month": 3,
+                "units": 49261
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 148714,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 45771
+              },
+              {
+                "month": 2,
+                "units": 47130
+              },
+              {
+                "month": 3,
+                "units": 48894
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Infinix",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 242485,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 79995
+              },
+              {
+                "month": 2,
+                "units": 75101
+              },
+              {
+                "month": 3,
+                "units": 71015
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 244497,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 90826
+              },
+              {
+                "month": 2,
+                "units": 77633
+              },
+              {
+                "month": 3,
+                "units": 84457
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 244712,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 87742
+              },
+              {
+                "month": 2,
+                "units": 79598
+              },
+              {
+                "month": 3,
+                "units": 79784
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Tecno",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 112334,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 41683
+              },
+              {
+                "month": 2,
+                "units": 35427
+              },
+              {
+                "month": 3,
+                "units": 33574
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 115429,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 36018
+              },
+              {
+                "month": 2,
+                "units": 35446
+              },
+              {
+                "month": 3,
+                "units": 36907
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 116187,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 34840
+              },
+              {
+                "month": 2,
+                "units": 36909
+              },
+              {
+                "month": 3,
+                "units": 40062
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "itel",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 152295,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 56657
+              },
+              {
+                "month": 2,
+                "units": 55225
+              },
+              {
+                "month": 3,
+                "units": 54093
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 151865,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 45827
+              },
+              {
+                "month": 2,
+                "units": 51333
+              },
+              {
+                "month": 3,
+                "units": 52195
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 152479,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 45208
+              },
+              {
+                "month": 2,
+                "units": 49119
+              },
+              {
+                "month": 3,
+                "units": 47528
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "realme",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 59816,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 18891
+              },
+              {
+                "month": 2,
+                "units": 17237
+              },
+              {
+                "month": 3,
+                "units": 19956
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 61377,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 20012
+              },
+              {
+                "month": 2,
+                "units": 22972
+              },
+              {
+                "month": 3,
+                "units": 20831
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 61870,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 18293
+              },
+              {
+                "month": 2,
+                "units": 17542
+              },
+              {
+                "month": 3,
+                "units": 23374
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Motorola",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 114564,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 38327
+              },
+              {
+                "month": 2,
+                "units": 36136
+              },
+              {
+                "month": 3,
+                "units": 36332
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 118814,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 39887
+              },
+              {
+                "month": 2,
+                "units": 34813
+              },
+              {
+                "month": 3,
+                "units": 43272
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 128363,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 44446
+              },
+              {
+                "month": 2,
+                "units": 44786
+              },
+              {
+                "month": 3,
+                "units": 37655
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Poco",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 4164,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1583
+              },
+              {
+                "month": 2,
+                "units": 1260
+              },
+              {
+                "month": 3,
+                "units": 1247
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 4287,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1559
+              },
+              {
+                "month": 2,
+                "units": 1505
+              },
+              {
+                "month": 3,
+                "units": 1456
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 4377,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1420
+              },
+              {
+                "month": 2,
+                "units": 1301
+              },
+              {
+                "month": 3,
+                "units": 1419
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nothing",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 6230,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1975
+              },
+              {
+                "month": 2,
+                "units": 2237
+              },
+              {
+                "month": 3,
+                "units": 1781
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 6387,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2426
+              },
+              {
+                "month": 2,
+                "units": 1900
+              },
+              {
+                "month": 3,
+                "units": 2078
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 6131,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1836
+              },
+              {
+                "month": 2,
+                "units": 2288
+              },
+              {
+                "month": 3,
+                "units": 2112
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "United Arab Emirates": [
+      {
+        "brand": "Apple",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 384297,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 114900
+              },
+              {
+                "month": 2,
+                "units": 118732
+              },
+              {
+                "month": 3,
+                "units": 112666
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 414517,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 134197
+              },
+              {
+                "month": 2,
+                "units": 153867
+              },
+              {
+                "month": 3,
+                "units": 146158
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 425997,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 155986
+              },
+              {
+                "month": 2,
+                "units": 141383
+              },
+              {
+                "month": 3,
+                "units": 150661
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "HMD",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 5383,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1893
+              },
+              {
+                "month": 2,
+                "units": 1871
+              },
+              {
+                "month": 3,
+                "units": 1841
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 5478,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2007
+              },
+              {
+                "month": 2,
+                "units": 2003
+              },
+              {
+                "month": 3,
+                "units": 2043
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 5621,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2054
+              },
+              {
+                "month": 2,
+                "units": 2033
+              },
+              {
+                "month": 3,
+                "units": 1746
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Huawei",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 16071,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 5486
+              },
+              {
+                "month": 2,
+                "units": 5269
+              },
+              {
+                "month": 3,
+                "units": 4843
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 15949,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 5462
+              },
+              {
+                "month": 2,
+                "units": 4969
+              },
+              {
+                "month": 3,
+                "units": 5258
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 15905,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6069
+              },
+              {
+                "month": 2,
+                "units": 4846
+              },
+              {
+                "month": 3,
+                "units": 5566
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nokia",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 110857,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 32474
+              },
+              {
+                "month": 2,
+                "units": 33002
+              },
+              {
+                "month": 3,
+                "units": 38604
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 109880,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 32831
+              },
+              {
+                "month": 2,
+                "units": 33814
+              },
+              {
+                "month": 3,
+                "units": 42071
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 111708,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 37310
+              },
+              {
+                "month": 2,
+                "units": 32626
+              },
+              {
+                "month": 3,
+                "units": 35400
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "OPPO",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 12417,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3759
+              },
+              {
+                "month": 2,
+                "units": 4385
+              },
+              {
+                "month": 3,
+                "units": 3665
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 12626,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4511
+              },
+              {
+                "month": 2,
+                "units": 4185
+              },
+              {
+                "month": 3,
+                "units": 3587
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 12700,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 3663
+              },
+              {
+                "month": 2,
+                "units": 4767
+              },
+              {
+                "month": 3,
+                "units": 4121
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Others",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 45037,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 13123
+              },
+              {
+                "month": 2,
+                "units": 15258
+              },
+              {
+                "month": 3,
+                "units": 12798
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 44786,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 16354
+              },
+              {
+                "month": 2,
+                "units": 14760
+              },
+              {
+                "month": 3,
+                "units": 16200
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 44665,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 16538
+              },
+              {
+                "month": 2,
+                "units": 13722
+              },
+              {
+                "month": 3,
+                "units": 13844
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Samsung",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 548891,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 158564
+              },
+              {
+                "month": 2,
+                "units": 163118
+              },
+              {
+                "month": 3,
+                "units": 194328
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 554939,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 165432
+              },
+              {
+                "month": 2,
+                "units": 197626
+              },
+              {
+                "month": 3,
+                "units": 170594
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 557109,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 207458
+              },
+              {
+                "month": 2,
+                "units": 194264
+              },
+              {
+                "month": 3,
+                "units": 200900
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Xiaomi",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 188392,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 60498
+              },
+              {
+                "month": 2,
+                "units": 54166
+              },
+              {
+                "month": 3,
+                "units": 54315
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 194539,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 62443
+              },
+              {
+                "month": 2,
+                "units": 63655
+              },
+              {
+                "month": 3,
+                "units": 57649
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 199037,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 63014
+              },
+              {
+                "month": 2,
+                "units": 74394
+              },
+              {
+                "month": 3,
+                "units": 62839
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "vivo",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 55291,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 17203
+              },
+              {
+                "month": 2,
+                "units": 18454
+              },
+              {
+                "month": 3,
+                "units": 19927
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 54602,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 20501
+              },
+              {
+                "month": 2,
+                "units": 19398
+              },
+              {
+                "month": 3,
+                "units": 15887
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 54426,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 16019
+              },
+              {
+                "month": 2,
+                "units": 20579
+              },
+              {
+                "month": 3,
+                "units": 17129
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Honor",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 170554,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 55710
+              },
+              {
+                "month": 2,
+                "units": 54367
+              },
+              {
+                "month": 3,
+                "units": 49516
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 167391,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 58701
+              },
+              {
+                "month": 2,
+                "units": 57884
+              },
+              {
+                "month": 3,
+                "units": 55714
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 166376,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 57383
+              },
+              {
+                "month": 2,
+                "units": 61585
+              },
+              {
+                "month": 3,
+                "units": 53807
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "realme",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 12811,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 4053
+              },
+              {
+                "month": 2,
+                "units": 4772
+              },
+              {
+                "month": 3,
+                "units": 4129
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 16532,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 6111
+              },
+              {
+                "month": 2,
+                "units": 6146
+              },
+              {
+                "month": 3,
+                "units": 5755
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 15549,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 5638
+              },
+              {
+                "month": 2,
+                "units": 5945
+              },
+              {
+                "month": 3,
+                "units": 4528
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Motorola",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 101974,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 36651
+              },
+              {
+                "month": 2,
+                "units": 33452
+              },
+              {
+                "month": 3,
+                "units": 33253
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 103042,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 32768
+              },
+              {
+                "month": 2,
+                "units": 33751
+              },
+              {
+                "month": 3,
+                "units": 37152
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 104476,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 30035
+              },
+              {
+                "month": 2,
+                "units": 33350
+              },
+              {
+                "month": 3,
+                "units": 38900
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Poco",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 6322,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2325
+              },
+              {
+                "month": 2,
+                "units": 1844
+              },
+              {
+                "month": 3,
+                "units": 2332
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 5981,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 1801
+              },
+              {
+                "month": 2,
+                "units": 2219
+              },
+              {
+                "month": 3,
+                "units": 2187
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 6313,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2063
+              },
+              {
+                "month": 2,
+                "units": 2407
+              },
+              {
+                "month": 3,
+                "units": 2197
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "Nothing",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 6999,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2588
+              },
+              {
+                "month": 2,
+                "units": 2165
+              },
+              {
+                "month": 3,
+                "units": 2637
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 6857,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2165
+              },
+              {
+                "month": 2,
+                "units": 2428
+              },
+              {
+                "month": 3,
+                "units": 2022
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 6508,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 2209
+              },
+              {
+                "month": 2,
+                "units": 2004
+              },
+              {
+                "month": 3,
+                "units": 2241
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "brand": "TCL",
+        "forecasts": [
+          {
+            "year": 2026,
+            "quarter": "Q2",
+            "quarter_label": "2026Q2",
+            "predicted_units": 926,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 284
+              },
+              {
+                "month": 2,
+                "units": 330
+              },
+              {
+                "month": 3,
+                "units": 343
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q3",
+            "quarter_label": "2026Q3",
+            "predicted_units": 791,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 269
+              },
+              {
+                "month": 2,
+                "units": 275
+              },
+              {
+                "month": 3,
+                "units": 265
+              }
+            ]
+          },
+          {
+            "year": 2026,
+            "quarter": "Q4",
+            "quarter_label": "2026Q4",
+            "predicted_units": 900,
+            "monthly_breakdown": [
+              {
+                "month": 1,
+                "units": 321
+              },
+              {
+                "month": 2,
+                "units": 261
+              },
+              {
+                "month": 3,
+                "units": 332
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "country_forecasts": {
+    "Bahrain": [
+      {
+        "quarter": "2026Q2",
+        "units": 100812,
+        "qoq_growth": 3.52,
+        "yoy_growth": -9.66,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q3",
+        "units": 104561,
+        "qoq_growth": 3.72,
+        "yoy_growth": -12.01,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q4",
+        "units": 104121,
+        "qoq_growth": -0.42,
+        "yoy_growth": -21.9,
+        "qoq_direction": "\u25bc",
+        "yoy_direction": "\u25bc"
+      }
+    ],
+    "Iraq": [
+      {
+        "quarter": "2026Q2",
+        "units": 1816768,
+        "qoq_growth": 3.27,
+        "yoy_growth": -6.87,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q3",
+        "units": 1853231,
+        "qoq_growth": 2.01,
+        "yoy_growth": -14.12,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q4",
+        "units": 1915525,
+        "qoq_growth": 3.36,
+        "yoy_growth": -18.89,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      }
+    ],
+    "Kuwait": [
+      {
+        "quarter": "2026Q2",
+        "units": 418406,
+        "qoq_growth": 3.48,
+        "yoy_growth": -4.49,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q3",
+        "units": 423446,
+        "qoq_growth": 1.2,
+        "yoy_growth": -4.95,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q4",
+        "units": 426229,
+        "qoq_growth": 0.66,
+        "yoy_growth": -9.62,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      }
+    ],
+    "Oman": [
+      {
+        "quarter": "2026Q2",
+        "units": 321867,
+        "qoq_growth": 5.4,
+        "yoy_growth": -4.89,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q3",
+        "units": 319763,
+        "qoq_growth": -0.65,
+        "yoy_growth": -6.56,
+        "qoq_direction": "\u25bc",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q4",
+        "units": 318480,
+        "qoq_growth": -0.4,
+        "yoy_growth": -5.39,
+        "qoq_direction": "\u25bc",
+        "yoy_direction": "\u25bc"
+      }
+    ],
+    "Qatar": [
+      {
+        "quarter": "2026Q2",
+        "units": 426267,
+        "qoq_growth": 5.57,
+        "yoy_growth": -0.93,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q3",
+        "units": 431615,
+        "qoq_growth": 1.25,
+        "yoy_growth": -5.14,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q4",
+        "units": 434744,
+        "qoq_growth": 0.72,
+        "yoy_growth": -8.2,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      }
+    ],
+    "Saudi Arabia": [
+      {
+        "quarter": "2026Q2",
+        "units": 3381218,
+        "qoq_growth": 2.75,
+        "yoy_growth": -0.36,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q3",
+        "units": 3392973,
+        "qoq_growth": 0.35,
+        "yoy_growth": 0.62,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25b2"
+      },
+      {
+        "quarter": "2026Q4",
+        "units": 3398218,
+        "qoq_growth": 0.15,
+        "yoy_growth": -4.51,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      }
+    ],
+    "United Arab Emirates": [
+      {
+        "quarter": "2026Q2",
+        "units": 1666222,
+        "qoq_growth": 4.27,
+        "yoy_growth": -5.07,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q3",
+        "units": 1707910,
+        "qoq_growth": 2.5,
+        "yoy_growth": -1.15,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      },
+      {
+        "quarter": "2026Q4",
+        "units": 1727290,
+        "qoq_growth": 1.13,
+        "yoy_growth": -3.12,
+        "qoq_direction": "\u25b2",
+        "yoy_direction": "\u25bc"
+      }
+    ]
+  },
+  "gcc_forecast": [
+    {
+      "quarter": "2026Q2",
+      "units": 8131560,
+      "qoq_growth": null,
+      "yoy_growth": null,
+      "qoq_direction": "\u25b2",
+      "yoy_direction": "\u25b2"
+    },
+    {
+      "quarter": "2026Q3",
+      "units": 8233499,
+      "qoq_growth": 1.25,
+      "yoy_growth": null,
+      "qoq_direction": "\u25b2",
+      "yoy_direction": "\u25b2"
+    },
+    {
+      "quarter": "2026Q4",
+      "units": 8324607,
+      "qoq_growth": 1.11,
+      "yoy_growth": null,
+      "qoq_direction": "\u25b2",
+      "yoy_direction": "\u25b2"
+    }
+  ],
+  "summary": {
+    "total_forecasted_units": 24689666,
+    "avg_qoq_growth": 1.18,
+    "avg_yoy_growth": NaN,
+    "forecast_periods": [
+      "2026Q2",
+      "2026Q3",
+      "2026Q4"
+    ],
+    "model_accuracy": "Ensemble (RF + GB + LR)",
+    "generated_at": "2026-05-05T13:47:53.059186"
+  }
+}
