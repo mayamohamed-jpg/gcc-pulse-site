@@ -347,41 +347,6 @@ def create_dashboard(data):
                     <div class="text-center py-8" style="color:var(--text-muted)">Select a brand to view its performance across all GCC countries</div>
                 </div>
             </div>
-
-            <!-- ML Forecast Section -->
-            <div class="idc-card" id="forecastSection">
-                <div class="p-5 border-b flex items-center justify-between" style="border-color:var(--border)">
-                    <h3 class="font-display text-lg font-semibold">📈 ML Forecast — Next 3 Months & Quarter</h3>
-                    <span class="text-xs" style="color:var(--text-muted)" id="forecastGeneratedAt"></span>
-                </div>
-                <div class="p-5">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
-                        <div class="idc-card p-4">
-                            <div class="text-xs uppercase tracking-wider mb-2" style="color:var(--text-muted)">Forecasted Total Units</div>
-                            <div class="font-mono-tabular text-2xl font-bold" id="forecastTotalUnits">—</div>
-                        </div>
-                        <div class="idc-card p-4">
-                            <div class="text-xs uppercase tracking-wider mb-2" style="color:var(--text-muted)">Avg QoQ Growth</div>
-                            <div class="font-mono-tabular text-2xl font-bold" id="forecastAvgQoQ">—</div>
-                        </div>
-                        <div class="idc-card p-4">
-                            <div class="text-xs uppercase tracking-wider mb-2" style="color:var(--text-muted)">Avg YoY Growth</div>
-                            <div class="font-mono-tabular text-2xl font-bold" id="forecastAvgYoY">—</div>
-                        </div>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm idc-table">
-                            <thead><tr>
-                                <th class="text-left py-3 px-4">Quarter</th>
-                                <th class="text-right py-3 px-4">Forecasted Units</th>
-                                <th class="text-right py-3 px-4">QoQ Growth</th>
-                                <th class="text-right py-3 px-4">YoY Growth</th>
-                            </tr></thead>
-                            <tbody id="forecastTableBody"><tr><td colspan="4" class="text-center py-8" style="color:var(--text-muted)">Run forecast_etl.py to generate predictions</td></tr></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <footer class="border-t pt-4 text-xs" style="border-color:var(--border);color:var(--text-muted)"></footer>
@@ -393,7 +358,7 @@ def create_dashboard(data):
 
         var isDark = true, selectedQuarter = null, selectedCategory = 'Total', selectedCountry = null;
         var trendChart = null, allQuarters = [], brandNotes = {}, noteColors = {};
-        var db = null, notesRef = null, forecastData = null;
+        var db = null, notesRef = null;
 
         // ==================== FIREBASE ====================
         function initFirebase() {
@@ -469,31 +434,6 @@ def create_dashboard(data):
         function findCo() { return (D.country_overview || []).find(function (x) { return x.Country === selectedCountry; }); }
         function findBa() { return (D.brand_analysis || []).filter(function (x) { return x.Country === selectedCountry; }); }
 
-        // ==================== FORECAST ====================
-        async function loadForecastData() {
-            try {
-                var resp = await fetch('forecast_data.json?t=' + Date.now());
-                if (resp.ok) { forecastData = await resp.json(); renderForecast(); }
-            } catch(e) { console.log('Forecast not available. Run forecast_etl.py'); }
-        }
-        function renderForecast() {
-            if (!forecastData || !forecastData.summary) return;
-            var s = forecastData.summary;
-            document.getElementById('forecastTotalUnits').textContent = fmt(s.total_forecasted_units);
-            var qe = document.getElementById('forecastAvgQoQ'); qe.textContent = (s.avg_qoq_growth >= 0 ? '+' : '') + s.avg_qoq_growth + '%'; qe.style.color = posColor(s.avg_qoq_growth);
-            var ye = document.getElementById('forecastAvgYoY'); ye.textContent = (s.avg_yoy_growth >= 0 ? '+' : '') + s.avg_yoy_growth + '%'; ye.style.color = posColor(s.avg_yoy_growth);
-            document.getElementById('forecastGeneratedAt').textContent = 'Generated: ' + new Date(s.generated_at).toLocaleDateString();
-            var tb = document.getElementById('forecastTableBody');
-            var h = '';
-            (forecastData.gcc_forecast || []).forEach(function(f) {
-                h += '<tr><td class="py-3 px-4 font-semibold">' + f.quarter + '</td>' +
-                    '<td class="py-3 px-4 text-right font-mono-tabular">' + fmt(f.units) + '</td>' +
-                    '<td class="py-3 px-4 text-right font-mono-tabular" style="color:' + posColor(f.qoq_growth) + '">' + f.qoq_direction + ' ' + (f.qoq_growth != null ? f.qoq_growth.toFixed(1) + '%' : '—') + '</td>' +
-                    '<td class="py-3 px-4 text-right font-mono-tabular" style="color:' + posColor(f.yoy_growth) + '">' + f.yoy_direction + ' ' + (f.yoy_growth != null ? f.yoy_growth.toFixed(1) + '%' : '—') + '</td></tr>';
-            });
-            tb.innerHTML = h || '<tr><td colspan="4" class="text-center py-8" style="color:var(--text-muted)">No forecast data</td></tr>';
-        }
-
         // ==================== BRAND DETAIL ====================
         function populateBrandFilter() {
             var brands = D.brand_rankings || [];
@@ -503,9 +443,9 @@ def create_dashboard(data):
         function renderBrandDetail() {
             var brand = document.getElementById('brandDetailFilter').value;
             var container = document.getElementById('brandDetailContent');
-            if (!brand) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">Select a brand</div>'; return; }
+            if (!brand) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">Select a brand to view its performance across all GCC countries</div>'; return; }
             var ba = (D.brand_analysis || []).filter(function(x) { return x.Brand === brand; });
-            if (!ba.length) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">No data for ' + brand + '</div>'; return; }
+            if (!ba.length) { container.innerHTML = '<div class="text-center py-8" style="color:var(--text-muted)">No data found for ' + brand + '</div>'; return; }
             var quarters = allQuarters;
             var h = '<div class="overflow-x-auto"><table class="w-full text-sm idc-table"><thead><tr><th class="text-left py-3 px-4">Country</th>';
             quarters.forEach(function(q) { h += '<th class="text-right py-3 px-4">' + q.replace(/(\\d{4})Q(\\d)/, 'Q$2\\'$1').replace('20', "'") + '</th>'; });
@@ -530,7 +470,7 @@ def create_dashboard(data):
             var cs = D.country_comparison || []; if (!cs.length) return;
             selectedCountry = cs[0].Country;
             renderCountrySelector(cs); selectCountry(selectedCountry);
-            loadForecastData(); populateBrandFilter();
+            populateBrandFilter();
         }
 
         // ==================== COUNTRY SELECTOR ====================
