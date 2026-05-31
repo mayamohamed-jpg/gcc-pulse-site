@@ -338,7 +338,7 @@ def create_dashboard(data):
             <!-- Brand Detail Across Countries -->
             <div class="idc-card">
                 <div class="p-5 border-b flex items-center justify-between" style="border-color:var(--border)">
-                    <h3 class="font-display text-lg font-semibold">🔍 Brand Performance Across Countries</h3>
+                    <h3 class="font-display text-lg font-semibold">Brand Performance Across Countries</h3>
                     <select id="brandDetailFilter" onchange="renderBrandDetail()" class="filter-select">
                         <option value="">Select a brand...</option>
                     </select>
